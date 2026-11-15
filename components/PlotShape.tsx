@@ -25,8 +25,11 @@ export function PlotSurvey({
   insetLabel,
   noInsetLabel,
   lang,
+  caption = true,
 }: {
   lang: "el" | "en";
+  /** The written key under the sketch. Without it the label stays on the drawing for screen readers. */
+  caption?: boolean;
   geometry: Polygon;
   verdict: Verdict;
   insetLabel: string;
@@ -64,10 +67,12 @@ export function PlotSurvey({
           <path d="M0 -8 L4 6 L0 3 L-4 6 Z" />
         </g>
       </svg>
-      <figcaption className={shape.inset ? "survey-key" : "survey-key none"}>
-        <i aria-hidden="true" />
-        {shape.inset ? insetLabel : noInsetLabel}
-      </figcaption>
+      {caption ? (
+        <figcaption className={shape.inset ? "survey-key" : "survey-key none"}>
+          <i aria-hidden="true" />
+          {shape.inset ? insetLabel : noInsetLabel}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

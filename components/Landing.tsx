@@ -4,10 +4,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import { Banner, LangSwitch, Mark, VerdictPill } from "@/components/Chrome";
+import { LangSwitch, Mark, Wordmark } from "@/components/Chrome";
 import { useFilmClock } from "@/components/FilmClock";
 import { NdviScale } from "@/components/NdviScale";
-import { PlotGlyph } from "@/components/PlotShape";
 import savedAnalyses from "@/data/analysis-cache.json";
 import { imageryFor, rulesOnlyAnalysis, screen, type Analysis } from "@/lib/assess";
 import { CHAPTERS, FILM_END, FILM_PLOT, ORTHO_STILLS, type ChapterId } from "@/lib/film";
@@ -19,7 +18,6 @@ import type { Lang } from "@/lib/types";
 // The map engine is only worth loading in a browser that can draw it.
 const FilmStage = dynamic(() => import("@/components/Film").then((mod) => mod.FilmStage), { ssr: false });
 
-const STEPS = [copy.searchGo, copy.analyze, copy.flag];
 const SKIP = { el: "Μετάβαση στο περιεχόμενο", en: "Skip to content" };
 const SAVED = savedAnalyses as unknown as Record<string, Analysis>;
 
@@ -27,6 +25,14 @@ function longDate(lang: Lang, iso: string) {
   return new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString(lang === "el" ? "el-GR" : "en-GB", {
     day: "numeric",
     month: "long",
+    timeZone: "UTC",
+  });
+}
+
+function shortDate(lang: Lang, iso: string) {
+  return new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString(lang === "el" ? "el-GR" : "en-GB", {
+    day: "numeric",
+    month: "short",
     timeZone: "UTC",
   });
 }
@@ -150,15 +156,6 @@ export function Landing() {
   }, [analyses, example]);
   const verdict = analysis?.verdict ?? "uncertain";
 
-  const stepText = [
-    t(lang, copy.landing.steps[0]),
-    fill(t(lang, copy.landing.steps[1]), {
-      spring: longDate(lang, sentinel.springDate),
-      june: longDate(lang, sentinel.juneDate),
-    }),
-    t(lang, copy.landing.steps[2]),
-  ];
-
   const daysAfter =
     s2 && declaration
       ? Math.round((Date.parse(`${s2.after.date}T00:00:00Z`) - Date.parse(`${declaration.submittedAt.slice(0, 10)}T00:00:00Z`)) / 86_400_000)
@@ -200,7 +197,9 @@ export function Landing() {
   const source =
     cues.source === "scenes" && s2
       ? fill(t(lang, copy.film.sources.scenes), { date: longDate(lang, cues.june ? s2.after.date : s2.before.date) })
-      : t(lang, copy.film.sources[cues.source === "scenes" ? "ortho" : cues.source]);
+      : cues.source === "mosaic"
+        ? t(lang, copy.film.sources.mosaic)
+        : ""; // no caption over the orthophoto
 
   function enter(event: FormEvent) {
     event.preventDefault();
@@ -222,12 +221,12 @@ export function Landing() {
           <div className="brand">
             <Link href="/" className="brand-link">
               <Mark />
-              <strong>myField</strong>
+              <Wordmark />
             </Link>
           </div>
           <div className="meta-line">
             <span className="place">
-              {t(lang, scenario.meta.settlement)}, {t(lang, scenario.meta.municipality)}
+              {t(lang, copy.region)}
             </span>
             <LangSwitch lang={lang} setLang={setLang} />
             {officer ? (
@@ -249,7 +248,6 @@ export function Landing() {
             )}
           </div>
         </div>
-        <Banner lang={lang} />
       </header>
 
       <main id="main">
@@ -285,60 +283,8 @@ export function Landing() {
               ) : null}
             </div>
 
-            {example && analysis ? (
-              <aside className={`film-reading paper-world v-${verdict}`} aria-label={t(lang, copy.assessment)}>
-                <header className="reading-head">
-                  <div>
-                    <strong className="flared">{FILM_PLOT}</strong>
-                    <span>
-                      {t(lang, example.parcel.properties.street)},{" "}
-                      {example.parcel.properties.areaM2.toLocaleString(lang === "el" ? "el-GR" : "en-GB")} m²
-                    </span>
-                  </div>
-                  <span className="tag">{t(lang, copy.source[analysis.source])}</span>
-                </header>
-                <p className={`verdict v-${verdict}`}>{t(lang, copy.verdict[verdict])}</p>
-                <p className="reading-why">
-                  {analysis.ai ? t(lang, analysis.ai.summary) : t(lang, copy.ruleReason[analysis.rule.reason])}
-                </p>
-                {s2 ? (
-                  <NdviScale before={s2.before.ndvi} after={s2.after.ndvi} pixels={s2.after.pixelCount} lang={lang} />
-                ) : null}
-                <dl className="reading-facts">
-                  {declaration ? (
-                    <div>
-                      <dt>{t(lang, copy.declaration)}</dt>
-                      <dd>
-                        {t(lang, copy.declaredCleaned)}{"\u00a0"}
-                        {longDate(lang, declaration.submittedAt).replace(/ /g, "\u00a0")}
-                      </dd>
-                    </div>
-                  ) : null}
-                  <div>
-                    <dt>{t(lang, copy.confidenceLabel)}</dt>
-                    <dd>{t(lang, copy.confidence[analysis.confidence])}</dd>
-                  </div>
-                </dl>
-                <p className="reading-decides">{t(lang, copy.film.decides)}</p>
-                <a
-                  className="btn reading-open"
-                  href={`/property/${FILM_PLOT}`}
-                  onClick={(event) => {
-                    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-                    event.preventDefault();
-                    go(`/property/${FILM_PLOT}`);
-                  }}
-                >
-                  {fill(t(lang, copy.film.openPlot), { code: FILM_PLOT })}
-                  <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
-                    <path d="M3 8h9.5M8.5 3.5L13 8l-4.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-              </aside>
-            ) : null}
-
             <div className="film-rail">
-              <p className="film-source">{source}</p>
+              {source ? <p className="film-source">{source}</p> : null}
               <ol className="film-chapters" aria-label={t(lang, copy.film.chaptersLabel)}>
                 {CHAPTERS.map((chapter, index) => (
                   <li key={chapter.id}>
@@ -377,69 +323,11 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="film-copy" data-enter>
-            <h1 id="land-title">{t(lang, copy.landing.title)}</h1>
-            <p className="land-lead">{t(lang, copy.landing.lead)}</p>
-          </div>
+          <hgroup className="film-copy" data-enter>
+            <h1 id="land-title">{t(lang, copy.landing.punchline)}</h1>
+          </hgroup>
         </section>
 
-        <div className="land">
-          <section className="land-steps" aria-labelledby="steps-title">
-            <h2 id="steps-title">{t(lang, copy.landing.stepsTitle)}</h2>
-            <ol>
-              <li>
-                <div className="step-visual">
-                  <img src={`/imagery/${FILM_PLOT}-ortho.jpg`} alt={t(lang, copy.landing.stepAlt[0])} width={512} height={512} loading="lazy" />
-                </div>
-                <span className="step-n">1</span>
-                <h3>{t(lang, STEPS[0])}</h3>
-                <p>{stepText[0]}</p>
-              </li>
-              <li>
-                <div className="step-visual step-pair">
-                  <img src={`/imagery/${FILM_PLOT}-s2-before.jpg`} alt={t(lang, copy.landing.stepAlt[1])} width={512} height={512} loading="lazy" />
-                  <img src={`/imagery/${FILM_PLOT}-s2-after.jpg`} alt={t(lang, copy.landing.stepAlt[2])} width={512} height={512} loading="lazy" />
-                </div>
-                <span className="step-n">2</span>
-                <h3>{t(lang, STEPS[1])}</h3>
-                <p>{stepText[1]}</p>
-              </li>
-              <li>
-                {/* the dashboard's own row for the worked example, once flagged */}
-                <div className="step-visual step-mock" aria-hidden="true">
-                  {example ? (
-                    <div className="mock-card">
-                      <div className="mock-row">
-                        <PlotGlyph geometry={example.parcel.geometry} verdict={example.rule.verdict} size={56} />
-                        <div className="mock-id">
-                          <strong className="flared">{FILM_PLOT}</strong>
-                          <VerdictPill verdict={example.rule.verdict} lang={lang} />
-                        </div>
-                      </div>
-                      <p className="flag-on">{t(lang, copy.flagged)}</p>
-                    </div>
-                  ) : null}
-                </div>
-                <span className="step-n">3</span>
-                <h3>{t(lang, STEPS[2])}</h3>
-                <p>{stepText[2]}</p>
-              </li>
-            </ol>
-
-            <div className="land-close">
-              <div className="owner-note">
-                <h3>{t(lang, copy.landing.ownerTitle)}</h3>
-                <p>{t(lang, copy.landing.ownerBody)}</p>
-                <a href={copy.landing.ownerUrl} target="_blank" rel="noreferrer" className="owner-link">
-                  {t(lang, copy.landing.ownerLink)}
-                  <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                    <path d="M6 3.5h6.5V10M12.5 3.5L4 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </section>
-        </div>
       </main>
 
       {/* the only way in: the top bar's Sign in opens this; Esc, the close button or the backdrop dismiss it */}
@@ -492,15 +380,6 @@ export function Landing() {
         </form>
       </dialog>
 
-      <footer className="land-foot">
-        <p>
-          {t(lang, copy.landing.sources)}{" "}
-          <a href={scenario.meta.law.pdf} target="_blank" rel="noreferrer">
-            {scenario.meta.law.primary}
-          </a>
-          . {t(lang, copy.film.mosaicCredit)}
-        </p>
-      </footer>
     </div>
   );
 }

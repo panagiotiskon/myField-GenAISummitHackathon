@@ -11,12 +11,12 @@ const sans = Commissioner({
 });
 
 export const metadata: Metadata = {
-  title: "myField: Έλεγχος δηλώσεων καθαρισμού οικοπέδων",
+  title: "myField: Plot-cleaning declaration checks",
   description:
     "Hackathon demo: screen Greek plot-cleaning declarations against real imagery. Simulated declarations, demo plot codes, no compliance findings.",
   icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: "myField: Δορυφορικός έλεγχος δηλώσεων καθαρισμού για δήμους",
+    title: "myField: Satellite checks of plot-cleaning declarations",
     description: "Hackathon demo: screen Greek plot-cleaning declarations against real Sentinel-2 and Cadastre imagery.",
     type: "website",
   },
@@ -28,7 +28,7 @@ export const viewport: Viewport = { themeColor: "#edefea" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // suppressHydrationWarning: the head line below adds m-enter to <html> before React hydrates
-    <html lang="el" className={sans.variable} suppressHydrationWarning>
+    <html lang="en" className={sans.variable} suppressHydrationWarning>
       <head>
         {/* the landing hero's one entrance on load; without script nothing is hidden */}
         <script

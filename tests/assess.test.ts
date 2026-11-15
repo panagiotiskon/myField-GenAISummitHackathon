@@ -10,7 +10,7 @@ import {
   type ParcelImagery,
 } from "@/lib/assess";
 import { getParcel, scenario } from "@/lib/scenario";
-import type { Declaration } from "@/lib/types";
+import type { Declaration, ParcelFeature } from "@/lib/types";
 
 const declared = (parcelId: string, date: string): Declaration => ({
   parcelId,
@@ -41,18 +41,29 @@ function withNdvi(before: number, after: number, pixelCount = 60): ParcelImagery
 }
 
 describe("measurement gates", () => {
-  const large = getParcel("DEMO-RAF-018")!;
+  const large = getParcel("KAEK-05119-003")!;
 
   it("never assesses a plot outside the duty", () => {
-    const forest = getParcel("DEMO-RAF-019")!;
-    const rule = ruleAssessment(forest, imageryFor("DEMO-RAF-019"), null);
+    const forest: ParcelFeature = {
+      ...large,
+      properties: { ...large.properties, id: "FOREST-TEST", zone: "forest_excluded" },
+    };
+    const rule = ruleAssessment(forest, null, null);
     expect(rule.verdict).toBe("not_applicable");
     expect(rule.allowed).toEqual(["not_applicable"]);
   });
 
   it("holds a small plot at uncertain, whatever the owner declared", () => {
-    const small = getParcel("DEMO-RAF-002")!;
-    const rule = ruleAssessment(small, imageryFor("DEMO-RAF-002"), declared("DEMO-RAF-002", "2026-06-10"));
+    const small: ParcelFeature = {
+      ...large,
+      properties: { ...large.properties, id: "SMALL-TEST", areaM2: 300 },
+    };
+    const imagerySmall: ParcelImagery = {
+      ortho: null,
+      interiorAfterBufferM2: 0,
+      sentinel: null,
+    };
+    const rule = ruleAssessment(small, imagerySmall, declared("SMALL-TEST", "2026-06-10"));
     expect(rule.verdict).toBe("uncertain");
     expect(rule.reason).toBe("too_small_for_sentinel");
     expect(rule.allowed).toEqual(["uncertain"]);
@@ -71,7 +82,7 @@ describe("measurement gates", () => {
   });
 
   it("will not use a picture taken before the declaration", () => {
-    const rule = ruleAssessment(large, withNdvi(0.5, 0.12), declared("DEMO-RAF-018", "2026-06-21"));
+    const rule = ruleAssessment(large, withNdvi(0.5, 0.12), declared("KAEK-05119-001", "2026-06-21"));
     expect(rule.verdict).toBe("uncertain");
     expect(rule.reason).toBe("image_older_than_declaration");
   });
@@ -91,8 +102,11 @@ describe("measurement gates", () => {
 });
 
 describe("model answer is clamped to the measurements", () => {
-  const small = getParcel("DEMO-RAF-002")!;
-  const rule = ruleAssessment(small, imageryFor("DEMO-RAF-002"), null);
+  const small: ParcelFeature = {
+    ...getParcel("KAEK-05119-001")!,
+    properties: { ...getParcel("KAEK-05119-001")!.properties, id: "SMALL-TEST", areaM2: 300 },
+  };
+  const rule = ruleAssessment(small, { ortho: null, interiorAfterBufferM2: 0, sentinel: null }, null);
 
   it("rejects an upgrade the measurements do not allow", () => {
     expect(clampVerdict("likely_cleaned", rule)).toEqual({ verdict: "uncertain", clamped: true });
@@ -100,7 +114,7 @@ describe("model answer is clamped to the measurements", () => {
   });
 
   it("lets the model step down to uncertain", () => {
-    const green = ruleAssessment(getParcel("DEMO-RAF-018")!, withNdvi(0.55, 0.42), null);
+    const green = ruleAssessment(getParcel("KAEK-05119-001")!, withNdvi(0.55, 0.42), null);
     expect(clampVerdict("uncertain", green)).toEqual({ verdict: "uncertain", clamped: false });
   });
 });
@@ -111,9 +125,9 @@ describe("dashboard screening", () => {
   it("covers every parcel and keeps exempt plots off the priority list", () => {
     expect(rows).toHaveLength(scenario.parcels.features.length);
     const list = priorityList(rows, 6);
-    expect(list).toHaveLength(6);
+    expect(list).toHaveLength(3);
     expect(list.every((row) => row.rule.verdict !== "not_applicable")).toBe(true);
-    expect(list[0].priority).toBeGreaterThanOrEqual(list[5].priority);
+    expect(list[0].priority).toBeGreaterThanOrEqual(list[2].priority);
   });
 
   it("ranks a cleaned declaration that the imagery contradicts near the top", () => {
@@ -125,9 +139,9 @@ describe("dashboard screening", () => {
   });
 
   it("uses the saved real Sentinel-2 numbers for the peri-urban plot", () => {
-    const row = rows.find((r) => r.parcel.properties.id === "DEMO-RAF-018")!;
-    expect(row.rule.imageDate).toBe("2026-06-20");
-    expect(row.rule.pixelCount).toBeGreaterThan(50);
+    const row = rows.find((r) => r.parcel.properties.id === "KAEK-05119-001")!;
+    expect(row.rule.imageDate).toBe("2026-04-29");
+    expect(row.rule.pixelCount).toBeGreaterThan(20);
     expect(row.rule.ndviAfter).toBeGreaterThan(0);
   });
 });
@@ -136,14 +150,13 @@ describe("code search", () => {
   const ids = scenario.parcels.features.map((f) => (f.properties as { id: string }).id);
 
   it("accepts the full code, any case, and short forms", () => {
-    expect(resolveParcelCode("demo-raf-017", ids)).toBe("DEMO-RAF-017");
-    expect(resolveParcelCode(" RAF-17 ", ids)).toBe("DEMO-RAF-017");
-    expect(resolveParcelCode("17", ids)).toBe("DEMO-RAF-017");
+    expect(resolveParcelCode("kaek-05119-001", ids)).toBe("KAEK-05119-001");
+    expect(resolveParcelCode(" 001 ", ids)).toBe("KAEK-05119-001");
+    expect(resolveParcelCode("1", ids)).toBe("KAEK-05119-001");
   });
 
-  it("does not pretend to resolve a real KAEK or junk", () => {
-    expect(resolveParcelCode("050123456789", ids)).toBeNull();
-    expect(resolveParcelCode("DEMO-RAF-999", ids)).toBeNull();
+  it("does not pretend to resolve junk", () => {
+    expect(resolveParcelCode("KAEK-999", ids)).toBeNull();
     expect(resolveParcelCode("", ids)).toBeNull();
   });
 });

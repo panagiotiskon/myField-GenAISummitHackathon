@@ -3,16 +3,18 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type FormEvent } from "react";
-import { Chevron, LayerSwitch, TopBar, VERDICT_COLOR, VerdictDot } from "@/components/Chrome";
-import { PlotGlyph } from "@/components/PlotShape";
+import { LayerSwitch, TopBar, VERDICT_COLOR, VerdictDot } from "@/components/Chrome";
 import { MapView } from "@/components/MapView";
+import { PlotPhoto } from "@/components/PlotPhoto";
 import { priorityList, resolveParcelCode, screen, type Verdict } from "@/lib/assess";
-import { copy, fill, t } from "@/lib/i18n";
+import { copy, t } from "@/lib/i18n";
 import { scenario } from "@/lib/scenario";
 import { useAnalyses, useFlags, useLang } from "@/lib/store";
 
-const LEGEND: Verdict[] = ["potentially_uncleaned", "uncertain", "likely_cleaned", "not_applicable"];
-const BAR: Verdict[] = ["potentially_uncleaned", "uncertain", "likely_cleaned"];
+// The demo opens on this plot: the Mesogeia field by Agias Kyriakis, near Velanidia.
+const DEMO_FOCUS = "KAEK-05119-001";
+
+const LEGEND: Verdict[] = ["potentially_uncleaned", "uncertain", "likely_cleaned"];
 
 export function Dashboard() {
   const router = useRouter();
@@ -21,7 +23,7 @@ export function Dashboard() {
   const { analyses } = useAnalyses();
   const [query, setQuery] = useState("");
   const [miss, setMiss] = useState(false);
-  const [orthophoto, setOrthophoto] = useState(false);
+  const [orthophoto, setOrthophoto] = useState(true);
 
   const rows = useMemo(() => screen(scenario), []);
   const ids = useMemo(() => rows.map((row) => row.parcel.properties.id), [rows]);
@@ -41,8 +43,7 @@ export function Dashboard() {
     [verdicts],
   );
   const flaggedIds = useMemo(() => Object.keys(flags), [flags]);
-  const count = (v: Verdict) => Object.values(verdicts).filter((x) => x === v).length;
-  const inDuty = rows.filter((row) => row.rule.verdict !== "not_applicable").length;
+  const uncleanedCount = Object.values(verdicts).filter((v) => v === "potentially_uncleaned").length;
   const priority = useMemo(() => priorityList(rows, 6), [rows]);
 
   function onSearch(event: FormEvent) {
@@ -56,47 +57,15 @@ export function Dashboard() {
   }
 
   return (
-    <div className="app-shell dash">
-      <TopBar lang={lang} setLang={setLang} section={t(lang, copy.dashboard)} />
+    <div className="app-shell dash film-world">
+      <TopBar lang={lang} setLang={setLang} section={t(lang, copy.dashboard)} hideBanner />
 
       <div className="dash-body">
-        <form className="search" onSubmit={onSearch}>
-          <h2 className="search-title">{t(lang, copy.findTitle)}</h2>
-          <label htmlFor="kaek">{t(lang, copy.searchLabel)}</label>
-          <div className="search-row">
-            <input
-              id="kaek"
-              list="kaek-list"
-              autoFocus
-              autoComplete="off"
-              spellCheck={false}
-              value={query}
-              onChange={(event) => {
-                setQuery(event.target.value);
-                setMiss(false);
-              }}
-              placeholder={t(lang, copy.searchPlaceholder)}
-              aria-describedby="kaek-hint"
-            />
-            <datalist id="kaek-list">
-              {ids.map((id) => (
-                <option key={id} value={id} />
-              ))}
-            </datalist>
-            <button type="submit" className="btn btn-primary">
-              {t(lang, copy.searchGo)}
-            </button>
-          </div>
-          <p id="kaek-hint" className={miss ? "search-hint miss" : "search-hint"} role={miss ? "alert" : undefined}>
-            {miss ? `${t(lang, copy.searchMiss)} ` : ""}
-            {t(lang, copy.searchHint)}
-          </p>
-        </form>
-
         <section className="map-wrap">
           <MapView
             colors={colors}
             selectedId={null}
+            focusId={DEMO_FOCUS}
             flaggedIds={flaggedIds}
             orthophoto={orthophoto}
             onSelect={(id) => router.push(`/property/${id}`)}
@@ -113,65 +82,102 @@ export function Dashboard() {
           <LayerSwitch lang={lang} orthophoto={orthophoto} setOrthophoto={setOrthophoto} />
         </section>
 
-        <aside className="panel right">
-          <section className="tally" aria-labelledby="tally-title">
-            <p className="tally-lead" id="tally-title">
-              <strong>{scenario.declarations.length}</strong>
-              <span>{fill(t(lang, copy.tallyLead), { n: inDuty })}</span>
-            </p>
-            <div className="tally-bar" role="img" aria-label={BAR.map((v) => `${t(lang, copy.verdict[v])}: ${count(v)}`).join(", ")}>
-              {BAR.map((v) =>
-                count(v) ? <i key={v} className={`v-${v}`} style={{ flexGrow: count(v) }} /> : null,
-              )}
+        <aside className="panel right dash-panel">
+          <form className="dash-search" onSubmit={onSearch}>
+            <div className="search-box">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" className="search-icon">
+                <path
+                  d="M11.5 11.5L15 15M7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <input
+                id="kaek"
+                list="kaek-list"
+                autoComplete="off"
+                spellCheck={false}
+                value={query}
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  setMiss(false);
+                }}
+                placeholder={t(lang, copy.searchPlaceholder)}
+                aria-label={t(lang, copy.searchLabel)}
+              />
+              <datalist id="kaek-list">
+                {ids.map((id) => (
+                  <option key={id} value={id} />
+                ))}
+              </datalist>
+              <button type="submit" className="btn-search-go" aria-label={t(lang, copy.searchGo)}>
+                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                  <path
+                    d="M3 8h9.5M8.5 3.5L13 8l-4.5 4.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
-            <ul className="tally-key">
-              {BAR.map((v) => (
-                <li key={v}>
-                  <b className={`n v-${v}`}>{count(v)}</b>
-                  {t(lang, copy.verdict[v])}
-                </li>
-              ))}
-            </ul>
-            <p className={flaggedIds.length ? "tally-flag on" : "tally-flag"}>
-              <b>{flaggedIds.length}</b>
-              {t(lang, copy.stats.flagged)}, {t(lang, copy.stats.flaggedSub)}
-            </p>
-          </section>
+            {miss ? <p className="search-miss-text">{t(lang, copy.searchMiss)}</p> : null}
+          </form>
 
-          <div className="list-head">
-            <h2>{t(lang, copy.priority)}</h2>
-            <p className="panel-sub">{t(lang, copy.prioritySub)}</p>
-          </div>
-          <ol className="queue">
-            {priority.map((row, index) => {
-              const id = row.parcel.properties.id;
-              return (
-                <li key={id}>
-                  <Link href={`/property/${id}`} className="queue-item">
-                    <span className="rank">{index + 1}</span>
-                    <PlotGlyph geometry={row.parcel.geometry} verdict={verdicts[id]} size={40} />
-                    <span className="queue-main">
-                      <span className="queue-head">
-                        <strong>{id}</strong>
-                        <span className="area">{Math.round(row.parcel.properties.areaM2).toLocaleString("el-GR")} m²</span>
+          <dl className="dash-tally">
+            <div>
+              <dt>
+                {t(lang, copy.tally.duty)}
+                <small>{t(lang, copy.tally.dutyHint)}</small>
+              </dt>
+              <dd>{rows.length}</dd>
+            </div>
+            <div className="tally-uncleaned">
+              <dt>
+                {t(lang, copy.tally.uncleaned)}
+                <small>{t(lang, copy.tally.uncleanedHint)}</small>
+              </dt>
+              <dd>{uncleanedCount}</dd>
+            </div>
+            <div>
+              <dt>
+                {t(lang, copy.tally.flagged)}
+                <small>{t(lang, copy.tally.flaggedHint)}</small>
+              </dt>
+              <dd>{flaggedIds.length}</dd>
+            </div>
+          </dl>
+
+          <section className="dash-queue" aria-labelledby="queue-title">
+            <h2 id="queue-title">{t(lang, copy.priorityTitle)}</h2>
+            <ul className="plot-list">
+              {priority.map((row) => {
+                const id = row.parcel.properties.id;
+                const p = row.parcel.properties;
+                return (
+                  <li key={id}>
+                    <Link href={`/property/${id}`} className="plot-row">
+                      <PlotPhoto id={id} geometry={row.parcel.geometry} className="plot-thumb" />
+                      <span className="plot-text">
+                        <span className="plot-id">{id}</span>
+                        <span className="plot-street">{t(lang, p.street)}</span>
+                        <span className="plot-area">{Math.round(p.areaM2).toLocaleString(lang === "el" ? "el-GR" : "en-GB")} m²</span>
+                        <span className="plot-verdict">
+                          <VerdictDot verdict={verdicts[id]} />
+                          {t(lang, copy.verdict[verdicts[id]])}
+                        </span>
+                        {flags[id] ? <span className="plot-flag">{t(lang, copy.stats.flagged)}</span> : null}
                       </span>
-                      <span className={`queue-verdict v-${verdicts[id]}`}>
-                        {t(lang, copy.verdict[verdicts[id]])}
-                        {flags[id] ? <span className="tag tag-flag">{t(lang, copy.stats.flagged)}</span> : null}
-                      </span>
-                      <small>
-                        {row.reasons
-                          .slice(0, 3)
-                          .map((reason) => t(lang, copy.reasons[reason]))
-                          .join("; ")}
-                      </small>
-                    </span>
-                    <Chevron />
-                  </Link>
-                </li>
-              );
-            })}
-          </ol>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
         </aside>
       </div>
     </div>

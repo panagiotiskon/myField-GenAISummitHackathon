@@ -1,1 +1,183 @@
-{}
+{
+  "KAEK-05119-001": {
+    "parcelId": "KAEK-05119-001",
+    "verdict": "potentially_uncleaned",
+    "confidence": "low",
+    "source": "ai_live",
+    "model": "gpt-5.5-2026-04-23",
+    "analysedAt": "2026-11-15T11:32:39.144Z",
+    "rule": {
+      "parcelId": "KAEK-05119-001",
+      "imageDate": "2026-04-29",
+      "ndviBefore": 0.774,
+      "ndviAfter": 0.647,
+      "pixelCount": 36,
+      "timeline": {
+        "event": null,
+        "seasonStart": "2026-05-01",
+        "startDate": "2026-04-29",
+        "startNdvi": 0.647,
+        "springPeak": 0.774,
+        "dates": 65,
+        "pixels": 36,
+        "status": "covered_at_season_start"
+      },
+      "verdict": "potentially_uncleaned",
+      "confidenceCap": "low",
+      "allowed": [
+        "potentially_uncleaned",
+        "uncertain"
+      ],
+      "reason": "covered_at_season_start"
+    },
+    "ai": {
+      "summary": {
+        "el": "Δεν φαίνεται σαφής κατεργασία ή καθαρισμός πριν την 1η Μαΐου. Το οικόπεδο ήταν ακόμη πράσινο κοντά στην έναρξη της αντιπυρικής περιόδου και μετά ξεράθηκε σταδιακά.",
+        "en": "No clear working or cleaning is visible before 1 May. The plot was still green near the start of the fire season and then dried gradually."
+      },
+      "observations": [
+        {
+          "el": "Στην ορθοφωτογραφία το οικόπεδο φαίνεται αδόμητο, με κυρίως χαμηλή βλάστηση/χόρτα και λίγες διάσπαρτες κόμες δέντρων.",
+          "en": "In the orthophoto the plot appears undeveloped, mostly with low vegetation/grass and a few scattered tree canopies."
+        }
+      ],
+      "limitations": [],
+      "landCover": {
+        "trees": 10,
+        "lowVegetation": 65,
+        "bareGround": 25,
+        "built": 0
+      },
+      "proposedVerdict": "potentially_uncleaned",
+      "clamped": false
+    },
+    "aiNote": null
+  },
+  "KAEK-05119-002": {
+    "parcelId": "KAEK-05119-002",
+    "verdict": "potentially_uncleaned",
+    "confidence": "low",
+    "source": "ai_live",
+    "model": "gpt-5.5-2026-04-23",
+    "analysedAt": "2026-11-15T11:32:39.144Z",
+    "rule": {
+      "parcelId": "KAEK-05119-002",
+      "imageDate": "2026-06-20",
+      "ndviBefore": 0.584,
+      "ndviAfter": 0.354,
+      "pixelCount": 1,
+      "verdict": "potentially_uncleaned",
+      "confidenceCap": "low",
+      "allowed": [
+        "potentially_uncleaned",
+        "uncertain"
+      ],
+      "reason": "declared_vs_imagery"
+    },
+    "ai": {
+      "summary": {
+        "el": "Πυκνή άγρια βλάστηση διατρέχει το οικόπεδο, σε έντονη αντίθεση με τα γύρω καθαρισμένα και δομημένα οικόπεδα.",
+        "en": "Dense wild vegetation runs through the plot, contrasting with surrounding cleared and built parcels."
+      },
+      "observations": [],
+      "limitations": [],
+      "landCover": {
+        "trees": 20,
+        "lowVegetation": 60,
+        "bareGround": 20,
+        "built": 0
+      },
+      "proposedVerdict": "potentially_uncleaned",
+      "clamped": false
+    },
+    "aiNote": null
+  },
+  "KAEK-05119-003": {
+    "parcelId": "KAEK-05119-003",
+    "verdict": "potentially_uncleaned",
+    "confidence": "low",
+    "source": "ai_live",
+    "model": "gpt-5.5-2026-04-23",
+    "analysedAt": "2026-11-15T11:32:39.144Z",
+    "rule": {
+      "parcelId": "KAEK-05119-003",
+      "imageDate": "2026-06-20",
+      "ndviBefore": 0.548,
+      "ndviAfter": 0.383,
+      "pixelCount": 21,
+      "verdict": "potentially_uncleaned",
+      "confidenceCap": "low",
+      "allowed": [
+        "potentially_uncleaned",
+        "uncertain"
+      ],
+      "reason": "declared_vs_imagery"
+    },
+    "ai": {
+      "summary": {
+        "el": "Εμφανής συσσώρευση ξηρής καύσιμης ύλης και ανεπεξέργαστων θάμνων κοντά στο όριο δάσους.",
+        "en": "Evident accumulation of dry fuel load and unworked brush near the forest edge."
+      },
+      "observations": [],
+      "limitations": [],
+      "landCover": {
+        "trees": 15,
+        "lowVegetation": 70,
+        "bareGround": 15,
+        "built": 0
+      },
+      "proposedVerdict": "potentially_uncleaned",
+      "clamped": false
+    },
+    "aiNote": null
+  },
+  "DEMO-FIELD-001": {
+    "parcelId": "KAEK-05119-001",
+    "verdict": "potentially_uncleaned",
+    "confidence": "low",
+    "source": "ai_live",
+    "model": "gpt-5.5-2026-04-23",
+    "analysedAt": "2026-11-15T11:32:39.144Z",
+    "rule": {
+      "parcelId": "KAEK-05119-001",
+      "imageDate": "2026-04-29",
+      "ndviBefore": 0.774,
+      "ndviAfter": 0.647,
+      "pixelCount": 36,
+      "timeline": {
+        "event": null,
+        "seasonStart": "2026-05-01",
+        "startDate": "2026-04-29",
+        "startNdvi": 0.647,
+        "springPeak": 0.774,
+        "dates": 65,
+        "pixels": 36,
+        "status": "covered_at_season_start"
+      },
+      "verdict": "potentially_uncleaned",
+      "confidenceCap": "low",
+      "allowed": [
+        "potentially_uncleaned",
+        "uncertain"
+      ],
+      "reason": "covered_at_season_start"
+    },
+    "ai": {
+      "summary": {
+        "el": "Δεν φαίνεται σαφής κατεργασία ή καθαρισμός πριν την 1η Μαΐου. Το οικόπεδο ήταν ακόμη πράσινο κοντά στην έναρξη της αντιπυρικής περιόδου και μετά ξεράθηκε σταδιακά.",
+        "en": "No clear working or cleaning is visible before 1 May. The plot was still green near the start of the fire season and then dried gradually."
+      },
+      "observations": [],
+      "limitations": [],
+      "landCover": {
+        "trees": 10,
+        "lowVegetation": 65,
+        "bareGround": 25,
+        "built": 0
+      },
+      "proposedVerdict": "potentially_uncleaned",
+      "clamped": false
+    },
+    "aiNote": null
+  }
+}

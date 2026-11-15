@@ -83,6 +83,8 @@ function parcelBounds(id: string | null) {
 export function MapView(props: {
   /** parcel id -> fill colour */
   colors: Record<string, string>;
+  /** Plot to open the map on, without selecting it. Ignored when selectedId is set. */
+  focusId?: string;
   selectedId: string | null;
   flaggedIds?: string[];
   orthophoto: boolean;
@@ -94,6 +96,7 @@ export function MapView(props: {
   const onSelectRef = useRef(props.onSelect);
   onSelectRef.current = props.onSelect;
   const initialSelected = useRef(props.selectedId);
+  const initialFocus = useRef(props.focusId ?? null);
   // Bumps each time a style finishes loading, so the effects below re-apply.
   const [ready, setReady] = useState(0);
   const [offline, setOffline] = useState(false);
@@ -144,9 +147,11 @@ export function MapView(props: {
     map.on("mouseleave", "parcels-fill", () => {
       map.getCanvas().style.cursor = "";
     });
-    map.fitBounds(parcelBounds(initialSelected.current), {
+    // A selected plot wins; otherwise open on the focus plot, with its street around it; otherwise all plots.
+    const firstView = initialSelected.current ?? initialFocus.current;
+    map.fitBounds(parcelBounds(firstView), {
       padding: initialSelected.current ? 90 : 48,
-      maxZoom: 18.5,
+      maxZoom: initialSelected.current ? 18.5 : firstView ? 14.5 : 18.5,
       duration: 0,
     });
 

@@ -1,0 +1,20 @@
+# Never upload secrets or local tooling to Vercel
+.env
+.env.*
+!.env.local.example
+.claude
+.codex
+.cursor
+.gemini
+.agents
+.impeccable
+.idea
+*.iml
+.next
+node_modules
+.venv
+skills
+skills-lock.json
+tests
+coverage
+*.log

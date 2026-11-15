@@ -26,8 +26,9 @@ const MANIFEST = path.join(ROOT, "data", "flight-manifest.json");
 const S2 = "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg";
 const WMS = "https://gis.ktimanet.gr/wms/wmsopen/wmsserver.aspx";
 // the two wider stills are on screen for a fraction of a second each
-const STILL_PX = { 8000: 1536, 1600: 1536, 360: 2048 };
-const STILL_QUALITY = { 8000: 76, 1600: 78, 360: 84 };
+// widest to closest, matching ORTHO_STILL_SIDES in lib/film.ts
+const STILL_PX = { 8000: 1536, 3000: 1536, 1200: 2560 };
+const STILL_QUALITY = { 8000: 76, 3000: 78, 1200: 84 };
 
 async function fetchRetry(url, tries = 5) {
   let last = "";

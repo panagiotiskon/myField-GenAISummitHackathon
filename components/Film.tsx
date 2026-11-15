@@ -54,9 +54,26 @@ function filmStyle(verdict: Verdict): StyleSpecification {
     interior = null;
   }
   const ring = plot.geometry.coordinates[0] ?? [];
+  // four boundary pins: the outline's vertices closest to the corners of its box
+  const vertices = ring.slice(0, -1);
+  const [w, s, e, n] = vertices.reduce(
+    ([w0, s0, e0, n0], [x, y]) => [Math.min(w0, x), Math.min(s0, y), Math.max(e0, x), Math.max(n0, y)],
+    [Infinity, Infinity, -Infinity, -Infinity],
+  );
+  const corners4 = [
+    [w, n],
+    [e, n],
+    [e, s],
+    [w, s],
+  ].map(([cx, cy]) =>
+    vertices.reduce((best, pair) =>
+      Math.hypot(pair[0] - cx, pair[1] - cy) < Math.hypot(best[0] - cx, best[1] - cy) ? pair : best,
+    ),
+  );
+  const pinPoints = corners4.filter((pair, i) => corners4.findIndex((other) => other === pair) === i);
   const pins: FeatureCollection = {
     type: "FeatureCollection",
-    features: ring.slice(0, -1).map((pair, i) => ({
+    features: pinPoints.map((pair, i) => ({
       type: "Feature",
       properties: { i },
       geometry: { type: "Point", coordinates: pair },
@@ -375,16 +392,20 @@ export function FilmStage({
     const abort = new AbortController();
     let coarse = false;
     let loaded = false;
+    let allTiles = false;
     const maybeStart = () => {
       if (!coarse || !loaded) return;
-      setLimit(Math.max(DESCENT_GATE, 0));
+      // the tiles can all arrive before the map loads; never re-close the gate after that
+      setLimit(allTiles ? FILM_END : Math.max(DESCENT_GATE, 0));
       onStateRef.current("ready");
     };
     void prefetch(flightTiles(view), abort.signal, () => {
       coarse = true;
       maybeStart();
     }).then(() => {
-      if (!abort.signal.aborted) setLimit(FILM_END);
+      if (abort.signal.aborted) return;
+      allTiles = true;
+      if (coarse && loaded) setLimit(FILM_END);
     });
 
     map.on("load", () => {

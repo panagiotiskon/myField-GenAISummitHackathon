@@ -150,10 +150,7 @@ export function useFilmClock(): FilmClock {
     if (frozen != null && Number.isFinite(Number(frozen))) {
       publish(Math.min(FILM_END, Math.max(0, Number(frozen))));
       window.addEventListener("film:seek", onSeek);
-    } else if (forced === "play" && !motion.matches) {
-      publish(0);
-      play();
-    } else if (motion.matches || seen || signedIn || forced === "end") {
+    } else if (forced === "end" || motion.matches) {
       publish(FILM_END);
     } else {
       publish(0);
