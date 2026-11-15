@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import { Banner, LangSwitch, Mark } from "@/components/Chrome";
+import { LangSwitch, Mark, Wordmark } from "@/components/Chrome";
 import { useFilmClock } from "@/components/FilmClock";
 import { NdviScale } from "@/components/NdviScale";
 import savedAnalyses from "@/data/analysis-cache.json";
@@ -221,7 +221,7 @@ export function Landing() {
           <div className="brand">
             <Link href="/" className="brand-link">
               <Mark />
-              <strong>myField</strong>
+              <Wordmark />
             </Link>
           </div>
           <div className="meta-line">
@@ -248,7 +248,6 @@ export function Landing() {
             )}
           </div>
         </div>
-        <Banner lang={lang} />
       </header>
 
       <main id="main">
@@ -283,49 +282,6 @@ export function Landing() {
                 </div>
               ) : null}
             </div>
-
-            {example && analysis ? (
-              <aside className={`film-reading paper-world v-${verdict}`} aria-label={t(lang, copy.assessment)}>
-                <header className="reading-head">
-                  <div>
-                    <strong className="flared">{FILM_PLOT}</strong>
-                    <span>{example.parcel.properties.areaM2.toLocaleString(lang === "el" ? "el-GR" : "en-GB")} m²</span>
-                  </div>
-                </header>
-                <p className={`verdict v-${verdict}`}>{t(lang, copy.verdict[verdict])}</p>
-                {s2 ? (
-                  <>
-                    <p className="reading-ndvi">
-                      <span>NDVI</span>
-                      <strong>{number(lang, s2.before.ndvi)}</strong>
-                      <span aria-hidden="true">→</span>
-                      <span className="sr-only">{t(lang, copy.film.cardTo)}</span>
-                      <strong>{number(lang, s2.after.ndvi)}</strong>
-                    </p>
-                    <p className="reading-note">
-                      {fill(t(lang, copy.film.cardNote), {
-                        from: shortDate(lang, s2.before.date),
-                        to: shortDate(lang, s2.after.date),
-                      })}
-                    </p>
-                  </>
-                ) : null}
-                <a
-                  className="btn btn-primary reading-open"
-                  href={`/property/${FILM_PLOT}`}
-                  onClick={(event) => {
-                    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-                    event.preventDefault();
-                    go(`/property/${FILM_PLOT}`);
-                  }}
-                >
-                  {fill(t(lang, copy.film.openPlot), { code: FILM_PLOT })}
-                  <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
-                    <path d="M3 8h9.5M8.5 3.5L13 8l-4.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-              </aside>
-            ) : null}
 
             <div className="film-rail">
               {source ? <p className="film-source">{source}</p> : null}
@@ -367,9 +323,9 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="film-copy" data-enter>
-            <h1 id="land-title">{t(lang, copy.landing.title)}</h1>
-          </div>
+          <hgroup className="film-copy" data-enter>
+            <h1 id="land-title">{t(lang, copy.landing.punchline)}</h1>
+          </hgroup>
         </section>
 
       </main>

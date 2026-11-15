@@ -88,7 +88,7 @@ describe("field-watch plots in the scenario", () => {
   const ids = Object.keys(fieldWatch.parcels);
 
   it("every plot has a parcel, a declaration of cleaned, and an orthophoto", () => {
-    expect(ids).toEqual(["DEMO-FIELD-001"]);
+    expect(ids).toEqual(["KAEK-05119-001"]);
     for (const id of ids) {
       expect(getParcel(id)).toBeDefined();
       expect(scenario.declarations.find((d) => d.parcelId === id)?.claimedCleaned).toBe(true);
@@ -114,8 +114,8 @@ describe("field-watch plots in the scenario", () => {
 
   it("looks up the field code by its own prefix", () => {
     const all = scenario.parcels.features.map((f) => String(f.id));
-    expect(resolveParcelCode("field-1", all)).toBe("DEMO-FIELD-001");
-    expect(resolveParcelCode("DEMO-FIELD-001", all)).toBe("DEMO-FIELD-001");
-    expect(resolveParcelCode("raf-3", all)).toBe("DEMO-RAF-003");
+    expect(resolveParcelCode("001", all)).toBe("KAEK-05119-001");
+    expect(resolveParcelCode("KAEK-05119-001", all)).toBe("KAEK-05119-001");
+    expect(resolveParcelCode("002", all)).toBe("KAEK-05119-002");
   });
 });

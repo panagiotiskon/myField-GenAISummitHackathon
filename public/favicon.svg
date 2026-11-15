@@ -1,10 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#16261d"/>
-  <path d="M7 10L23 7l2.5 15.5L10 25z" fill="#d9c58f" stroke="#f9faf7" stroke-width="1.8" stroke-linejoin="round"/>
-  <g fill="#f9faf7">
-    <circle cx="7" cy="10" r="2.2"/>
-    <circle cx="23" cy="7" r="2.2"/>
-    <circle cx="25.5" cy="22.5" r="2.2"/>
-    <circle cx="10" cy="25" r="2.2"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0c2227"/>
+  <svg x="4" y="12" width="56" height="40" viewBox="1 12 70 50">
+    <defs>
+      <mask id="m" maskUnits="userSpaceOnUse" x="-10" y="-10" width="68" height="68">
+        <rect width="48" height="48" rx="7" fill="#fff"/>
+        <path d="M31 -2Q20 20 18 50M-2 23Q22 21 50 34M24.72 13.39Q38 13 50 19" stroke="#000" stroke-width="6.5" fill="none"/>
+      </mask>
+    </defs>
+    <g transform="translate(36 37) scale(1 0.7) rotate(45) translate(-24 -24)">
+      <g mask="url(#m)">
+        <rect width="48" height="48" fill="#22d07f"/>
+        <path d="M24.72 13.39Q38 13 50 19L60 19L60 40L50 34Q35.27 27.16 21.65 24.47Q22.98 18.74 24.72 13.39Z" fill="#b4f2d0"/>
+      </g>
+    </g>
+  </svg>
 </svg>

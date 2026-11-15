@@ -38,9 +38,19 @@ export type SentinelScene = {
   chip: Chip;
 };
 
+export type NdviChip = Chip & { item: string; date: string };
+
 export type ParcelImagery = {
   ortho: Chip | null;
-  sentinel: { before: SentinelScene; after: SentinelScene; delta: number } | null;
+  /** Sharper aerial photo without an outline in its pixels (scripts/fetch-ortho-hd.mjs). */
+  orthoHd?: Chip;
+  sentinel: {
+    before: SentinelScene;
+    after: SentinelScene;
+    delta: number;
+    /** NDVI drawn on the RdYlGn ramp over `rescale`, in a tight window around the plot. */
+    ndviChips?: { before: NdviChip; after: NdviChip; rescale: [number, number]; colormap: string };
+  } | null;
   interiorAfterBufferM2: number;
   errors?: string[];
 };
@@ -260,7 +270,7 @@ export type Analysis = {
   rule: RuleAssessment;
   ai: AiFinding | null;
   /** Why no live model answer, when there is none. */
-  aiNote: "no_key" | "call_failed" | "declined" | null;
+  aiNote: "no_key" | "call_failed" | "declined" | "rate_limited" | null;
 };
 
 export function rulesOnlyAnalysis(
@@ -332,14 +342,25 @@ export function priorityList(rows: ScreeningRow[], limit = 6): ScreeningRow[] {
     .slice(0, limit);
 }
 
-/** Accepts "DEMO-RAF-018", "raf-18", "field-1", "18". Real KAEK lookup is not wired. */
+/** Accepts "KAEK-05119-001", "1", "001", "field-1", "raf-17", etc. */
 export function resolveParcelCode(input: string, ids: string[]): string | null {
   const value = input.trim().toUpperCase();
   if (!value) return null;
   if (ids.includes(value)) return value;
+  if (value === "DEMO-FIELD-001" || value === "FIELD-1") {
+    const found = ids.find((id) => id === "KAEK-05119-001" || id === "DEMO-FIELD-001");
+    if (found) return found;
+  }
+  if (value === "DEMO-RAF-017" || value === "RAF-17") {
+    const found = ids.find((id) => id === "KAEK-05119-002" || id === "DEMO-RAF-017");
+    if (found) return found;
+  }
+  if (value === "DEMO-RAF-018" || value === "RAF-18") {
+    const found = ids.find((id) => id === "KAEK-05119-003" || id === "DEMO-RAF-018");
+    if (found) return found;
+  }
   const digits = value.match(/(\d{1,3})$/)?.[1];
-  if (!digits || /^\d{4,}$/.test(value)) return null;
+  if (!digits) return null;
   const padded = digits.padStart(3, "0");
-  const area = value.match(/(RAF|FIELD)/)?.[1];
-  return ids.find((id) => id.endsWith(`-${padded}`) && (!area || id.includes(`-${area}-`))) ?? null;
+  return ids.find((id) => id.endsWith(`-${padded}`) || id.endsWith(digits)) ?? null;
 }

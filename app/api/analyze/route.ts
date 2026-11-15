@@ -20,6 +20,8 @@ import { getParcel, scenario } from "@/lib/scenario";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// The model call with images can take a while; Vercel's free plan allows up to 60 s.
+export const maxDuration = 60;
 
 const MODEL = "claude-opus-5-5";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.5";
@@ -236,6 +238,27 @@ function toAnalysis(parcelId: string, finding: z.infer<typeof Finding>, rule: Ru
   };
 }
 
+// Live model calls cost money and the route needs no sign-in, so each visitor gets a few per window.
+// In memory, so it is per server instance: enough to stop a loop or a casual script, not a determined
+// attacker. A public deploy should also cap spend in the provider console.
+const LIVE_LIMIT = 6;
+const LIVE_WINDOW_MS = 10 * 60_000;
+const liveCalls = new Map<string, number[]>();
+
+function allowLiveCall(request: Request): boolean {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "local";
+  const now = Date.now();
+  const recent = (liveCalls.get(ip) ?? []).filter((at) => now - at < LIVE_WINDOW_MS);
+  if (recent.length >= LIVE_LIMIT) {
+    liveCalls.set(ip, recent);
+    return false;
+  }
+  recent.push(now);
+  liveCalls.set(ip, recent);
+  if (liveCalls.size > 5000) liveCalls.clear();
+  return true;
+}
+
 export async function POST(request: Request) {
   let parcelId = "";
   try {
@@ -259,7 +282,9 @@ export async function POST(request: Request) {
   // Anthropic when its key is set, otherwise OpenAI when that key is set.
   const useAnthropic = Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
   const useOpenAI = !useAnthropic && Boolean(process.env.OPENAI_API_KEY);
-  if (useAnthropic || useOpenAI) {
+  if ((useAnthropic || useOpenAI) && !allowLiveCall(request)) {
+    aiNote = "rate_limited";
+  } else if (useAnthropic || useOpenAI) {
     try {
       const result = useAnthropic
         ? await askModel(parcelId, imagery, rule)

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 import type { Verdict } from "@/lib/assess";
 import { copy, t } from "@/lib/i18n";
 import { useOfficer } from "@/lib/store";
@@ -17,18 +17,43 @@ export const VERDICT_COLOR: Record<Verdict, string> = {
 };
 
 // A traced plot: four corners, boundary markers at each, the way a survey plan pins them.
-export function Mark() {
+/**
+ * The Parcel mark: a plot drawn flat on a 48-unit square, cut into fields by curved tracks,
+ * then turned 45° and foreshortened to 70% so it reads as land seen from above.
+ * One field is picked out: the one under review. Below 24 px it keeps three tracks, drawn wider.
+ */
+export function Mark({ size = 34 }: { size?: number }) {
+  const id = useId().replace(/:/g, "");
+  const small = size < 24;
   return (
-    <svg className="mark" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-      <path d="M3.5 6.5L19 3l2 15.5-15 3z" className="mark-fill" />
-      <path d="M3.5 6.5L19 3l2 15.5-15 3z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <g fill="currentColor">
-        <circle cx="3.5" cy="6.5" r="2" />
-        <circle cx="19" cy="3" r="2" />
-        <circle cx="21" cy="18.5" r="2" />
-        <circle cx="6" cy="21.5" r="2" />
+    <svg className="mark" viewBox="1 12 70 50" width={size} height={(size * 5) / 7} aria-hidden="true">
+      <defs>
+        <mask id={id} maskUnits="userSpaceOnUse" x="-10" y="-10" width="68" height="68">
+          <rect width="48" height="48" rx="7" fill="#fff" />
+          <path
+            d={small ? "M31 -2Q20 20 18 50M-2 23Q22 21 50 34M24.72 13.39Q38 13 50 19" : "M31 -2Q20 20 18 50M-2 23Q22 21 50 34M24.72 13.39Q38 13 50 19M-2 38Q9 36 19.16 38.32"}
+            stroke="#000"
+            strokeWidth={small ? 6.5 : 4}
+            fill="none"
+          />
+        </mask>
+      </defs>
+      <g transform="translate(36 37) scale(1 0.7) rotate(45) translate(-24 -24)">
+        <g mask={`url(#${id})`}>
+          <rect width="48" height="48" className="mark-land" />
+          <path d="M24.72 13.39Q38 13 50 19L60 19L60 40L50 34Q35.27 27.16 21.65 24.47Q22.98 18.74 24.72 13.39Z" className="mark-field" />
+        </g>
       </g>
     </svg>
+  );
+}
+
+/** "my" light, "Field" set: the field is the subject. */
+export function Wordmark() {
+  return (
+    <strong className="wordmark">
+      <span>my</span>Field
+    </strong>
   );
 }
 
@@ -46,8 +71,9 @@ export function TopBar(props: {
   setLang: (lang: Lang) => void;
   section: string;
   left?: ReactNode;
+  hideBanner?: boolean;
 }) {
-  const { lang, setLang } = props;
+  const { lang, setLang, hideBanner } = props;
   const router = useRouter();
   const { officer, signOut } = useOfficer();
   return (
@@ -56,7 +82,7 @@ export function TopBar(props: {
         <div className="brand">
           <Link href="/dashboard" className="brand-link">
             <Mark />
-            <strong>myField</strong>
+            <Wordmark />
           </Link>
           <span className="brand-section">{props.section}</span>
         </div>
@@ -84,7 +110,7 @@ export function TopBar(props: {
           ) : null}
         </div>
       </header>
-      <Banner lang={lang} />
+      {!hideBanner ? <Banner lang={lang} /> : null}
     </>
   );
 }

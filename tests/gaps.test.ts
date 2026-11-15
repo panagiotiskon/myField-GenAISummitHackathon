@@ -8,20 +8,19 @@ describe("gap list", () => {
     const ingest = ingestMatches(scenario);
     expect(ingest.unmatchedDeclarations).toEqual([]);
     expect(ingest.unmatchedComplaints).toEqual([]);
-    expect(ingest.declarations["DEMO-RAF-002"]?.claimedCleaned).toBe(true);
-    expect(ingest.complaints["DEMO-RAF-002"]?.[0]?.id).toBe("SIM-ΚΑΤ-2026-0041");
+    expect(ingest.declarations["KAEK-05119-001"]?.claimedCleaned).toBe(true);
+    expect(ingest.complaints["KAEK-05119-001"]?.[0]?.id).toBe("KAT-2026-0012");
   });
 
   it("lists in-duty parcels with no declaration and skips exclusions", () => {
-    const gaps = findGaps(scenario);
+    const customScenario = {
+      ...scenario,
+      declarations: scenario.declarations.filter((d) => d.parcelId !== "KAEK-05119-003"),
+    };
+    const gaps = findGaps(customScenario);
     const ids = gaps.map((row) => row.properties.id);
-    expect(ids).toContain("DEMO-RAF-001");
-    expect(ids).toContain("DEMO-RAF-018");
-    expect(ids).not.toContain("DEMO-RAF-002");
-    expect(ids).not.toContain("DEMO-RAF-019");
-    expect(ids).not.toContain("DEMO-RAF-020");
-    expect(ids).not.toContain("DEMO-RAF-021");
-    expect(ids).not.toContain("DEMO-RAF-022");
+    expect(ids).toContain("KAEK-05119-003");
+    expect(ids).not.toContain("KAEK-05119-001");
     for (const gap of gaps) {
       expect(isInDuty(gap.properties.zone)).toBe(true);
       expect(isOutOfScope(gap.properties.zone)).toBe(false);

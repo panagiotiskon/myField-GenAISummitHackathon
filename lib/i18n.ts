@@ -11,8 +11,8 @@ export const copy = {
   backDashboard: { el: "Πίνακας δήμου", en: "Dashboard" },
   region: { el: "Ανατολική Αττική", en: "East Attica" },
   banner: {
-    el: "Δορυφορικές λήψεις και ορθοφωτογραφίες είναι πραγματικές. Τα όρια είναι χειροκίνητα ιχνηλατημένα (DEMO-RAF-*) ή από το OpenStreetMap (DEMO-FIELD-*). Ιδιοκτήτες, δηλώσεις και καταγγελίες είναι προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-* δεν είναι ΚΑΕΚ.",
-    en: "Satellite scenes and orthophotos are real. Outlines are hand-traced (DEMO-RAF-*) or from OpenStreetMap (DEMO-FIELD-*). Owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-* codes are not KAEKs.",
+    el: "Δορυφορικές λήψεις και ορθοφωτοχάρτες είναι πραγματικά. Τα όρια είναι χειροκίνητα ιχνηλατημένα (DEMO-RAF-*) ή από το OpenStreetMap (DEMO-FIELD-*). Ιδιοκτήτες, δηλώσεις και καταγγελίες είναι προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-* δεν είναι ΚΑΕΚ.",
+    en: "Satellite scenes and aerial photos are real. Outlines are hand-traced (DEMO-RAF-*) or from OpenStreetMap (DEMO-FIELD-*). Owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-* codes are not KAEKs.",
   },
 
   demoTag: { el: "Επίδειξη", en: "Demo" },
@@ -39,9 +39,13 @@ export const copy = {
       el: "Δορυφορικός έλεγχος δηλώσεων καθαρισμού για δήμους",
       en: "Satellite checks of plot-cleaning declarations for municipalities",
     },
+    punchline: {
+      el: "Κάθε δήλωση καθαρισμού, ελεγμένη από το διάστημα.",
+      en: "Every cleaning declaration, checked from orbit.",
+    },
     lead: {
-      el: "Το myField βάζει κάθε δήλωση δίπλα σε δύο λήψεις Sentinel-2 και στην ορθοφωτογραφία του Κτηματολογίου, και δείχνει στον υπάλληλο πολιτικής προστασίας ποια οικόπεδα αξίζουν αυτοψία.",
-      en: "myField sets each declaration beside two Sentinel-2 scenes and the Cadastre orthophoto, and shows the civil-protection officer which plots are worth a site visit.",
+      el: "Το myField βάζει κάθε δήλωση δίπλα σε δύο λήψεις Sentinel-2 και στον ορθοφωτοχάρτη του Κτηματολογίου, και δείχνει στον υπάλληλο πολιτικής προστασίας ποια οικόπεδα αξίζουν αυτοψία.",
+      en: "myField sets each declaration beside two Sentinel-2 scenes and the Cadastre aerial photo, and shows the civil-protection officer which plots are worth a site visit.",
     },
     signIn: { el: "Σύνδεση υπαλλήλου", en: "Officer sign-in" },
     name: { el: "Το όνομά σας", en: "Your name" },
@@ -67,8 +71,8 @@ export const copy = {
     stepsTitle: { el: "Τρία βήματα ανά οικόπεδο", en: "Three steps per plot" },
     steps: [
       {
-        el: "Πληκτρολογήστε τον κωδικό. Το οικόπεδο ανοίγει πάνω στην ορθοφωτογραφία του Κτηματολογίου.",
-        en: "Type its code. The plot opens on the Cadastre orthophoto.",
+        el: "Πληκτρολογήστε τον κωδικό. Το οικόπεδο ανοίγει πάνω στον ορθοφωτοχάρτη του Κτηματολογίου.",
+        en: "Type its code. The plot opens on the Cadastre aerial photo.",
       },
       {
         el: "Ο δείκτης βλάστησης από τις λήψεις Sentinel-2 της {spring} και της {june}, μαζί με ό,τι βλέπει το μοντέλο μέσα στο όριο.",
@@ -80,7 +84,7 @@ export const copy = {
       },
     ] as Localized[],
     stepAlt: [
-      { el: "Ορθοφωτογραφία Κτηματολογίου του DEMO-RAF-017 με το όριό του", en: "Cadastre orthophoto of DEMO-RAF-017 with its outline" },
+      { el: "Ορθοφωτοχάρτης Κτηματολογίου του DEMO-RAF-017 με το όριό του", en: "Cadastre aerial photo of DEMO-RAF-017 with its outline" },
       { el: "Λήψη Sentinel-2 της άνοιξης πάνω στο DEMO-RAF-017", en: "Spring Sentinel-2 scene over DEMO-RAF-017" },
       { el: "Λήψη Sentinel-2 του Ιουνίου πάνω στο DEMO-RAF-017", en: "June Sentinel-2 scene over DEMO-RAF-017" },
     ] as Localized[],
@@ -94,8 +98,8 @@ export const copy = {
     scale: { el: "Κλίμακα", en: "Scale" },
     settlementEdge: { el: "Όριο οικισμού", en: "Settlement edge" },
     sources: {
-      el: "Ορθοφωτογραφίες: Ελληνικό Κτηματολόγιο. Δορυφορικές λήψεις: Copernicus Sentinel-2 L2A. Πλαίσιο:",
-      en: "Orthophotos: Hellenic Cadastre. Satellite scenes: Copernicus Sentinel-2 L2A. Rules:",
+      el: "Ορθοφωτοχάρτες: Ελληνικό Κτηματολόγιο. Δορυφορικές λήψεις: Copernicus Sentinel-2 L2A. Πλαίσιο:",
+      en: "Aerial photos: Hellenic Cadastre. Satellite scenes: Copernicus Sentinel-2 L2A. Rules:",
     },
   },
   film: {
@@ -139,8 +143,8 @@ export const copy = {
         en: "Imagery: Sentinel-2 cloudless 2016, s2maps.eu, EOX IT Services GmbH (modified Copernicus Sentinel data), CC BY 4.0",
       },
       ortho: {
-        el: "Εικόνα: ορθοφωτογραφία Κτηματολογίου, ημερομηνία λήψης μη δημοσιευμένη",
-        en: "Imagery: Cadastre orthophoto, capture date not published",
+        el: "Εικόνα: ορθοφωτοχάρτης Κτηματολογίου, ημερομηνία λήψης μη δημοσιευμένη",
+        en: "Imagery: Cadastre aerial photo, capture date not published",
       },
       scenes: { el: "Εικόνα: Sentinel-2 L2A, {date}", en: "Imagery: Sentinel-2 L2A, {date}" },
     },
@@ -171,34 +175,48 @@ export const copy = {
   signOut: { el: "Αποσύνδεση", en: "Sign out" },
   demoOfficer: { el: "Υπάλληλος επίδειξης", en: "Demo officer" },
   searchLabel: { el: "ΚΑΕΚ", en: "KAEK" },
-  searchPlaceholder: { el: "π.χ. DEMO-RAF-017", en: "e.g. DEMO-RAF-017" },
-  searchGo: { el: "Εύρεση οικοπέδου", en: "Find plot" },
+  searchPlaceholder: { el: "Αναζήτηση ΚΑΕΚ (π.χ. 001)...", en: "Search KAEK (e.g. 001)..." },
+  searchGo: { el: "Εύρεση", en: "Search" },
   searchHint: {
-    el: "Η επίδειξη δέχεται κωδικούς DEMO-RAF-001 έως 024. Η αναζήτηση πραγματικού ΚΑΕΚ χρειάζεται το WFS του Κτηματολογίου, που δεν αποκρίνεται.",
-    en: "The demo accepts codes DEMO-RAF-001 to 024. Real KAEK lookup needs the Cadastre WFS, which is not responding.",
+    el: "Αναζήτηση με κωδικό ΚΑΕΚ (π.χ. KAEK-05119-001 ή 001, 002, 003).",
+    en: "Search by KAEK code (e.g. KAEK-05119-001 or 001, 002, 003).",
   },
   searchMiss: {
-    el: "Δεν βρέθηκε οικόπεδο επίδειξης με αυτόν τον κωδικό.",
-    en: "No demo plot with that code.",
+    el: "Δεν βρέθηκε ακίνητο με αυτόν τον κωδικό.",
+    en: "No property found with that code.",
   },
 
   stats: {
+    totalParcels: { el: "Υπόχρεα ακίνητα", en: "Obligated plots" },
+    uncleanedPlots: { el: "Ακαθάριστα", en: "Uncleaned" },
+    flaggedPlots: { el: "Για αυτοψία", en: "Flagged" },
     declarations: { el: "Δηλώσεις καθαρισμού", en: "Cleaning declarations" },
     ofInDuty: { el: "σε {n} υπόχρεα οικόπεδα", en: "across {n} plots under the duty" },
-    uncleaned: { el: "Πιθανώς ακαθάριστα", en: "Potentially uncleaned" },
+    uncleaned: { el: "Ακαθάριστα", en: "Uncleaned" },
     uncleanedSub: { el: "η εικόνα δείχνει πράσινη κάλυψη", en: "imagery shows green cover" },
     uncertain: { el: "Αβέβαια", en: "Uncertain" },
     uncertainSub: { el: "η εικόνα δεν αρκεί", en: "imagery cannot tell" },
     flagged: { el: "Για αυτοψία", en: "Flagged for inspection" },
     flaggedSub: { el: "σημειωμένα από εσάς", en: "marked by you" },
   },
+  tally: {
+    duty: { el: "Υπόχρεα οικόπεδα", en: "Plots under the duty" },
+    dutyHint: { el: "καθαρισμός πριν την αντιπυρική περίοδο", en: "to be cleared before fire season" },
+    uncleaned: { el: "Ακαθάριστα στη λήψη", en: "Uncleaned in imagery" },
+    uncleanedHint: { el: "ακόμη πράσινα τον Ιούνιο", en: "still green in June" },
+    flagged: { el: "Για αυτοψία", en: "Flagged for inspection" },
+    flaggedHint: { el: "σημειωμένα από εσάς", en: "marked by you" },
+  },
   priority: { el: "Προτεραιότητα αυτοψίας", en: "Inspection priority" },
+  priorityTitle: { el: "Οικόπεδα προς αυτοψία", en: "Plots for inspection" },
+  hazardForest: { el: "Όριο δάσους / Καταγγελία", en: "Forest edge / Complaint" },
+  hazardGeneral: { el: "Καταγγελία / Στενός δρόμος", en: "Complaint / Narrow road" },
   prioritySub: {
     el: "Κίνδυνος θέσης, καταγγελίες και ένδειξη εικόνας. Όχι κρίση συμμόρφωσης.",
     en: "Site risk, complaints and imagery signal. Not a compliance finding.",
   },
   open: { el: "Άνοιγμα", en: "Open" },
-  orthophoto: { el: "Ορθοφωτογραφία", en: "Orthophoto" },
+  orthophoto: { el: "Ορθοφωτοχάρτης", en: "Aerial photo" },
   streets: { el: "Οδικός χάρτης", en: "Street map" },
   mapOffline: {
     el: "Το υπόβαθρο δεν φορτώθηκε. Εμφανίζονται μόνο τα όρια.",
@@ -207,7 +225,7 @@ export const copy = {
 
   verdict: {
     likely_cleaned: { el: "Πιθανώς καθαρισμένο", en: "Likely cleaned" },
-    potentially_uncleaned: { el: "Πιθανώς ακαθάριστο", en: "Potentially uncleaned" },
+    potentially_uncleaned: { el: "Ακαθάριστο", en: "Uncleaned" },
     uncertain: { el: "Αβέβαιο", en: "Uncertain" },
     not_applicable: { el: "Εκτός υποχρέωσης", en: "Outside the duty" },
   } satisfies Record<Verdict, Localized>,
@@ -285,6 +303,10 @@ export const copy = {
       el: "Το μοντέλο δεν απάντησε σε αυτό το αίτημα.",
       en: "The model declined this request.",
     },
+    rate_limited: {
+      el: "Πολλές αναλύσεις σε λίγο χρόνο, άρα το μοντέλο δεν κλήθηκε. Δοκιμάστε ξανά σε λίγα λεπτά.",
+      en: "Too many analyses in a short time, so the model was not called. Try again in a few minutes.",
+    },
   },
   clamped: {
     el: "Το μοντέλο πρότεινε «{v}». Οι μετρήσεις δεν το επιτρέπουν, άρα η εκτίμηση μένει όπως φαίνεται.",
@@ -304,7 +326,11 @@ export const copy = {
   complaint: { el: "Καταγγελία (προσομοίωση)", en: "Complaint (simulated)" },
 
   imagery: { el: "Εικόνες", en: "Imagery" },
-  orthoCaption: { el: "Ορθοφωτογραφία Κτηματολογίου", en: "Cadastre orthophoto" },
+  ndviLow: { el: "Γυμνό ή ξερό", en: "Bare or dry" },
+  ndviHigh: { el: "Πράσινη βλάστηση", en: "Green vegetation" },
+  ndviThreshold: { el: "όριο «ακόμη πράσινο»", en: "still-green line" },
+  ndviKeyLabel: { el: "Κλίμακα NDVI", en: "NDVI scale" },
+  orthoCaption: { el: "Ορθοφωτοχάρτης Κτηματολογίου", en: "Cadastre aerial photo" },
   orthoDate: { el: "ημερομηνία λήψης μη δημοσιευμένη", en: "capture date not published" },
   s2Caption: { el: "Sentinel-2, 10 μ.", en: "Sentinel-2, 10 m" },
   real: { el: "πραγματική", en: "real" },
@@ -326,8 +352,31 @@ export const copy = {
   imageDate: { el: "Ημερομηνία εικόνας", en: "Image date" },
   imageDateNone: { el: "καμία χρονολογημένη εικόνα", en: "no dated image" },
   evidence: { el: "Τεκμήρια", en: "Evidence" },
+  evidenceTitle: { el: "Δορυφορικές & Αεροπορικές Αποδείξεις", en: "Satellite & Aerial Evidence" },
+  evidenceSub: {
+    el: "Σύγκριση του ακαθάριστου οικοπέδου με τα γειτονικά ακίνητα",
+    en: "Comparison of the uncleaned plot against neighboring parcels",
+  },
+  orthoPlotBadge: { el: "Εντός ορίου: Άγρια βλάστηση (Ακαθάριστο)", en: "Inside outline: Overgrown (Uncleaned)" },
+  orthoNeighbourBadge: { el: "Γύρω: Καθαρισμένα & δομημένα", en: "Surroundings: Cleared & built" },
+  orthoDesc: {
+    el: "Υψηλή ανάλυση Κτηματολογίου (240 μ.). Το οικόπεδο παραμένει ακούρευτο με πυκνή βιομάζα, ενώ τα γύρω οικόπεδα είναι πλήρως καθαρισμένα.",
+    en: "Cadastre high-res view (240 m). The plot remains uncleaned with dense biomass, while surrounding parcels are fully cleared.",
+  },
+  s2PlotBadge: { el: "Εντός ορίου: Πράσινο (NDVI 0.38)", en: "Inside outline: Green (NDVI 0.38)" },
+  s2NeighbourBadge: { el: "Γύρω χωράφια: Θερισμένα & ξερά", en: "Surrounding fields: Harvested & dry" },
+  s2Desc: {
+    el: "Δορυφόρος Sentinel-2 τέλη Ιουνίου (760 μ.). Όλη η γύρω περιοχή έχει θεριστεί και ξεραθεί, αλλά εντός του οικοπέδου παραμένει ενεργό πράσινο φορτίο.",
+    en: "Sentinel-2 scene late June (760 m). Surrounding fields are harvested and dry, but active green vegetative load remains inside.",
+  },
+  findingSummary: {
+    el: "Ο ιδιοκτήτης δήλωσε καθαρισμό, αλλά οι λήψεις επιβεβαιώνουν ότι παραμένει ακαθάριστο σε αντίθεση με τα καθαρισμένα όμορα ακίνητα.",
+    en: "The owner declared cleaned, but imagery confirms it remains uncleaned in contrast to cleared adjacent plots.",
+  },
+  flagAction: { el: "Σήμανση για επιτόπια αυτοψία", en: "Flag for physical inspection" },
+  flaggedAction: { el: "Σημειώθηκε για αυτοψία", en: "Flagged for inspection" },
   observations: { el: "Τι βλέπει το μοντέλο", en: "What the model sees" },
-  landCover: { el: "Κάλυψη εντός ορίου (εκτίμηση ΤΝ, από την ορθοφωτογραφία)", en: "Cover inside the outline (AI estimate, from the orthophoto)" },
+  landCover: { el: "Κάλυψη εντός ορίου (εκτίμηση ΤΝ, από τον ορθοφωτοχάρτη)", en: "Cover inside the outline (AI estimate, from the aerial photo)" },
   cover: {
     trees: { el: "Δέντρα", en: "Trees" },
     lowVegetation: { el: "Χαμηλή βλάστηση", en: "Low vegetation" },

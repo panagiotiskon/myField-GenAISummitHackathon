@@ -22,7 +22,7 @@
    "sideM": 446,
    "ortho": "/imagery/fieldwatch/B-ortho.jpg",
    "members": [
-    "DEMO-FIELD-001"
+    "KAEK-05119-001"
    ],
    "frames": [
     {
@@ -101,7 +101,7 @@
   }
  ],
  "parcels": {
-  "DEMO-FIELD-001": {
+  "KAEK-05119-001": {
    "osmId": 1288746850,
    "osmLanduse": "grassland",
    "cluster": "B",

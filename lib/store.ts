@@ -91,7 +91,7 @@ export function useAnalyses() {
 }
 
 export function useLang(): [Lang, (lang: Lang) => void] {
-  return useStored<Lang>("plotcheck.lang", "el");
+  return useStored<Lang>("plotcheck.lang", "en");
 }
 
 export type Officer = { name: string; at: string };

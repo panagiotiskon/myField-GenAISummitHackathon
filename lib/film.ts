@@ -3,7 +3,7 @@
 // fetch script all read the same flight. Erasable TypeScript only: Node runs
 // this file directly from scripts/fetch-flight.mjs.
 
-export const FILM_PLOT = "DEMO-FIELD-001";
+export const FILM_PLOT = "KAEK-05119-001";
 /** Centre of the plot's outline and its longer side in metres. tests/film.test.ts holds these to the scenario. */
 export const PLOT_CENTER: [number, number] = [23.97893, 37.97238];
 export const PLOT_SIDE_M = 114.8;

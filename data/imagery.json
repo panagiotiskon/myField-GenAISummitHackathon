@@ -22,515 +22,28 @@
     }
   },
   "parcels": {
-    "DEMO-RAF-001": {
+    "KAEK-05119-001": {
+      "interiorAfterBufferM2": 4410,
       "ortho": {
-        "src": "/imagery/DEMO-RAF-001-ortho.jpg",
+        "src": "/imagery/KAEK-05119-001-ortho.jpg",
         "bounds": [
-          23.915889312682157,
-          38.01744774108875,
-          23.91668748731784,
-          38.01807655891124
+          23.97607775988514,
+          37.970222055627254,
+          23.98178224011486,
+          37.97453794437274
         ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-002": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-002-ortho.jpg",
-        "bounds": [
-          23.916110512636823,
-          38.017455841088754,
-          23.916908687363172,
-          38.01808465891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-003": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-003-ortho.jpg",
-        "bounds": [
-          23.91634596259027,
-          38.01746529108876,
-          23.917144137409736,
-          38.01809410891125
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-004": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-004-ortho.jpg",
-        "bounds": [
-          23.91587731145203,
-          38.01767409108876,
-          23.916675488547973,
-          38.018302908911245
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-005": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-005-ortho.jpg",
-        "bounds": [
-          23.916099661385864,
-          38.017686241088754,
-          23.916897838614133,
-          38.01831505891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-006": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-006-ortho.jpg",
-        "bounds": [
-          23.916332861092354,
-          38.01774014108876,
-          23.917131038907645,
-          38.018368958911246
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-007": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-007-ortho.jpg",
-        "bounds": [
-          23.915907510230188,
-          38.01789824108875,
-          23.91670568976981,
-          38.01852705891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-008": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-008-ortho.jpg",
-        "bounds": [
-          23.916133860044223,
-          38.017931941088754,
-          23.91693203995578,
-          38.01856075891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-009": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-009-ortho.jpg",
-        "bounds": [
-          23.916595662725996,
-          38.01744059108876,
-          23.917393837274005,
-          38.018069408911245
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-010": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-010-ortho.jpg",
-        "bounds": [
-          23.915922965129173,
-          38.01699859108876,
-          23.916721134870823,
-          38.017627408911245
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0.9
-    },
-    "DEMO-RAF-011": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-011-ortho.jpg",
-        "bounds": [
-          23.916197765077985,
-          38.017008441088755,
-          23.91699593492201,
-          38.01763725891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-012": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-012-ortho.jpg",
-        "bounds": [
-          23.916435465055795,
-          38.01701249108876,
-          23.9172336349442,
-          38.017641308911244
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-013": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-013-ortho.jpg",
-        "bounds": [
-          23.9164885076314,
-          38.01837389108876,
-          23.9172866923686,
-          38.019002708911245
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-014": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-014-ortho.jpg",
-        "bounds": [
-          23.916858507774485,
-          38.018350091088756,
-          23.917656692225513,
-          38.018978908911244
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-015": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-015-ortho.jpg",
-        "bounds": [
-          23.917247307581167,
-          38.01838424108876,
-          23.918045492418837,
-          38.01901305891125
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 20
-    },
-    "DEMO-RAF-016": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-016-ortho.jpg",
-        "bounds": [
-          23.917211960433306,
-          38.017860941088756,
-          23.91801013956669,
-          38.018489758911244
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 1.8
-    },
-    "DEMO-RAF-017": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-017-ortho.jpg",
-        "bounds": [
-          23.91722104,
-          38.017472857014525,
-          23.918126559999997,
-          38.01818624298548
-        ],
-        "sideM": 79
+        "sideM": 500
       },
       "sentinel": {
         "before": {
-          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
-          "date": "2026-04-29",
-          "ndvi": 0.608,
-          "pixelCount": 9,
-          "sclMajority": 4,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-017-s2-before.jpg",
-            "bounds": [
-              23.91630549935778,
-              38.01675157659001,
-              23.91904210064222,
-              38.01890752340999
-            ],
-            "sideM": 240
-          }
-        },
-        "after": {
-          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
-          "date": "2026-06-20",
-          "ndvi": 0.43,
-          "pixelCount": 9,
-          "sclMajority": 4,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-017-s2-after.jpg",
-            "bounds": [
-              23.91630549935778,
-              38.01675157659001,
-              23.91904210064222,
-              38.01890752340999
-            ],
-            "sideM": 240
-          }
-        },
-        "delta": -0.178
-      },
-      "interiorAfterBufferM2": 238.8
-    },
-    "DEMO-RAF-018": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-018-ortho.jpg",
-        "bounds": [
-          23.91905,
-          38.01366004744966,
-          23.92235,
-          38.01625995255034
-        ],
-        "sideM": 289
-      },
-      "sentinel": {
-        "before": {
-          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
-          "date": "2026-04-29",
-          "ndvi": 0.449,
-          "pixelCount": 128,
-          "sclMajority": 4,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-018-s2-before.jpg",
-            "bounds": [
-              23.91905,
-              38.01366004744966,
-              23.92235,
-              38.01625995255034
-            ],
-            "sideM": 289
-          }
-        },
-        "after": {
-          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
-          "date": "2026-06-20",
-          "ndvi": 0.366,
-          "pixelCount": 128,
-          "sclMajority": 5,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-018-s2-after.jpg",
-            "bounds": [
-              23.91905,
-              38.01366004744966,
-              23.92235,
-              38.01625995255034
-            ],
-            "sideM": 289
-          }
-        },
-        "delta": -0.083
-      },
-      "interiorAfterBufferM2": 10741
-    },
-    "DEMO-RAF-019": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-019-ortho.jpg",
-        "bounds": [
-          23.91647542,
-          38.01893314913857,
-          23.917589279999998,
-          38.01981065086142
-        ],
-        "sideM": 98
-      },
-      "sentinel": {
-        "before": {
-          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
-          "date": "2026-04-29",
-          "ndvi": 0.287,
-          "pixelCount": 12,
-          "sclMajority": 5,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-019-s2-before.jpg",
-            "bounds": [
-              23.9156640205356,
-              38.018293926590005,
-              23.918400679464398,
-              38.02044987340999
-            ],
-            "sideM": 240
-          }
-        },
-        "after": {
-          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
-          "date": "2026-06-20",
-          "ndvi": 0.219,
-          "pixelCount": 12,
-          "sclMajority": 5,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-019-s2-after.jpg",
-            "bounds": [
-              23.9156640205356,
-              38.018293926590005,
-              23.918400679464398,
-              38.02044987340999
-            ],
-            "sideM": 240
-          }
-        },
-        "delta": -0.068
-      },
-      "interiorAfterBufferM2": 425.6
-    },
-    "DEMO-RAF-020": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-020-ortho.jpg",
-        "bounds": [
-          23.917881420000004,
-          38.01540598074505,
-          23.919120680000002,
-          38.01638231925494
-        ],
-        "sideM": 109
-      },
-      "sentinel": {
-        "before": {
-          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
-          "date": "2026-04-29",
-          "ndvi": 0.365,
-          "pixelCount": 15,
-          "sclMajority": 5,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-020-s2-before.jpg",
-            "bounds": [
-              23.917132785494882,
-              38.01481617659,
-              23.919869314505124,
-              38.016972123409985
-            ],
-            "sideM": 240
-          }
-        },
-        "after": {
-          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
-          "date": "2026-06-20",
-          "ndvi": 0.368,
-          "pixelCount": 15,
-          "sclMajority": 5,
-          "clear": true,
-          "chip": {
-            "src": "/imagery/DEMO-RAF-020-s2-after.jpg",
-            "bounds": [
-              23.917132785494882,
-              38.01481617659,
-              23.919869314505124,
-              38.016972123409985
-            ],
-            "sideM": 240
-          }
-        },
-        "delta": 0.003
-      },
-      "interiorAfterBufferM2": 582.4
-    },
-    "DEMO-RAF-021": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-021-ortho.jpg",
-        "bounds": [
-          23.916601961530173,
-          38.01765974108876,
-          23.917400138469826,
-          38.018288558911244
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-022": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-022-ortho.jpg",
-        "bounds": [
-          23.91753364948436,
-          38.0185573,
-          23.91839655051564,
-          38.0192371
-        ],
-        "sideM": 76
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-RAF-023": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-023-ortho.jpg",
-        "bounds": [
-          23.91723475925802,
-          38.018076991088755,
-          23.918032940741984,
-          38.01870580891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 4
-    },
-    "DEMO-RAF-024": {
-      "ortho": {
-        "src": "/imagery/DEMO-RAF-024-ortho.jpg",
-        "bounds": [
-          23.916373360110384,
-          38.017920691088754,
-          23.917171539889615,
-          38.01854950891124
-        ],
-        "sideM": 70
-      },
-      "sentinel": null,
-      "interiorAfterBufferM2": 0
-    },
-    "DEMO-FIELD-001": {
-      "ortho": {
-        "src": "/imagery/fieldwatch/DEMO-FIELD-001-ortho.jpg",
-        "bounds": [
-          23.977562896960055,
-          37.97129482011941,
-          23.980297803039942,
-          37.97346597988059
-        ],
-        "sideM": 240
-      },
-      "sentinel": {
-        "before": {
-          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
+          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
           "date": "2026-04-29",
           "ndvi": 0.647,
-          "pixelCount": 36,
+          "pixelCount": 44,
           "sclMajority": 4,
           "clear": true,
           "chip": {
-            "src": "/imagery/DEMO-FIELD-001-s2-before.jpg",
+            "src": "/imagery/KAEK-05119-001-s2-before.jpg",
             "bounds": [
               23.97459973206377,
               37.96894233037815,
@@ -541,14 +54,283 @@
           }
         },
         "after": {
-          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
+          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
           "date": "2026-06-20",
           "ndvi": 0.38,
-          "pixelCount": 36,
+          "pixelCount": 44,
           "sclMajority": 4,
           "clear": true,
           "chip": {
-            "src": "/imagery/DEMO-FIELD-001-s2-after.jpg",
+            "src": "/imagery/KAEK-05119-001-s2-after.jpg",
+            "bounds": [
+              23.97459973206377,
+              37.96894233037815,
+              23.983260267936227,
+              37.975817669621854
+            ],
+            "sideM": 760
+          }
+        },
+        "delta": -0.267,
+        "ndviChips": {
+          "before": {
+            "src": "/imagery/KAEK-05119-001-ndvi-before.png",
+            "bounds": [
+              23.977111811451767,
+              37.970922326561265,
+              23.98087230854824,
+              37.973886753438734
+            ],
+            "sideM": 330,
+            "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
+            "date": "2026-04-29"
+          },
+          "after": {
+            "src": "/imagery/KAEK-05119-001-ndvi-after.png",
+            "bounds": [
+              23.977111811451767,
+              37.970922326561265,
+              23.98087230854824,
+              37.973886753438734
+            ],
+            "sideM": 330,
+            "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
+            "date": "2026-06-20"
+          },
+          "rescale": [
+            0,
+            0.7
+          ],
+          "colormap": "RdYlGn"
+        }
+      },
+      "orthoHd": {
+        "src": "/imagery/KAEK-05119-001-ortho-hd.jpg",
+        "bounds": [
+          23.97781823313841,
+          37.97150370999999,
+          23.980042466861587,
+          37.973257090000004
+        ],
+        "sideM": 195
+      }
+    },
+    "KAEK-05119-002": {
+      "interiorAfterBufferM2": 194.2,
+      "ortho": {
+        "src": "/imagery/KAEK-05119-002-ortho.jpg",
+        "bounds": [
+          23.88141209598288,
+          38.02752174241031,
+          23.88415790401712,
+          38.02969825758969
+        ],
+        "sideM": 241.9
+      },
+      "sentinel": {
+        "before": {
+          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
+          "date": "2026-04-29",
+          "ndvi": 0.584,
+          "pixelCount": 1,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/KAEK-05119-002-s2-before.jpg",
+            "bounds": [
+              23.878480373286386,
+              38.02517551061327,
+              23.88714092471694,
+              38.03205096530616
+            ],
+            "sideM": 760
+          }
+        },
+        "after": {
+          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
+          "date": "2026-06-20",
+          "ndvi": 0.354,
+          "pixelCount": 1,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/KAEK-05119-002-s2-after.jpg",
+            "bounds": [
+              23.878480373286386,
+              38.02517551061327,
+              23.88714092471694,
+              38.03205096530616
+            ],
+            "sideM": 760
+          }
+        },
+        "delta": -0.23,
+        "ndviChips": {
+          "before": {
+            "src": "/imagery/KAEK-05119-002-ndvi-before.png",
+            "bounds": [
+              23.880866684703502,
+              38.02713218656126,
+              23.884630065296495,
+              38.03009661343873
+            ],
+            "sideM": 330,
+            "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
+            "date": "2026-04-29"
+          },
+          "after": {
+            "src": "/imagery/KAEK-05119-002-ndvi-after.png",
+            "bounds": [
+              23.880866684703502,
+              38.02713218656126,
+              23.884630065296495,
+              38.03009661343873
+            ],
+            "sideM": 330,
+            "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
+            "date": "2026-06-20"
+          },
+          "rescale": [
+            0,
+            0.7
+          ],
+          "colormap": "RdYlGn"
+        }
+      }
+    },
+    "KAEK-05119-003": {
+      "interiorAfterBufferM2": 2187,
+      "ortho": {
+        "src": "/imagery/KAEK-05119-003-ortho.jpg",
+        "bounds": [
+          23.881734298132965,
+          38.027733568770145,
+          23.887229701867035,
+          38.03208643122985
+        ],
+        "sideM": 483.8
+      },
+      "sentinel": {
+        "before": {
+          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
+          "date": "2026-04-29",
+          "ndvi": 0.548,
+          "pixelCount": 21,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/KAEK-05119-003-s2-before.jpg",
+            "bounds": [
+              23.88015509745312,
+              38.02636750039233,
+              23.88881564888367,
+              38.03324295508522
+            ],
+            "sideM": 760
+          }
+        },
+        "after": {
+          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
+          "date": "2026-06-20",
+          "ndvi": 0.383,
+          "pixelCount": 21,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/KAEK-05119-003-s2-after.jpg",
+            "bounds": [
+              23.88015509745312,
+              38.02636750039233,
+              23.88881564888367,
+              38.03324295508522
+            ],
+            "sideM": 760
+          }
+        },
+        "delta": -0.165,
+        "ndviChips": {
+          "before": {
+            "src": "/imagery/KAEK-05119-003-ndvi-before.png",
+            "bounds": [
+              23.882598379191194,
+              38.028320086561266,
+              23.8863618208088,
+              38.031284513438735
+            ],
+            "sideM": 330,
+            "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
+            "date": "2026-04-29"
+          },
+          "after": {
+            "src": "/imagery/KAEK-05119-003-ndvi-after.png",
+            "bounds": [
+              23.882598379191194,
+              38.028320086561266,
+              23.8863618208088,
+              38.031284513438735
+            ],
+            "sideM": 330,
+            "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
+            "date": "2026-06-20"
+          },
+          "rescale": [
+            0,
+            0.7
+          ],
+          "colormap": "RdYlGn"
+        }
+      },
+      "orthoHd": {
+        "src": "/imagery/KAEK-05119-003-ortho-hd.jpg",
+        "bounds": [
+          23.883751101872157,
+          38.029225895,
+          23.885210698127842,
+          38.030375604999996
+        ],
+        "sideM": 128
+      }
+    },
+    "DEMO-FIELD-001": {
+      "interiorAfterBufferM2": 4410,
+      "ortho": {
+        "src": "/imagery/KAEK-05119-001-ortho.jpg",
+        "bounds": [
+          23.97607775988514,
+          37.970222055627254,
+          23.98178224011486,
+          37.97453794437274
+        ],
+        "sideM": 500
+      },
+      "sentinel": {
+        "before": {
+          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
+          "date": "2026-04-29",
+          "ndvi": 0.647,
+          "pixelCount": 44,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/KAEK-05119-001-s2-before.jpg",
+            "bounds": [
+              23.97459973206377,
+              37.96894233037815,
+              23.983260267936227,
+              37.975817669621854
+            ],
+            "sideM": 760
+          }
+        },
+        "after": {
+          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
+          "date": "2026-06-20",
+          "ndvi": 0.38,
+          "pixelCount": 44,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/KAEK-05119-001-s2-after.jpg",
             "bounds": [
               23.97459973206377,
               37.96894233037815,
@@ -559,9 +341,7 @@
           }
         },
         "delta": -0.267
-      },
-      "interiorAfterBufferM2": 3727.1,
-      "errors": []
+      }
     }
   }
 }

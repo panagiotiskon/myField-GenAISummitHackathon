@@ -16,3 +16,4 @@ next-env.d.ts
 # Agent skill installs (skills CLI) — local tooling, not app code
 skills/
 skills-lock.json
+.vercel
