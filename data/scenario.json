@@ -1,0 +1,1328 @@
+{
+  "meta": {
+    "title": "Drafi settlement edge, eastern Attica",
+    "municipality": {
+      "el": "Δήμος Ραφήνας-Πικερμίου",
+      "en": "Municipality of Rafina-Pikermi"
+    },
+    "settlement": {
+      "el": "Δράφι",
+      "en": "Drafi"
+    },
+    "deskDate": "2026-06-23",
+    "declarationDeadline": "2026-06-22",
+    "law": {
+      "primary": "ΥΠ 1157 / ΦΕΚ Β' 2323/24.4.2026",
+      "extension": "ΥΠ 1859/2026",
+      "pdf": "https://civilprotection.gov.gr/sites/default/files/2026-04/20260202323.pdf"
+    },
+    "geometrySource": "hand-traced-fallback",
+    "geometryNote": "Hellenic Cadastre INSPIRE WFS (CadastralParcel) returned 404 / was blocked while building. Outlines are hand-traced in Drafi, Municipality of Rafina-Pikermi, to mix small urban plots with one larger peri-urban plot. Ids are DEMO-RAF-* and are not KAEKs.",
+    "wfsAttempt": "https://gis.ktimanet.gr/inspire/rest/services/cadastralparcels/CadastralParcel/MapServer/exts/InspireFeatureDownload/service",
+    "orthophotoWms": "https://gis.ktimanet.gr/wms/wmsopen/wmsserver.aspx",
+    "imagery": {
+      "springScene": "S2C_34SGH_20260429_0_L2A",
+      "juneScene": "S2A_34SGH_20260620_0_L2A",
+      "springDate": "2026-04-29",
+      "juneDate": "2026-06-20",
+      "sampledParcelId": "DEMO-RAF-018",
+      "springNdvi": 0.472,
+      "juneNdvi": 0.383,
+      "delta": -0.089,
+      "note": "Mean NDVI over the peri-urban plot from public Sentinel-2 L2A COGs. Not painted on the map."
+    },
+    "banner": {
+      "el": "Τα όρια είναι δημόσια γεωμετρία κτηματολογίου (χειροκίνητα ιχνηλατημένη, επειδή το WFS δεν αποκρίθηκε). Ιδιοκτήτες, δηλώσεις, καταγγελίες και ευρήματα είναι προσομοιωμένα και δεν αποτελούν ισχυρισμούς για τα ακίνητα. Τα DEMO-RAF-* δεν είναι ΚΑΕΚ.",
+      "en": "Parcel outlines are public cadastre geometry (hand-traced because the WFS did not respond). Owners, declarations, complaints and findings are simulated and are not statements about those properties. DEMO-RAF-* ids are not KAEKs."
+    }
+  },
+  "parcels": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-001",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9161966,
+                38.0176719
+              ],
+              [
+                23.9163859,
+                38.0176683
+              ],
+              [
+                23.9163836,
+                38.017856
+              ],
+              [
+                23.9161909,
+                38.0178542
+              ],
+              [
+                23.9161966,
+                38.0176719
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-001",
+          "areaM2": 344.9,
+          "street": {
+            "el": "Οδός Πεύκων 4",
+            "en": "Pefkon 4"
+          },
+          "zone": "in_settlement",
+          "owner": "Γεώργιος Παπαδόπουλος",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-002",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9164269,
+                38.0176719
+              ],
+              [
+                23.9165991,
+                38.0176674
+              ],
+              [
+                23.9165934,
+                38.0178731
+              ],
+              [
+                23.9164201,
+                38.0178713
+              ],
+              [
+                23.9164269,
+                38.0176719
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-002",
+          "areaM2": 341.5,
+          "street": {
+            "el": "Οδός Πεύκων 6",
+            "en": "Pefkon 6"
+          },
+          "zone": "in_settlement",
+          "owner": "Ελένη Νικολάου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-003",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9166413,
+                38.0176746
+              ],
+              [
+                23.9168522,
+                38.0176719
+              ],
+              [
+                23.9168488,
+                38.0178839
+              ],
+              [
+                23.9166379,
+                38.0178875
+              ],
+              [
+                23.9166413,
+                38.0176746
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-003",
+          "areaM2": 437.3,
+          "street": {
+            "el": "Οδός Πεύκων 8",
+            "en": "Pefkon 8"
+          },
+          "zone": "in_settlement",
+          "owner": "Νικόλαος Αθανασίου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-004",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9161977,
+                38.0179054
+              ],
+              [
+                23.9163608,
+                38.0179081
+              ],
+              [
+                23.9163562,
+                38.0180716
+              ],
+              [
+                23.916192,
+                38.0180689
+              ],
+              [
+                23.9161977,
+                38.0179054
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-004",
+          "areaM2": 261.4,
+          "street": {
+            "el": "Οδός Δρυός 3",
+            "en": "Dryos 3"
+          },
+          "zone": "in_settlement",
+          "owner": "Μαρία Κωνσταντίνου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-005",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9164018,
+                38.0179036
+              ],
+              [
+                23.9165991,
+                38.0179072
+              ],
+              [
+                23.9165979,
+                38.0180977
+              ],
+              [
+                23.9163984,
+                38.0180941
+              ],
+              [
+                23.9164018,
+                38.0179036
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-005",
+          "areaM2": 369.1,
+          "street": {
+            "el": "Οδός Δρυός 5",
+            "en": "Dryos 5"
+          },
+          "zone": "in_settlement",
+          "owner": "Χρήστος Δημητρίου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-006",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9166436,
+                38.0179414
+              ],
+              [
+                23.9168283,
+                38.0179387
+              ],
+              [
+                23.9168237,
+                38.0181704
+              ],
+              [
+                23.9166356,
+                38.0181677
+              ],
+              [
+                23.9166436,
+                38.0179414
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-006",
+          "areaM2": 416.7,
+          "street": {
+            "el": "Οδός Δρυός 7",
+            "en": "Dryos 7"
+          },
+          "zone": "in_settlement",
+          "owner": "Αικατερίνη Βασιλείου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-007",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9161966,
+                38.0181228
+              ],
+              [
+                23.9164189,
+                38.018121
+              ],
+              [
+                23.9164167,
+                38.0183043
+              ],
+              [
+                23.9161943,
+                38.0183034
+              ],
+              [
+                23.9161966,
+                38.0181228
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-007",
+          "areaM2": 395.0,
+          "street": {
+            "el": "Οδός Δρυός 9",
+            "en": "Dryos 9"
+          },
+          "zone": "in_settlement",
+          "owner": "Παναγιώτης Ιωάννου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": true,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-008",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.91646,
+                38.018148
+              ],
+              [
+                23.9166094,
+                38.0181444
+              ],
+              [
+                23.9166105,
+                38.0183483
+              ],
+              [
+                23.9164554,
+                38.0183474
+              ],
+              [
+                23.91646,
+                38.018148
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-008",
+          "areaM2": 299.7,
+          "street": {
+            "el": "Οδός Δρυός 11",
+            "en": "Dryos 11"
+          },
+          "zone": "in_settlement",
+          "owner": "Σοφία Αντωνίου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": true,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-009",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9168807,
+                38.0176719
+              ],
+              [
+                23.9171133,
+                38.0176737
+              ],
+              [
+                23.9171111,
+                38.0178381
+              ],
+              [
+                23.9168762,
+                38.0178345
+              ],
+              [
+                23.9168807,
+                38.0176719
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-009",
+          "areaM2": 373.2,
+          "street": {
+            "el": "Οδός Άρεως 2",
+            "en": "Areos 2"
+          },
+          "zone": "in_settlement",
+          "owner": "Δημήτριος Σταυρίδης",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": true,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-010",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9161989,
+                38.0172227
+              ],
+              [
+                23.9164509,
+                38.01722
+              ],
+              [
+                23.9164474,
+                38.017406
+              ],
+              [
+                23.9161932,
+                38.0174042
+              ],
+              [
+                23.9161989,
+                38.0172227
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-010",
+          "areaM2": 454.0,
+          "street": {
+            "el": "Οδός Νηρηίδων 1",
+            "en": "Nereidon 1"
+          },
+          "zone": "in_plan",
+          "owner": "Αναστασία Γεωργίου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": true,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-011",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.916493,
+                38.0172245
+              ],
+              [
+                23.9167029,
+                38.0172227
+              ],
+              [
+                23.9167006,
+                38.017423
+              ],
+              [
+                23.9164908,
+                38.0174203
+              ],
+              [
+                23.916493,
+                38.0172245
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-011",
+          "areaM2": 405.8,
+          "street": {
+            "el": "Οδός Νηρηίδων 3",
+            "en": "Nereidon 3"
+          },
+          "zone": "in_plan",
+          "owner": "Κωνσταντίνος Μιχαηλίδης",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-012",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.916745,
+                38.0172407
+              ],
+              [
+                23.9169298,
+                38.0172389
+              ],
+              [
+                23.9169275,
+                38.0174149
+              ],
+              [
+                23.9167393,
+                38.0174123
+              ],
+              [
+                23.916745,
+                38.0172407
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-012",
+          "areaM2": 316.5,
+          "street": {
+            "el": "Οδός Νηρηίδων 5",
+            "en": "Nereidon 5"
+          },
+          "zone": "in_plan",
+          "owner": "Ιωάννα Χριστοδούλου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-013",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9167473,
+                38.0186115
+              ],
+              [
+                23.9170381,
+                38.0186025
+              ],
+              [
+                23.9170312,
+                38.0187741
+              ],
+              [
+                23.9167371,
+                38.0187723
+              ],
+              [
+                23.9167473,
+                38.0186115
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-013",
+          "areaM2": 474.2,
+          "street": {
+            "el": "Αδιέξοδος Πευκώνα",
+            "en": "Pefkonas cul-de-sac"
+          },
+          "zone": "within_100m",
+          "owner": "Θεόδωρος Αλεξίου",
+          "forestEdge": true,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "steep",
+          "poorEscapeRoad": true,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-014",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.917086,
+                38.0185917
+              ],
+              [
+                23.9174349,
+                38.0185899
+              ],
+              [
+                23.9174315,
+                38.0187391
+              ],
+              [
+                23.9170803,
+                38.0187346
+              ],
+              [
+                23.917086,
+                38.0185917
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-014",
+          "areaM2": 499.2,
+          "street": {
+            "el": "Οδός Πευκώνα 14",
+            "en": "Pefkona 14"
+          },
+          "zone": "within_100m",
+          "owner": "Βασιλική Παπαγεωργίου",
+          "forestEdge": true,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "moderate",
+          "poorEscapeRoad": true,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-015",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9175238,
+                38.0185702
+              ],
+              [
+                23.9177781,
+                38.0185747
+              ],
+              [
+                23.9177724,
+                38.0188271
+              ],
+              [
+                23.9175147,
+                38.0188253
+              ],
+              [
+                23.9175238,
+                38.0185702
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-015",
+          "areaM2": 634.4,
+          "street": {
+            "el": "Οδός Πευκώνα 16",
+            "en": "Pefkona 16"
+          },
+          "zone": "within_100m",
+          "owner": "Ανδρέας Λαμπρόπουλος",
+          "forestEdge": true,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "moderate",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-016",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9174759,
+                38.0180851
+              ],
+              [
+                23.9177519,
+                38.0180824
+              ],
+              [
+                23.9177485,
+                38.0182683
+              ],
+              [
+                23.9174702,
+                38.0182665
+              ],
+              [
+                23.9174759,
+                38.0180851
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-016",
+          "areaM2": 496.9,
+          "street": {
+            "el": "Οδός Άρεως 18",
+            "en": "Areos 18"
+          },
+          "zone": "within_100m",
+          "owner": "Πέτρος Καραγιάννης",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-017",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9174771,
+                38.0176737
+              ],
+              [
+                23.9178796,
+                38.0176683
+              ],
+              [
+                23.917875,
+                38.0179908
+              ],
+              [
+                23.917468,
+                38.017989
+              ],
+              [
+                23.9174771,
+                38.0176737
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-017",
+          "areaM2": 1260.0,
+          "street": {
+            "el": "Οδός Άρεως 20",
+            "en": "Areos 20"
+          },
+          "zone": "within_100m",
+          "owner": "Ολυμπία Σακελλαρίου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-018",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.92,
+                38.0144
+              ],
+              [
+                23.92138,
+                38.01442
+              ],
+              [
+                23.92145,
+                38.01548
+              ],
+              [
+                23.91995,
+                38.01552
+              ],
+              [
+                23.92,
+                38.0144
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-018",
+          "areaM2": 15324.7,
+          "street": {
+            "el": "Αγροτική οδός προς Πικέρμι",
+            "en": "Farm road toward Pikermi"
+          },
+          "zone": "within_100m",
+          "owner": "Σπυρίδων Μαυρίδης",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-019",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9168032,
+                38.0192062
+              ],
+              [
+                23.9172855,
+                38.0191936
+              ],
+              [
+                23.917273,
+                38.0195502
+              ],
+              [
+                23.9167792,
+                38.0195466
+              ],
+              [
+                23.9168032,
+                38.0192062
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-019",
+          "areaM2": 1659.7,
+          "street": {
+            "el": "Δασική θέση Κουκουβάγιας",
+            "en": "Koukouvagias forest stand"
+          },
+          "zone": "forest_excluded",
+          "owner": "Ελληνικό Δημόσιο (προσομοίωση)",
+          "forestEdge": true,
+          "nearbyHouses": false,
+          "sensitiveSite": false,
+          "slopeClass": "steep",
+          "poorEscapeRoad": true,
+          "enclosed": false,
+          "exclusionNote": {
+            "el": "Δασικός χάρτης · άρθρο 3.1.γ",
+            "en": "Forest map · article 3.1.c"
+          }
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-020",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9182319,
+                38.0157162
+              ],
+              [
+                23.9187827,
+                38.01571
+              ],
+              [
+                23.918777,
+                38.0160783
+              ],
+              [
+                23.9182194,
+                38.0160747
+              ],
+              [
+                23.9182319,
+                38.0157162
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-020",
+          "areaM2": 1966.1,
+          "street": {
+            "el": "Αγροί Πικερμίου",
+            "en": "Pikermi fields"
+          },
+          "zone": "cultivated_excluded",
+          "owner": "Αγροτικός συνεταιρισμός (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": false,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false,
+          "exclusionNote": {
+            "el": "Ανέκαθεν γεωργικώς καλλιεργούμενη · άρθρο 3.5.α",
+            "en": "Long-cultivated land · article 3.5.a"
+          }
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-021",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9168807,
+                38.0178884
+              ],
+              [
+                23.9171236,
+                38.0178875
+              ],
+              [
+                23.9171225,
+                38.0180608
+              ],
+              [
+                23.9168785,
+                38.0180599
+              ],
+              [
+                23.9168807,
+                38.0178884
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-021",
+          "areaM2": 409.8,
+          "street": {
+            "el": "Οδός Άρεως 4",
+            "en": "Areos 4"
+          },
+          "zone": "garden_excluded",
+          "owner": "Πολυκατοικία Άρεως 4 (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": true,
+          "exclusionNote": {
+            "el": "Διαμορφωμένος συντηρημένος κήπος · άρθρο 3.5.β",
+            "en": "Maintained garden · article 3.5.b"
+          }
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-022",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9178705,
+                38.0187624
+              ],
+              [
+                23.9180791,
+                38.0187427
+              ],
+              [
+                23.91807,
+                38.0190517
+              ],
+              [
+                23.9178511,
+                38.0190481
+              ],
+              [
+                23.9178705,
+                38.0187624
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-022",
+          "areaM2": 619.4,
+          "street": {
+            "el": "Ρέμα Δραφίου",
+            "en": "Drafi ravine"
+          },
+          "zone": "inaccessible_excluded",
+          "owner": "Άγνωστος υπόχρεος (προσομοίωση)",
+          "forestEdge": true,
+          "nearbyHouses": false,
+          "sensitiveSite": false,
+          "slopeClass": "steep",
+          "poorEscapeRoad": true,
+          "enclosed": false,
+          "exclusionNote": {
+            "el": "Απρόσιτο λόγω μορφολογίας · άρθρο 3.5.γ",
+            "en": "Inaccessible terrain · article 3.5.c"
+          }
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-023",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9174759,
+                38.0183007
+              ],
+              [
+                23.9177986,
+                38.018298
+              ],
+              [
+                23.9177952,
+                38.0184848
+              ],
+              [
+                23.9174691,
+                38.0184821
+              ],
+              [
+                23.9174759,
+                38.0183007
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-023",
+          "areaM2": 583.1,
+          "street": {
+            "el": "Οδός Άρεως 22",
+            "en": "Areos 22"
+          },
+          "zone": "within_100m",
+          "owner": "Ειρήνη Χατζή",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "moderate",
+          "poorEscapeRoad": false,
+          "enclosed": true
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-RAF-024",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9166538,
+                38.018148
+              ],
+              [
+                23.9168956,
+                38.0181498
+              ],
+              [
+                23.9168921,
+                38.0183222
+              ],
+              [
+                23.9166493,
+                38.0183195
+              ],
+              [
+                23.9166538,
+                38.018148
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-RAF-024",
+          "areaM2": 406.8,
+          "street": {
+            "el": "Οδός Δρυός 13",
+            "en": "Dryos 13"
+          },
+          "zone": "in_settlement",
+          "owner": "Λεωνίδας Οικονόμου",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": true,
+          "enclosed": false
+        }
+      }
+    ]
+  },
+  "declarations": [
+    {
+      "parcelId": "DEMO-RAF-002",
+      "submittedAt": "2026-06-10T09:14:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0142"
+    },
+    {
+      "parcelId": "DEMO-RAF-003",
+      "submittedAt": "2026-06-08T11:02:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0098"
+    },
+    {
+      "parcelId": "DEMO-RAF-005",
+      "submittedAt": "2026-06-12T16:40:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0211"
+    },
+    {
+      "parcelId": "DEMO-RAF-007",
+      "submittedAt": "2026-06-14T08:21:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0284"
+    },
+    {
+      "parcelId": "DEMO-RAF-009",
+      "submittedAt": "2026-06-11T13:55:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0177"
+    },
+    {
+      "parcelId": "DEMO-RAF-010",
+      "submittedAt": "2026-06-09T10:08:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0120"
+    },
+    {
+      "parcelId": "DEMO-RAF-012",
+      "submittedAt": "2026-06-13T19:12:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0249"
+    },
+    {
+      "parcelId": "DEMO-RAF-014",
+      "submittedAt": "2026-06-15T07:44:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0310"
+    },
+    {
+      "parcelId": "DEMO-RAF-017",
+      "submittedAt": "2026-06-07T15:30:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0071"
+    },
+    {
+      "parcelId": "DEMO-RAF-023",
+      "submittedAt": "2026-06-16T12:18:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0338"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "SIM-ΚΑΤ-2026-0041",
+      "parcelId": "DEMO-RAF-002",
+      "filedAt": "2026-06-18T17:40:00+03:00",
+      "text": {
+        "el": "Ξερά χόρτα και πευκοβελόνες δίπλα στα σπίτια. Η δήλωση λέει καθαρισμένο.",
+        "en": "Dry grass and pine needles against the houses. The declaration says it was cleaned."
+      }
+    },
+    {
+      "id": "SIM-ΚΑΤ-2026-0048",
+      "parcelId": "DEMO-RAF-006",
+      "filedAt": "2026-06-20T09:05:00+03:00",
+      "text": {
+        "el": "Ακάλυπτο οικόπεδο με σωρό κλαδεμάτων. Δεν φαίνεται δήλωση.",
+        "en": "Vacant plot with a pile of prunings. No declaration in sight."
+      }
+    },
+    {
+      "id": "SIM-ΚΑΤ-2026-0055",
+      "parcelId": "DEMO-RAF-013",
+      "filedAt": "2026-06-21T20:12:00+03:00",
+      "text": {
+        "el": "Στο όριο με το δάσος, ξερή καύσιμη ύλη και μία στενή έξοδος.",
+        "en": "On the forest edge, dry fuel and only a narrow way out."
+      }
+    },
+    {
+      "id": "SIM-ΚΑΤ-2026-0060",
+      "parcelId": "DEMO-RAF-023",
+      "filedAt": "2026-06-22T11:33:00+03:00",
+      "text": {
+        "el": "Μετά τη δήλωση το οικόπεδο μοιάζει ακόμα ακαθάριστο.",
+        "en": "After the declaration the plot still looks uncleared."
+      }
+    }
+  ],
+  "settlementBoundary": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          23.9160598,
+          38.0171329
+        ],
+        [
+          23.9173368,
+          38.0171329
+        ],
+        [
+          23.9174052,
+          38.0184624
+        ],
+        [
+          23.9160598,
+          38.0184624
+        ],
+        [
+          23.9160598,
+          38.0171329
+        ]
+      ]
+    ]
+  },
+  "landmarks": [
+    {
+      "id": "school",
+      "name": {
+        "el": "Δημοτικό Σχολείο Δραφίου (προσομοίωση)",
+        "en": "Drafi primary school (simulated)"
+      },
+      "coordinates": [
+        23.9171088,
+        38.0175281
+      ]
+    }
+  ]
+}
