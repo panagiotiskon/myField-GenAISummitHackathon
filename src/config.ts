@@ -28,11 +28,19 @@ export const colors = {
 
 /** Paths under public/, passed to staticFile(). */
 export const assets = {
-  wildfire: "fal/wildfire-crisis.jpg",
+  wildfireNight: "fal/wildfire-night.mp4",
+  wildfireAerial: "fal/wildfire-aerial.mp4",
   orthoWide: "flight/ortho-8000.webp",
   plotOrtho: "imagery/DEMO-RAF-017-ortho.jpg",
   plotApril: "imagery/DEMO-RAF-017-s2-before.jpg",
   plotJune: "imagery/DEMO-RAF-017-s2-after.jpg",
+} as const;
+
+/** Two generated plates inside the opening. 12 frames of overlap for the cut. */
+export const opening = {
+  nightFrames: 198,
+  aerialFrom: 186,
+  aerialFrames: 194,
 } as const;
 
 /**
@@ -50,11 +58,11 @@ export type Beat = {
 };
 
 export const beats: readonly Beat[] = [
-  { id: "hook", from: 0, duration: 150 },
-  { id: "duty", from: 150, duration: 240 },
-  { id: "reveal", from: 390, duration: 150 },
-  { id: "rule", from: 540, duration: 240 },
-  { id: "desk", from: 780, duration: 780 },
+  { id: "hook", from: 0, duration: 380 },
+  { id: "duty", from: 380, duration: 240 },
+  { id: "reveal", from: 620, duration: 150 },
+  { id: "rule", from: 770, duration: 240 },
+  { id: "desk", from: 1010, duration: 550 },
   { id: "close", from: 1560, duration: 240 },
 ];
 
@@ -96,7 +104,7 @@ export const evidence = {
 } as const;
 
 export const copy = {
-  generatedPlate: "Generated plate",
+  pexelsCredit: "Pexels",
   orthoCredit: "Hellenic Cadastre orthophoto. Capture date not published.",
   hook: "Every summer, fire moves through the dry grass between houses.",
   duty: "Plots under the duty had to be declared cleared by 22 June. Ten came in. The statutory sample is one.",
@@ -122,7 +130,7 @@ export const copy = {
   outsideNote: "4 plots sit outside the duty and are not assessed.",
   deskKicker: "Live desk",
   deskTitle: "Held for the English screen recording.",
-  deskBody: "Twenty-six seconds. The application is not on this card.",
+  deskBody: "The application is not on this card.",
   closeTitle: "myField",
   closeLine: "A screening, not a finding.",
   closeTag: "Plot-cleaning declaration check",
@@ -139,10 +147,10 @@ export type Caption = {
 };
 
 export const captions: readonly Caption[] = [
-  { id: "hook", from: 16, to: 138, text: copy.hook, place: "lower-third" },
-  { id: "duty", from: 166, to: 376, text: copy.duty, place: "lower-third" },
-  { id: "reveal", from: 406, to: 528, text: copy.revealBody, place: "scene" },
-  { id: "rule", from: 556, to: 768, text: copy.ruleCountRest, place: "scene" },
+  { id: "hook", from: 18, to: 176, text: copy.hook, place: "lower-third" },
+  { id: "duty", from: 396, to: 604, text: copy.duty, place: "lower-third" },
+  { id: "reveal", from: 636, to: 758, text: copy.revealBody, place: "scene" },
+  { id: "rule", from: 786, to: 998, text: copy.ruleCountRest, place: "scene" },
   { id: "close", from: 1590, to: 1788, text: copy.closeLine, place: "scene" },
 ];
 
