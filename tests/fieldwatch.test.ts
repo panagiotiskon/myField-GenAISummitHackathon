@@ -88,7 +88,7 @@ describe("field-watch plots in the scenario", () => {
   const ids = Object.keys(fieldWatch.parcels);
 
   it("every plot has a parcel, a declaration of cleaned, and an orthophoto", () => {
-    expect(ids.length).toBeGreaterThanOrEqual(6);
+    expect(ids).toEqual(["DEMO-FIELD-001"]);
     for (const id of ids) {
       expect(getParcel(id)).toBeDefined();
       expect(scenario.declarations.find((d) => d.parcelId === id)?.claimedCleaned).toBe(true);
@@ -104,7 +104,7 @@ describe("field-watch plots in the scenario", () => {
     }
   });
 
-  it("each covered plot is flagged as declared-vs-imagery; worked neighbours are not", () => {
+  it("the covered plot is flagged as declared-vs-imagery", () => {
     const rows = new Map(screen(scenario).map((row) => [row.parcel.properties.id, row]));
     for (const id of ids) {
       const flagged = rows.get(id)!.reasons.includes("declared_vs_imagery");
@@ -112,9 +112,10 @@ describe("field-watch plots in the scenario", () => {
     }
   });
 
-  it("looks up PIK codes by their own prefix", () => {
+  it("looks up the field code by its own prefix", () => {
     const all = scenario.parcels.features.map((f) => String(f.id));
-    expect(resolveParcelCode("pik-3", all)).toBe("DEMO-PIK-003");
+    expect(resolveParcelCode("field-1", all)).toBe("DEMO-FIELD-001");
+    expect(resolveParcelCode("DEMO-FIELD-001", all)).toBe("DEMO-FIELD-001");
     expect(resolveParcelCode("raf-3", all)).toBe("DEMO-RAF-003");
   });
 });

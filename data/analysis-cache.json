@@ -1,177 +1,81 @@
 {
-  "DEMO-PIK-001": {
-    "parcelId": "DEMO-PIK-001",
-    "verdict": "potentially_uncleaned",
+  "DEMO-RAF-008": {
+    "parcelId": "DEMO-RAF-008",
+    "verdict": "uncertain",
     "confidence": "low",
     "source": "ai_live",
     "model": "gpt-5.5-2026-04-23",
-    "analysedAt": "2026-11-15T11:01:22.718Z",
+    "analysedAt": "2026-11-15T11:29:01.827Z",
     "rule": {
-      "parcelId": "DEMO-PIK-001",
-      "imageDate": "2026-04-29",
-      "ndviBefore": 0.739,
-      "ndviAfter": 0.68,
-      "pixelCount": 26,
-      "timeline": {
-        "event": null,
-        "seasonStart": "2026-05-01",
-        "startDate": "2026-04-29",
-        "startNdvi": 0.68,
-        "springPeak": 0.739,
-        "dates": 66,
-        "pixels": 26,
-        "status": "covered_at_season_start"
-      },
-      "verdict": "potentially_uncleaned",
+      "parcelId": "DEMO-RAF-008",
+      "imageDate": null,
+      "ndviBefore": null,
+      "ndviAfter": null,
+      "pixelCount": 0,
+      "verdict": "uncertain",
       "confidenceCap": "low",
       "allowed": [
-        "potentially_uncleaned",
         "uncertain"
       ],
-      "reason": "covered_at_season_start"
+      "reason": "too_small_for_sentinel"
     },
     "ai": {
       "summary": {
-        "el": "Στις εικόνες δεν φαίνεται καθαρή ένδειξη κατεργασίας ή κοπής πριν την 1η Μαΐου. Η βλάστηση παραμένει υψηλή στα τέλη Απριλίου και μειώνεται σταδιακά το καλοκαίρι, άρα το οικόπεδο είναι μόνο δυνητικά ακαθάριστο.",
-        "en": "The images do not show a clear sign of working or cutting before 1 May. Vegetation remains high in late April and then declines gradually in summer, so the plot is only potentially uncleaned."
+        "el": "Δεν μπορεί να εκτιμηθεί με ασφάλεια αν το οικόπεδο φαίνεται καθαρισμένο. Η διαθέσιμη εικόνα δείχνει κυρίως χαμηλή βλάστηση/θαμνώδη κάλυψη με λίγα γυμνά σημεία, αλλά είναι παλιά ή άγνωστης ημερομηνίας.",
+        "en": "It cannot be assessed reliably whether the plot appears cleaned. The available image shows mostly low vegetation/shrubby cover with some bare patches, but it is old or of unknown date."
       },
       "observations": [
         {
-          "el": "Στην ορθοφωτογραφία το οικόπεδο φαίνεται κυρίως σαν δενδροκαλλιέργεια με γραμμές δέντρων και χαμηλή βλάστηση ή γυμνό έδαφος ανάμεσα.",
-          "en": "In the orthophoto the plot appears mainly as an orchard with rows of trees and low vegetation or bare soil between them."
+          "el": "Μέσα στο κίτρινο περίγραμμα φαίνεται κυρίως χαμηλή βλάστηση και θαμνώδης κάλυψη.",
+          "en": "Inside the yellow outline there is mostly low vegetation and shrubby cover."
         },
         {
-          "el": "Δεν φαίνεται κτίσμα ή μεγάλη πλακόστρωση μέσα στο κίτρινο περίγραμμα.",
-          "en": "No building or large paved area is visible inside the yellow outline."
+          "el": "Υπάρχουν μικρές ανοιχτές/γυμνές κηλίδες, αλλά δεν φαίνεται συνεχής καθαρή επιφάνεια εδάφους.",
+          "en": "There are small open/bare patches, but no continuous cleared soil surface is visible."
         },
         {
-          "el": "Στις 29/04/2026 το Sentinel-2 δείχνει ακόμη πράσινη κάλυψη στο οικόπεδο, με NDVI 0,68 κοντά στην έναρξη της αντιπυρικής περιόδου.",
-          "en": "On 2026-04-29 Sentinel-2 still shows green cover in the plot, with NDVI 0.68 close to the start of the fire season."
+          "el": "Δεν φαίνονται κτίσματα ή πλακόστρωτες επιφάνειες μέσα στο οικόπεδο.",
+          "en": "No buildings or paved surfaces are visible inside the plot."
         },
         {
-          "el": "Μετά την 1η Μαΐου η μείωση του NDVI είναι σταδιακή, όχι απότομη πτώση σε γυμνό έδαφος που θα έδειχνε καθαρή κατεργασία.",
-          "en": "After 1 May the NDVI decrease is gradual, not a sharp drop to bare soil that would indicate clear working."
+          "el": "Δεν διακρίνονται καθαρά μεγάλα υγιή δέντρα μέσα στο περίγραμμα, μόνο λίγη ψηλότερη βλάστηση/σκιά στα όρια.",
+          "en": "No clear large healthy trees are distinguishable inside the outline, only some taller vegetation/shadow near the edges."
         }
       ],
       "limitations": [
         {
-          "el": "Η ορθοφωτογραφία δεν έχει δημοσιευμένη ημερομηνία λήψης και μπορεί να είναι παλιά.",
-          "en": "The orthophoto has no published capture date and may be old."
+          "el": "Η ορθοφωτογραφία δεν έχει δημοσιευμένη ημερομηνία λήψης και μπορεί να είναι παλιά, άρα δεν δείχνει την τωρινή κατάσταση.",
+          "en": "The orthophoto has no published capture date and may be old, so it does not show the current condition."
         },
         {
-          "el": "Τα Sentinel-2 έχουν ανάλυση 10 m και μόνο περίπου 26 εικονοστοιχεία μέσα στο οικόπεδο, άρα δεν δείχνουν λεπτομέρειες καθαρισμού.",
-          "en": "The Sentinel-2 images have 10 m resolution and only about 26 pixels inside the plot, so they do not show cleaning details."
+          "el": "Το οικόπεδο είναι μικρό και η ανάλυση δεν επιτρέπει ασφαλή διάκριση ξερών χόρτων από χαμηλούς θάμνους.",
+          "en": "The plot is small and the resolution does not allow reliable separation of dry grass from low shrubs."
         },
         {
-          "el": "Τα δέντρα της δενδροκαλλιέργειας μπορούν να κρατούν υψηλό NDVI ακόμη και αν έχει κοπεί η χαμηλή βλάστηση από κάτω.",
-          "en": "Orchard trees can keep NDVI high even if low vegetation underneath has been cut."
+          "el": "Δεν υπάρχουν χρήσιμα δεδομένα Sentinel-2 για το οικόπεδο, επειδή δεν χωρά ολόκληρο pixel 10 m μέσα σε αυτό.",
+          "en": "There is no useful Sentinel-2 evidence for the plot because no full 10 m pixel fits inside it."
         }
       ],
       "landCover": {
-        "trees": 30,
-        "lowVegetation": 45,
-        "bareGround": 25,
+        "trees": 5,
+        "lowVegetation": 75,
+        "bareGround": 20,
         "built": 0
       },
-      "proposedVerdict": "potentially_uncleaned",
+      "proposedVerdict": "uncertain",
       "clamped": false
     },
     "aiNote": null
   },
-  "DEMO-PIK-003": {
-    "parcelId": "DEMO-PIK-003",
-    "verdict": "likely_cleaned",
-    "confidence": "medium",
-    "source": "ai_live",
-    "model": "gpt-5.5-2026-04-23",
-    "analysedAt": "2026-11-15T11:01:47.585Z",
-    "rule": {
-      "parcelId": "DEMO-PIK-003",
-      "imageDate": "2026-03-10",
-      "ndviBefore": 0.631,
-      "ndviAfter": 0.275,
-      "pixelCount": 160,
-      "timeline": {
-        "event": {
-          "date": "2026-03-10",
-          "prevDate": "2026-03-05",
-          "before": 0.631,
-          "after": 0.275,
-          "drop": 0.356
-        },
-        "seasonStart": "2026-05-01",
-        "startDate": "2026-04-29",
-        "startNdvi": 0.201,
-        "springPeak": 0.628,
-        "dates": 66,
-        "pixels": 160,
-        "status": "worked_before_season"
-      },
-      "verdict": "likely_cleaned",
-      "confidenceCap": "medium",
-      "allowed": [
-        "likely_cleaned",
-        "uncertain"
-      ],
-      "reason": "worked_before_season"
-    },
-    "ai": {
-      "summary": {
-        "el": "Οι δορυφορικές μετρήσεις δείχνουν απότομη μείωση της βλάστησης πριν την 1η Μαΐου και χαμηλή βλάστηση στην αρχή της αντιπυρικής περιόδου. Η εικόνα ταιριάζει περισσότερο με δουλεμένο ή κομμένο αγροτεμάχιο, αλλά χρειάζεται επιτόπιος έλεγχος για βεβαίωση.",
-        "en": "The satellite measurements show a sharp vegetation drop before 1 May and low vegetation at the start of fire season. This is more consistent with worked or cut ground, but a site check is needed to confirm."
-      },
-      "observations": [
-        {
-          "el": "Στην ορθοφωτογραφία το αγροτεμάχιο φαίνεται καλλιεργημένο, με γραμμές μικρών δέντρων ή θάμνων και ενδιάμεσο έδαφος/χαμηλή βλάστηση.",
-          "en": "In the orthophoto the plot appears cultivated, with rows of small trees or shrubs and ground/low vegetation between them."
-        },
-        {
-          "el": "Δεν φαίνονται κτίσματα μέσα στο περίγραμμα.",
-          "en": "No buildings are visible inside the outline."
-        },
-        {
-          "el": "Στις εικόνες Sentinel-2 το αγροτεμάχιο γίνεται πιο καστανό έως τις 29/04/2026, πριν την έναρξη της αντιπυρικής περιόδου.",
-          "en": "In the Sentinel-2 images the plot becomes browner by 2026-04-29, before the fire season starts."
-        },
-        {
-          "el": "Το NDVI πέφτει από υψηλή ανοιξιάτικη τιμή σε περίπου 0,20 στις 29/04 και μένει σχετικά χαμηλό το καλοκαίρι.",
-          "en": "NDVI drops from a high spring value to about 0.20 on 29 April and stays relatively low through summer."
-        }
-      ],
-      "limitations": [
-        {
-          "el": "Η ορθοφωτογραφία δεν έχει δημοσιευμένη ημερομηνία λήψης και μπορεί να είναι παλιά.",
-          "en": "The orthophoto has no published capture date and may be old."
-        },
-        {
-          "el": "Τα Sentinel-2 έχουν ανάλυση 10 m, άρα δεν δείχνουν μικρές εστίες ξερών χόρτων, κλαδιά ή σωρούς υπολειμμάτων.",
-          "en": "Sentinel-2 has 10 m resolution, so it cannot show small patches of dry grass, branches, or residue piles."
-        },
-        {
-          "el": "Οι εικόνες δείχνουν γενική κατάσταση βλάστησης, όχι βέβαιη συμμόρφωση με τις εργασίες καθαρισμού.",
-          "en": "The images show general vegetation condition, not definite compliance with cleaning work."
-        }
-      ],
-      "landCover": {
-        "trees": 20,
-        "lowVegetation": 50,
-        "bareGround": 30,
-        "built": 0
-      },
-      "proposedVerdict": "likely_cleaned",
-      "clamped": false
-    },
-    "aiNote": null
-  },
-  "DEMO-PIK-004": {
-    "parcelId": "DEMO-PIK-004",
+  "DEMO-FIELD-001": {
+    "parcelId": "DEMO-FIELD-001",
     "verdict": "potentially_uncleaned",
     "confidence": "low",
     "source": "ai_live",
     "model": "gpt-5.5-2026-04-23",
-    "analysedAt": "2026-11-15T11:06:00.133Z",
+    "analysedAt": "2026-11-15T11:32:39.144Z",
     "rule": {
-      "parcelId": "DEMO-PIK-004",
+      "parcelId": "DEMO-FIELD-001",
       "imageDate": "2026-04-29",
       "ndviBefore": 0.774,
       "ndviAfter": 0.647,
@@ -196,124 +100,45 @@
     },
     "ai": {
       "summary": {
-        "el": "Τα διαθέσιμα στοιχεία δείχνουν υψηλή βλάστηση μέχρι την έναρξη της αντιπυρικής περιόδου και σταδιακή ξήρανση μετά. Δεν φαίνεται καθαρή αλλαγή σε γυμνό ή δουλεμένο έδαφος πριν από την 1η Μαΐου.",
-        "en": "The available evidence shows high vegetation up to the start of the fire season and gradual drying afterward. A clear change to bare or worked ground before 1 May is not visible."
+        "el": "Δεν φαίνεται σαφής κατεργασία ή καθαρισμός πριν την 1η Μαΐου. Το οικόπεδο ήταν ακόμη πράσινο κοντά στην έναρξη της αντιπυρικής περιόδου και μετά ξεράθηκε σταδιακά.",
+        "en": "No clear working or cleaning is visible before 1 May. The plot was still green near the start of the fire season and then dried gradually."
       },
       "observations": [
         {
-          "el": "Στην ορθοφωτογραφία το οικόπεδο φαίνεται αδόμητο, με χαμηλή βλάστηση/χόρτα, μερικά δέντρα ή θάμνους και χωμάτινη διαδρομή.",
-          "en": "In the orthophoto the plot appears undeveloped, with low vegetation/grass, a few trees or shrubs, and a dirt track."
+          "el": "Στην ορθοφωτογραφία το οικόπεδο φαίνεται αδόμητο, με κυρίως χαμηλή βλάστηση/χόρτα και λίγες διάσπαρτες κόμες δέντρων.",
+          "en": "In the orthophoto the plot appears undeveloped, mostly with low vegetation/grass and a few scattered tree canopies."
         },
         {
-          "el": "Στις 05/03 και 29/04 το οικόπεδο είναι κυρίως πράσινο στις εικόνες Sentinel-2.",
-          "en": "On 05/03 and 29/04 the plot is mostly green in the Sentinel-2 images."
+          "el": "Φαίνεται χωμάτινη λωρίδα ή μονοπάτι μέσα στο οικόπεδο και μερικά ανοιχτόχρωμα γυμνά σημεία, κυρίως στο νοτιοδυτικό και κεντρικό τμήμα.",
+          "en": "A dirt strip or track is visible inside the plot, with some light bare patches, mainly in the southwest and central parts."
         },
         {
-          "el": "Ο δείκτης NDVI ήταν ακόμη υψηλός κοντά στην έναρξη της περιόδου, περίπου 0,65 στις 29/04 και 0,64 στις 04/05.",
-          "en": "NDVI was still high near the season start, about 0.65 on 29/04 and 0.64 on 04/05."
+          "el": "Στις εικόνες Sentinel το οικόπεδο είναι πράσινο στις 5/3 και παραμένει αρκετά πράσινο στις 29/4, με NDVI περίπου 0,65 κοντά στην έναρξη της περιόδου.",
+          "en": "In the Sentinel images the plot is green on 5 March and remains fairly green on 29 April, with NDVI about 0.65 near the season start."
         },
         {
-          "el": "Μετά τον Μάιο το NDVI πέφτει σταδιακά έως περίπου 0,33 τον Αύγουστο, εικόνα που ταιριάζει περισσότερο με φυσική ξήρανση παρά με απότομη κατεργασία εδάφους.",
-          "en": "After May the NDVI falls gradually to about 0.33 in August, which fits natural drying more than a sudden ground-working event."
+          "el": "Από τον Μάιο έως τον Αύγουστο η βλάστηση καφετίζει σταδιακά. Δεν φαίνεται απότομη αλλαγή σε γυμνό έδαφος πριν την 1η Μαΐου.",
+          "en": "From May to August the vegetation browns gradually. No abrupt change to bare ground is visible before 1 May."
         }
       ],
       "limitations": [
         {
-          "el": "Η ορθοφωτογραφία δεν έχει δημοσιευμένη ημερομηνία λήψης και μπορεί να είναι παλιά.",
-          "en": "The orthophoto has no published capture date and may be old."
+          "el": "Η ορθοφωτογραφία δεν έχει δημοσιευμένη ημερομηνία λήψης και μπορεί να μην δείχνει την τωρινή κατάσταση.",
+          "en": "The orthophoto has no published capture date and may not show the current condition."
         },
         {
-          "el": "Τα Sentinel-2 έχουν ανάλυση 10 m, άρα μικρές κοπές, σωροί χόρτων ή καθαρισμοί κάτω από δέντρα δεν διακρίνονται αξιόπιστα.",
-          "en": "Sentinel-2 has 10 m pixels, so small cuts, grass piles, or clearing under trees cannot be seen reliably."
+          "el": "Τα Sentinel έχουν ανάλυση 10 m, οπότε δεν διακρίνονται με ασφάλεια κομμένα χόρτα, μικροί θάμνοι ή καθαρισμός κάτω από δέντρα.",
+          "en": "Sentinel resolution is 10 m, so cut grass, small shrubs, or clearing under trees cannot be seen reliably."
         },
         {
-          "el": "Η εικόνα και το NDVI δεν αποδεικνύουν αν το οικόπεδο είναι καθαρισμένο ή ακαθάριστο· δείχνουν μόνο συνολική πρασινάδα και αλλαγές στο χρόνο.",
-          "en": "Imagery and NDVI do not prove whether the plot is cleaned or uncleaned; they only show overall greenness and changes over time."
+          "el": "Η σταδιακή πτώση του NDVI μπορεί να είναι φυσική ξήρανση. Η εικόνα μόνη της δεν αποδεικνύει συμμόρφωση ή παράβαση.",
+          "en": "The gradual NDVI drop may be natural drying. Imagery alone does not prove compliance or non-compliance."
         }
       ],
       "landCover": {
-        "trees": 12,
-        "lowVegetation": 58,
-        "bareGround": 30,
-        "built": 0
-      },
-      "proposedVerdict": "potentially_uncleaned",
-      "clamped": false
-    },
-    "aiNote": null
-  },
-  "DEMO-PIK-008": {
-    "parcelId": "DEMO-PIK-008",
-    "verdict": "potentially_uncleaned",
-    "confidence": "low",
-    "source": "ai_live",
-    "model": "gpt-5.5-2026-04-23",
-    "analysedAt": "2026-11-15T11:26:26.482Z",
-    "rule": {
-      "parcelId": "DEMO-PIK-008",
-      "imageDate": "2026-04-29",
-      "ndviBefore": 0.707,
-      "ndviAfter": 0.625,
-      "pixelCount": 41,
-      "timeline": {
-        "event": null,
-        "seasonStart": "2026-05-01",
-        "startDate": "2026-04-29",
-        "startNdvi": 0.625,
-        "springPeak": 0.707,
-        "dates": 65,
-        "pixels": 41,
-        "status": "covered_at_season_start"
-      },
-      "verdict": "potentially_uncleaned",
-      "confidenceCap": "low",
-      "allowed": [
-        "potentially_uncleaned",
-        "uncertain"
-      ],
-      "reason": "covered_at_season_start"
-    },
-    "ai": {
-      "summary": {
-        "el": "Το οικόπεδο φαίνεται κυρίως καλυμμένο με χαμηλή βλάστηση/αγρό. Στις εικόνες Sentinel δεν φαίνεται καθαρή απότομη μεταβολή σε γυμνό έδαφος πριν την 1η Μαΐου.",
-        "en": "The plot appears mostly covered by low vegetation/field cover. The Sentinel images do not show a clear sudden change to bare soil before 1 May."
-      },
-      "observations": [
-        {
-          "el": "Στην ορθοφωτογραφία, μέσα στο κίτρινο περίγραμμα φαίνεται κυρίως ανοιχτός αγρός με χαμηλή βλάστηση και λίγα διάσπαρτα δέντρα/θάμνους.",
-          "en": "In the orthophoto, inside the yellow outline there is mainly open field with low vegetation and a few scattered trees/shrubs."
-        },
-        {
-          "el": "Στις 05/03 και 29/04 το οικόπεδο φαίνεται αρκετά πράσινο στο Sentinel-2.",
-          "en": "On 05 Mar and 29 Apr the plot appears fairly green in Sentinel-2."
-        },
-        {
-          "el": "Από Μάιο έως Αύγουστο η βλάστηση σκουραίνει/ξεραίνεται σταδιακά, χωρίς σαφές ξαφνικό πέρασμα σε ανοιχτόχρωμο γυμνό χώμα.",
-          "en": "From May to August the vegetation darkens/dries gradually, without a clear sudden shift to light bare soil."
-        },
-        {
-          "el": "Η σειρά NDVI πέφτει σταδιακά από περίπου 0,63 κοντά στην έναρξη της αντιπυρικής περιόδου σε περίπου 0,36 τον Αύγουστο, όχι με απότομη πτώση κάτω από 0,30.",
-          "en": "The NDVI series falls gradually from about 0.63 near the fire-season start to about 0.36 in August, not with a sharp drop below 0.30."
-        }
-      ],
-      "limitations": [
-        {
-          "el": "Η ορθοφωτογραφία δεν έχει δημοσιευμένη ημερομηνία λήψης και μπορεί να είναι παλιά.",
-          "en": "The orthophoto has no published capture date and may be old."
-        },
-        {
-          "el": "Τα Sentinel-2 έχουν ανάλυση 10 m, οπότε δεν δείχνουν μικρές ζώνες κοπής, χόρτα κάτω από δέντρα ή λεπτομέρειες καθαρισμού.",
-          "en": "Sentinel-2 resolution is 10 m, so it cannot show small cut areas, grass under trees, or cleaning details."
-        },
-        {
-          "el": "Οι εικόνες δείχνουν γενική πρασινάδα και ξήρανση, όχι άμεση απόδειξη αν τα ξερά χόρτα ή η καύσιμη ύλη αφαιρέθηκαν.",
-          "en": "The images show overall greenness and drying, not direct proof that dry grass or combustible material was removed."
-        }
-      ],
-      "landCover": {
-        "trees": 8,
-        "lowVegetation": 84,
-        "bareGround": 8,
+        "trees": 10,
+        "lowVegetation": 65,
+        "bareGround": 25,
         "built": 0
       },
       "proposedVerdict": "potentially_uncleaned",

@@ -332,7 +332,7 @@ export function priorityList(rows: ScreeningRow[], limit = 6): ScreeningRow[] {
     .slice(0, limit);
 }
 
-/** Accepts "DEMO-RAF-018", "raf-18", "pik-3", "18". Real KAEK lookup is not wired. */
+/** Accepts "DEMO-RAF-018", "raf-18", "field-1", "18". Real KAEK lookup is not wired. */
 export function resolveParcelCode(input: string, ids: string[]): string | null {
   const value = input.trim().toUpperCase();
   if (!value) return null;
@@ -340,6 +340,6 @@ export function resolveParcelCode(input: string, ids: string[]): string | null {
   const digits = value.match(/(\d{1,3})$/)?.[1];
   if (!digits || /^\d{4,}$/.test(value)) return null;
   const padded = digits.padStart(3, "0");
-  const area = value.match(/(RAF|PIK)/)?.[1];
+  const area = value.match(/(RAF|FIELD)/)?.[1];
   return ids.find((id) => id.endsWith(`-${padded}`) && (!area || id.includes(`-${area}-`))) ?? null;
 }

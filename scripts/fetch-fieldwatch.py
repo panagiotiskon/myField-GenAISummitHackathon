@@ -16,7 +16,7 @@ least 80 % of its pixels are clear.
     .venv/bin/python scripts/fetch-fieldwatch.py
 
 Writes public/imagery/fieldwatch/, data/fieldwatch.json, and merges the
-DEMO-PIK-* plots into data/scenario.json and data/imagery.json.
+field-watch plot into data/scenario.json and data/imagery.json.
 """
 
 from __future__ import annotations
@@ -56,15 +56,13 @@ SEASON_START, SEASON_END = "2026-05-01", "2026-10-31"
 FRAME_PX = 384
 CHIP_PX = 512
 
-# One field that stayed covered next to one or two that were worked before 1 May.
+# One plot kept for the demo: open land with dry grass and shrubs between houses
+# (OSM grassland, about 6,800 m2). Green on 1 May, then dries where it stands.
 # Picked from 575 OSM fields near Pikermi/Spata after reading every curve and the
-# orthophoto. "role" is what the curve and the frames show, not a declaration.
+# orthophoto; most other candidates turned out to be vineyards being tilled, which
+# is farm work, not plot clearing. "role" is what the curve and frames show.
 CLUSTERS = [
-    {"id": "A", "fields": [(464852335, "covered"), (464852143, "worked"), (464852150, "worked")]},
-    {"id": "B", "fields": [(1288746850, "covered"), (1288746852, "worked")]},
-    {"id": "C", "fields": [(1352261349, "covered"), (1352259386, "worked")]},
-    {"id": "D", "fields": [(1351977408, "covered"), (1351977407, "worked")]},
-    {"id": "E", "fields": [(1288609863, "covered"), (1199243518, "worked")]},
+    {"id": "B", "fields": [(1288746850, "covered", "DEMO-FIELD-001")]},
 ]
 
 geod = Geod(ellps="WGS84")
@@ -169,7 +167,7 @@ def add_key_frames(doc: dict, scenario: dict) -> None:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    all_ids = [fid for c in CLUSTERS for fid, _ in c["fields"]]
+    all_ids = [fid for c in CLUSTERS for fid, _, _ in c["fields"]]
     osm = osm_rings(all_ids)
 
     cat = pystac_client.Client.open(STAC, modifier=pc.sign_inplace)
@@ -244,9 +242,10 @@ def main() -> None:
     frames = frame_items(items)
     scenario = json.loads(SCENARIO.read_text())
     imagery = json.loads(IMAGERY.read_text())
-    scenario["parcels"]["features"] = [f for f in scenario["parcels"]["features"] if not f["id"].startswith("DEMO-PIK-")]
-    scenario["declarations"] = [d for d in scenario["declarations"] if not d["parcelId"].startswith("DEMO-PIK-")]
-    for key in [k for k in imagery["parcels"] if k.startswith("DEMO-PIK-")]:
+    ours = {pid for c in CLUSTERS for _, _, pid in c["fields"]}
+    scenario["parcels"]["features"] = [f for f in scenario["parcels"]["features"] if f["id"] not in ours]
+    scenario["declarations"] = [d for d in scenario["declarations"] if d["parcelId"] not in ours]
+    for key in [k for k in imagery["parcels"] if k in ours]:
         del imagery["parcels"][key]
 
     doc = {
@@ -267,7 +266,7 @@ def main() -> None:
 
     n = 0
     for cluster in CLUSTERS:
-        rings = [osm[fid]["ring"] for fid, _ in cluster["fields"]]
+        rings = [osm[fid]["ring"] for fid, _, _ in cluster["fields"]]
         bounds = square_bounds(rings, pad_m=90, min_side_m=360)
         cframes = []
         for item in frames:
@@ -279,9 +278,8 @@ def main() -> None:
         if not (OUT_DIR / f"{cluster['id']}-ortho.jpg").exists():
             wms(bounds, 768).save(OUT_DIR / f"{cluster['id']}-ortho.jpg", quality=82)
         members = []
-        for fid, role in cluster["fields"]:
+        for fid, role, pid in cluster["fields"]:
             n += 1
-            pid = f"DEMO-PIK-{n:03d}"
             members.append(pid)
             field = next(f for f in fields if f["osmId"] == fid)
             ring = osm[fid]["ring"]
