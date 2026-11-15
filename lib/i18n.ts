@@ -1,89 +1,191 @@
-import type { CaseStatus, ImageryReason, ImageryStatus, Lang, QueueBucket, ZoneClass } from "./types";
+import type { AnalysisSource, Confidence, RuleReason, Verdict } from "./assess";
+import type { Lang, Localized, ZoneClass } from "./types";
 
 export const copy = {
-  appTitle: { el: "myField", en: "myField" },
-  deskName: {
-    el: "Γραφείο ακαθάριστων οικοπέδων",
-    en: "Uncleared-plot desk",
+  appTitle: { el: "PlotCheck", en: "PlotCheck" },
+  tagline: {
+    el: "Έλεγχος δηλώσεων καθαρισμού οικοπέδων",
+    en: "Plot-cleaning declaration check",
   },
-  ownerPack: { el: "Πακέτο συμμόρφωσης", en: "Compliance pack" },
-  notCertificate: {
-    el: "Δεν αποτελεί πιστοποιητικό καθαρισμού.",
-    en: "This is not a clearance certificate.",
+  dashboard: { el: "Πίνακας δήμου", en: "Municipal dashboard" },
+  backDashboard: { el: "← Πίνακας δήμου", en: "← Dashboard" },
+  banner: {
+    el: "Επίδειξη. Δορυφορικές λήψεις και ορθοφωτογραφίες είναι πραγματικές. Τα όρια είναι χειροκίνητα ιχνηλατημένα και οι ιδιοκτήτες, δηλώσεις και καταγγελίες προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-RAF-* δεν είναι ΚΑΕΚ.",
+    en: "Demo. Satellite scenes and orthophotos are real. Outlines are hand-traced and owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-RAF-* codes are not KAEKs.",
   },
-  runDesk: { el: "Εκτέλεση σημερινού γραφείου", en: "Run today’s desk" },
-  running: { el: "Εκτελείται…", en: "Running…" },
-  ran: { el: "Το γραφείο έτρεξε", en: "Desk has run" },
-  queue: { el: "Ουρά", en: "Queue" },
-  map: { el: "Χάρτης", en: "Map" },
-  route: { el: "Διαδρομή ημέρας", en: "Day route" },
-  drafts: { el: "Σχέδια", en: "Drafts" },
-  log: { el: "Κλήσεις πράκτορα", en: "Agent log" },
-  thread: { el: "Νήμα ιδιοκτήτη", en: "Owner thread" },
-  drawer: { el: "Συρτάρι γεωτεμαχίου", en: "Parcel drawer" },
-  orthophoto: { el: "Ορθοφωτογραφία Κτηματολογίου", en: "Cadastre orthophoto" },
+
+  searchLabel: { el: "ΚΑΕΚ", en: "KAEK" },
+  searchPlaceholder: { el: "π.χ. DEMO-RAF-017", en: "e.g. DEMO-RAF-017" },
+  searchGo: { el: "Εύρεση οικοπέδου", en: "Find plot" },
+  searchHint: {
+    el: "Η επίδειξη δέχεται κωδικούς DEMO-RAF-001 έως 024. Η αναζήτηση πραγματικού ΚΑΕΚ χρειάζεται το WFS του Κτηματολογίου, που δεν αποκρίνεται.",
+    en: "The demo accepts codes DEMO-RAF-001 to 024. Real KAEK lookup needs the Cadastre WFS, which is not responding.",
+  },
+  searchMiss: {
+    el: "Δεν βρέθηκε οικόπεδο επίδειξης με αυτόν τον κωδικό.",
+    en: "No demo plot with that code.",
+  },
+
+  stats: {
+    declarations: { el: "Δηλώσεις καθαρισμού", en: "Cleaning declarations" },
+    ofInDuty: { el: "σε {n} υπόχρεα οικόπεδα", en: "across {n} plots under the duty" },
+    uncleaned: { el: "Πιθανώς ακαθάριστα", en: "Potentially uncleaned" },
+    uncleanedSub: { el: "η εικόνα δείχνει πράσινη κάλυψη", en: "imagery shows green cover" },
+    uncertain: { el: "Αβέβαια", en: "Uncertain" },
+    uncertainSub: { el: "η εικόνα δεν αρκεί", en: "imagery cannot tell" },
+    flagged: { el: "Για αυτοψία", en: "Flagged for inspection" },
+    flaggedSub: { el: "σημειωμένα από εσάς", en: "marked by you" },
+  },
+  priority: { el: "Προτεραιότητα αυτοψίας", en: "Inspection priority" },
+  prioritySub: {
+    el: "Κίνδυνος θέσης, καταγγελίες και ένδειξη εικόνας. Όχι κρίση συμμόρφωσης.",
+    en: "Site risk, complaints and imagery signal. Not a compliance finding.",
+  },
+  open: { el: "Άνοιγμα", en: "Open" },
+  orthophoto: { el: "Ορθοφωτογραφία", en: "Orthophoto" },
   streets: { el: "Οδικός χάρτης", en: "Street map" },
-  filterAll: { el: "Όλα", en: "All" },
-  selectParcel: { el: "Επιλέξτε γεωτεμάχιο από την ουρά ή τον χάρτη.", en: "Select a parcel from the queue or the map." },
-  runFirst: {
-    el: "Πατήστε «Εκτέλεση σημερινού γραφείου» για να τρέξει η βρόχος: εισαγωγή → κενά → εικόνα → follow-up → διαδρομή → σχέδιο.",
-    en: "Press “Run today’s desk” to run ingest → gaps → imagery → follow-up → route → draft.",
+  mapOffline: {
+    el: "Το υπόβαθρο δεν φορτώθηκε. Εμφανίζονται μόνο τα όρια.",
+    en: "Basemap did not load. Showing outlines only.",
   },
-  officerName: { el: "Ονοματεπώνυμο υπαλλήλου", en: "Officer name" },
-  officerPlaceholder: { el: "πληκτρολογήστε ονοματεπώνυμο", en: "type the officer’s name" },
-  draftStatus: {
-    el: "προς υπογραφή — δεν έχει κοινοποιηθεί",
-    en: "for signature — not notified",
+
+  verdict: {
+    likely_cleaned: { el: "Πιθανώς καθαρισμένο", en: "Likely cleaned" },
+    potentially_uncleaned: { el: "Πιθανώς ακαθάριστο", en: "Potentially uncleaned" },
+    uncertain: { el: "Αβέβαιο", en: "Uncertain" },
+    not_applicable: { el: "Εκτός υποχρέωσης", en: "Outside the duty" },
+  } satisfies Record<Verdict, Localized>,
+  confidence: {
+    low: { el: "χαμηλή", en: "low" },
+    medium: { el: "μέτρια", en: "medium" },
+    high: { el: "υψηλή", en: "high" },
+  } satisfies Record<Confidence, Localized>,
+  confidenceLabel: { el: "Βεβαιότητα", en: "Confidence" },
+  ruleReason: {
+    outside_duty: {
+      el: "Το οικόπεδο εξαιρείται από την υποχρέωση. Δεν γίνεται εκτίμηση.",
+      en: "The plot is exempt from the duty. No assessment is made.",
+    },
+    too_small_for_sentinel: {
+      el: "Το οικόπεδο είναι μικρότερο από ό,τι βλέπει το Sentinel-2: μετά από εσωτερική ζώνη 10 μ. δεν χωρά ούτε ένα εικονοστοιχείο.",
+      en: "The plot is smaller than Sentinel-2 can see: after a 10 m inward buffer not one whole pixel fits.",
+    },
+    no_sentinel_data: {
+      el: "Δεν υπάρχει αποθηκευμένη λήψη Sentinel-2 για αυτό το οικόπεδο.",
+      en: "No Sentinel-2 scene is saved for this plot.",
+    },
+    cloud_over_plot: {
+      el: "Σύννεφο ή σκιά πάνω από το οικόπεδο σε μία από τις δύο λήψεις.",
+      en: "Cloud or shadow over the plot in one of the two scenes.",
+    },
+    image_older_than_declaration: {
+      el: "Η τελευταία καθαρή λήψη είναι παλαιότερη από τη δήλωση.",
+      en: "The latest clear scene is older than the declaration.",
+    },
+    green_cover_after: {
+      el: "Ο δείκτης βλάστησης μένει υψηλός στα τέλη Ιουνίου: υπάρχει ακόμα πράσινη κάλυψη.",
+      en: "The vegetation index stays high in late June: green cover is still present.",
+    },
+    low_cover_after_with_drop: {
+      el: "Ο δείκτης βλάστησης έπεσε απότομα από την άνοιξη και είναι χαμηλός στα τέλη Ιουνίου.",
+      en: "The vegetation index fell sharply from spring and is low in late June.",
+    },
+    index_in_between: {
+      el: "Ο δείκτης βλάστησης δεν είναι ούτε καθαρά υψηλός ούτε καθαρά χαμηλός.",
+      en: "The vegetation index is neither clearly high nor clearly low.",
+    },
+  } satisfies Record<RuleReason, Localized>,
+  source: {
+    ai_live: { el: "Ανάλυση ΤΝ · ζωντανή κλήση", en: "AI analysis · live call" },
+    ai_saved: { el: "Ανάλυση ΤΝ · αποθηκευμένη", en: "AI analysis · saved result" },
+    rules_only: { el: "Μόνο μετρήσεις · χωρίς ΤΝ", en: "Measurements only · no AI" },
+  } satisfies Record<AnalysisSource, Localized>,
+  aiNote: {
+    no_key: {
+      el: "Δεν έχει οριστεί κλειδί API, άρα το μοντέλο δεν κοίταξε τις εικόνες.",
+      en: "No API key is set, so the model did not look at the images.",
+    },
+    call_failed: {
+      el: "Η κλήση στο μοντέλο απέτυχε.",
+      en: "The call to the model failed.",
+    },
+    declined: {
+      el: "Το μοντέλο δεν απάντησε σε αυτό το αίτημα.",
+      en: "The model declined this request.",
+    },
   },
-  noIssue: {
-    el: "Δεν υπάρχει ενέργεια έκδοσης, κοινοποίησης ή κατάθεσης. Το σχέδιο μένει στον υπάλληλο.",
-    en: "There is no control that issues, notifies, or files. The draft stays with the officer.",
+  clamped: {
+    el: "Το μοντέλο πρότεινε «{v}». Οι μετρήσεις δεν το επιτρέπουν, άρα η εκτίμηση μένει όπως φαίνεται.",
+    en: "The model proposed “{v}”. The measurements do not allow it, so the assessment stays as shown.",
   },
-  print: { el: "Εκτύπωση σχεδίου", en: "Print draft" },
-  annexA: { el: "Παράρτημα Α · Φύλλο ελέγχου δήμου", en: "Annex A · Municipal inspection sheet" },
-  annexD: { el: "Παράρτημα Δ · Πράξη προστίμου δήμου", en: "Annex D · Municipal fine act" },
-  zone: { el: "Ζώνη", en: "Zone" },
-  declaration: { el: "Δήλωση", en: "Declaration" },
-  none: { el: "Καμία", en: "None" },
-  claimedCleaned: { el: "Δηλώθηκε καθαρισμένο", en: "Declared cleaned" },
-  imagery: { el: "Ετυμηγορία εικόνας", en: "Imagery verdict" },
-  complaint: { el: "Καταγγελία", en: "Complaint" },
-  owner: { el: "Υπόχρεος (προσομοίωση)", en: "Liable person (simulated)" },
+
+  property: { el: "Έλεγχος οικοπέδου", en: "Plot verification" },
+  unknownParcel: { el: "Άγνωστος κωδικός οικοπέδου.", en: "Unknown plot code." },
+  facts: { el: "Στοιχεία", en: "Facts" },
+  demoId: { el: "Κωδικός (όχι ΚΑΕΚ)", en: "Code (not a KAEK)" },
+  address: { el: "Θέση", en: "Location" },
   area: { el: "Εμβαδόν", en: "Area" },
-  demoId: { el: "Κωδικός επίδειξης (όχι ΚΑΕΚ)", en: "Demo id (not a KAEK)" },
-  consent: {
-    el: "Άπρακτη προθεσμία δήλωσης: τεκμαίρεται συναίνεση για αυτεπάγγελτο καθαρισμό (άρθρο 5.6). Το σχέδιο το αναφέρει. Δεν διατάσσει τον καθαρισμό.",
-    en: "A lapsed declaration deadline is treated as consent to ex-officio cleaning (article 5.6). The draft states this. It does not order the cleaning.",
+  zone: { el: "Ζώνη", en: "Zone" },
+  declaration: { el: "Δήλωση (προσομοίωση)", en: "Declaration (simulated)" },
+  declaredCleaned: { el: "δηλώθηκε καθαρισμένο στις", en: "declared cleaned on" },
+  none: { el: "Καμία", en: "None" },
+  complaint: { el: "Καταγγελία (προσομοίωση)", en: "Complaint (simulated)" },
+
+  imagery: { el: "Εικόνες", en: "Imagery" },
+  orthoCaption: { el: "Ορθοφωτογραφία Κτηματολογίου", en: "Cadastre orthophoto" },
+  orthoDate: { el: "ημερομηνία λήψης μη δημοσιευμένη", en: "capture date not published" },
+  s2Caption: { el: "Sentinel-2 · 10 μ.", en: "Sentinel-2 · 10 m" },
+  real: { el: "πραγματική", en: "real" },
+  noSentinel: {
+    el: "Δεν υπάρχει χρήσιμη λήψη Sentinel-2 για οικόπεδο αυτού του μεγέθους.",
+    en: "No usable Sentinel-2 view for a plot this size.",
   },
-  sampleCaption: {
-    el: "Δειγματοληψία άρθρου 6.1.β",
-    en: "Article 6.1.b sample",
+  ndvi: { el: "Δείκτης βλάστησης (NDVI)", en: "Vegetation index (NDVI)" },
+  pixels: { el: "εικονοστοιχεία εντός ορίου", en: "pixels inside the outline" },
+
+  assessment: { el: "Εκτίμηση", en: "Assessment" },
+  analyze: { el: "Ανάλυση εικόνων", en: "Analyze imagery" },
+  analyzing: { el: "Το μοντέλο κοιτά τις εικόνες…", en: "The model is reading the images…" },
+  reanalyze: { el: "Νέα ανάλυση", en: "Analyze again" },
+  beforeAnalyze: {
+    el: "Οι εικόνες είναι φορτωμένες. Η ανάλυση συνδυάζει τις μετρήσεις με ό,τι βλέπει το μοντέλο εντός του ορίου.",
+    en: "The images are loaded. Analysis combines the measurements with what the model sees inside the outline.",
   },
-  send: { el: "Αποστολή", en: "Send" },
-  clearedLastWeek: { el: "Το καθάρισα την περασμένη εβδομάδα", en: "I cleared it last week" },
-  notMyPlot: { el: "Δεν είναι δικό μου", en: "Not my plot" },
-  silence: { el: "Σιωπή", en: "Silence" },
-  attachDry: { el: "Φωτογραφία με ξερή κάλυψη", en: "Photo still showing dry cover" },
-  backDesk: { el: "Επιστροφή στο γραφείο", en: "Back to the desk" },
-  openOwnerPack: { el: "Πακέτο συμμόρφωσης ιδιοκτήτη", en: "Owner compliance pack" },
-  evidenceHave: {
-    el: "Εικόνες που έχει πράγματι το γραφείο",
-    en: "Images the desk actually has",
+  imageDate: { el: "Ημερομηνία εικόνας", en: "Image date" },
+  imageDateNone: { el: "καμία χρονολογημένη εικόνα", en: "no dated image" },
+  evidence: { el: "Τεκμήρια", en: "Evidence" },
+  observations: { el: "Τι βλέπει το μοντέλο", en: "What the model sees" },
+  landCover: { el: "Κάλυψη εντός ορίου (εκτίμηση ΤΝ, από την ορθοφωτογραφία)", en: "Cover inside the outline (AI estimate, from the orthophoto)" },
+  cover: {
+    trees: { el: "Δέντρα", en: "Trees" },
+    lowVegetation: { el: "Χαμηλή βλάστηση", en: "Low vegetation" },
+    bareGround: { el: "Γυμνό έδαφος", en: "Bare ground" },
+    built: { el: "Δομημένο", en: "Built" },
   },
-  askReceipt: {
-    el: "Ζητείται φωτογραφία με ημερομηνία ή απόδειξη εργολάβου.",
-    en: "A dated photo or contractor receipt is requested.",
+  limitations: { el: "Όρια της εκτίμησης", en: "Limits of this assessment" },
+  fixedLimits: [
+    {
+      el: "Η εικόνα δεν αποδεικνύει συμμόρφωση ή παράβαση. Μόνο η αυτοψία το κάνει.",
+      en: "Imagery does not prove compliance or a breach. Only a site visit does.",
+    },
+    {
+      el: "Ξερά χόρτα και γυμνό έδαφος δίνουν και τα δύο χαμηλό NDVI. Τα αειθαλή δέντρα δίνουν υψηλό ακόμα και με καθαρό έδαφος.",
+      en: "Dry grass and bare soil both read as low NDVI. Evergreen trees read high even over cleared ground.",
+    },
+    {
+      el: "Το όριο είναι χειροκίνητα ιχνηλατημένο, όχι από το Κτηματολόγιο.",
+      en: "The outline is hand-traced, not taken from the Cadastre.",
+    },
+  ] as Localized[],
+
+  flag: { el: "Σήμανση για αυτοψία", en: "Flag for inspection" },
+  flagged: { el: "Σημειώθηκε για αυτοψία", en: "Flagged for inspection" },
+  unflag: { el: "Αναίρεση", en: "Undo" },
+  flagNote: {
+    el: "Η σήμανση μένει σε αυτόν τον περιηγητή. Δεν αποστέλλεται πουθενά.",
+    en: "The flag stays in this browser. Nothing is sent anywhere.",
   },
-  lawCitesStay: {
-    el: "Οι παραπομπές νόμου μένουν στα ελληνικά.",
-    en: "Law cites stay in the draft in Greek either way.",
-  },
-  buckets: {
-    no_declaration: { el: "Χωρίς δήλωση", en: "No declaration" },
-    declaration_vs_imagery: { el: "Δήλωση ≠ εικόνα", en: "Declaration vs imagery" },
-    complaint: { el: "Καταγγελία", en: "Complaint" },
-    out_of_scope: { el: "Εκτός πεδίου", en: "Out of scope" },
-  } satisfies Record<QueueBucket, { el: string; en: string }>,
+
   zones: {
     in_plan: { el: "Εντός σχεδίου", en: "Inside a town plan" },
     in_settlement: { el: "Εντός οικισμού", en: "Inside a settlement" },
@@ -92,43 +194,13 @@ export const copy = {
     cultivated_excluded: { el: "Εκτός — καλλιέργεια", en: "Out — cultivated" },
     garden_excluded: { el: "Εκτός — συντηρημένος κήπος", en: "Out — maintained garden" },
     inaccessible_excluded: { el: "Εκτός — απρόσιτο", en: "Out — inaccessible" },
-  } satisfies Record<ZoneClass, { el: string; en: string }>,
-  imageryStatus: {
-    cleaned: { el: "Καθαρισμένο (εικόνα)", en: "Cleaned (imagery)" },
-    uncleared: { el: "Ακαθάριστο (εικόνα)", en: "Uncleared (imagery)" },
-    inconclusive: { el: "Ατελέσφορο", en: "Inconclusive" },
-  } satisfies Record<ImageryStatus, { el: string; en: string }>,
-  imageryReason: {
-    interior_buffer_10m: {
-      el: "Μετά από εσωτερική ζώνη 10 μ. δεν μένει επιφάνεια που να «βλέπει» το Sentinel-2. Δεν κρίνεται ούτε καθαρό ούτε ακόμα βρώμικο.",
-      en: "After a 10 m inward buffer no interior remains that Sentinel-2 can see. Not judged clean or still dirty.",
-    },
-    no_scene_pair: {
-      el: "Το οικόπεδο είναι αρκετά μεγάλο, αλλά δεν ανακτήθηκε ζεύγος σκηνών για αυτό το γεωτεμάχιο.",
-      en: "The plot is large enough, but no scene pair was retrieved for this parcel.",
-    },
-    seasonal_index: {
-      el: "Μετρημένος δείκτης NDVI άνοιξη–τέλη Ιουνίου στο ίδιο παράθυρο. Δεν βάφεται στον χάρτη.",
-      en: "Measured spring-versus-late-June NDVI on the same window. Not painted on the map.",
-    },
-  } satisfies Record<ImageryReason, { el: string; en: string }>,
-  caseStatus: {
-    open: { el: "Ανοιχτή", en: "Open" },
-    awaiting_officer_review: {
-      el: "Αναμονή ελέγχου υπαλλήλου — δεν καθαρίζεται η υπόθεση",
-      en: "Awaiting officer review — not cleared",
-    },
-    open_joint_liability: {
-      el: "Παραμένει ανοιχτή · εις ολόκληρον ευθύνη (άρθρο 3.3)",
-      en: "Stays open under joint and several liability (article 3.3)",
-    },
-    follow_up_needed: { el: "Απαιτείται υπενθύμιση", en: "Follow-up needed" },
-    evidence_uncleared: {
-      el: "Τεκμήριο ξερής κάλυψης — η υπόθεση μένει ανοιχτή",
-      en: "Dry-cover evidence — case stays open",
-    },
-  } satisfies Record<CaseStatus, { el: string; en: string }>,
+  } satisfies Record<ZoneClass, Localized>,
   reasons: {
+    declared_vs_imagery: {
+      el: "Δηλώθηκε καθαρισμένο, η εικόνα δείχνει πράσινο",
+      en: "Declared cleaned, imagery shows green",
+    },
+    imagery_green: { el: "Πράσινη κάλυψη στην εικόνα", en: "Green cover in imagery" },
     forest_edge: { el: "Όριο δάσους–οικισμού", en: "Forest–settlement edge" },
     nearby_houses: { el: "Γειτνίαση με κατοικίες", en: "Nearby houses" },
     sensitive_site: { el: "Ευαίσθητη εγκατάσταση", en: "Sensitive site" },
@@ -137,34 +209,14 @@ export const copy = {
     poor_escape_road: { el: "Δύσκολη οδός διαφυγής", en: "Poor escape road" },
     open_complaint: { el: "Ανοιχτή καταγγελία", en: "Open complaint" },
     no_declaration: { el: "Χωρίς δήλωση", en: "No declaration" },
-  },
-  fines: {
-    cleaning: { el: "Πρόστιμο μη καθαρισμού (άρθρο 8.1)", en: "Failure to clean (article 8.1)" },
-    declaration: { el: "Πρόστιμο μη δήλωσης (άρθρο 8.3)", en: "Failure to declare (article 8.3)" },
-    total: { el: "Σύνολο σχεδίου", en: "Draft total" },
-    art87: {
-      el: "Άρθρο 8.7: μείωση 50% του προστίμου ανά τ.μ. αν καθαριστεί εντός της προθεσμίας ένστασης και το επιβεβαιώσει επανέλεγχος. Δεν εφαρμόζεται αυτόματα.",
-      en: "Article 8.7: 50% reduction of the per-m² fine if cleaned inside the objection window and a re-inspection confirms it. Not applied automatically.",
-    },
-    art86: {
-      el: "Άρθρο 8.6: υπόνοια ψευδούς δήλωσης. Η ενημέρωση εισαγγελέα περιμένει το πέρας της δεκαήμερης ένστασης.",
-      en: "Article 8.6: suspected false declaration. Prosecutor referral waits until the ten-day objection window ends.",
-    },
-  },
+  } as Record<string, Localized>,
 } as const;
 
-export function t(
-  lang: Lang,
-  entry: { el: string; en: string } | undefined,
-): string {
+export function t(lang: Lang, entry: Localized | undefined): string {
   if (!entry) return "";
   return entry[lang];
 }
 
-export function euro(n: number): string {
-  return new Intl.NumberFormat("el-GR", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(n);
+export function fill(text: string, values: Record<string, string | number>): string {
+  return text.replace(/\{(\w+)\}/g, (_, key) => String(values[key] ?? ""));
 }

@@ -13,9 +13,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "myField · Γραφείο ακαθάριστων οικοπέδων",
+  title: "PlotCheck · Έλεγχος δηλώσεων καθαρισμού οικοπέδων",
   description:
-    "Hackathon desk for the Greek uncleared-plot duty. Simulated declarations, demo parcel ids, drafts for signature only.",
+    "Hackathon demo: screen Greek plot-cleaning declarations against real imagery. Simulated declarations, demo plot codes, no compliance findings.",
   icons: { icon: "/favicon.svg" },
 };
 
