@@ -12,6 +12,8 @@ __pycache__
 tsconfig.tsbuildinfo
 next-env.d.ts
 .taste-skill
+out/
+.remotion/
 
 # Agent skill installs (skills CLI) — local tooling, not app code
 skills/
