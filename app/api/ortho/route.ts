@@ -27,10 +27,16 @@ export async function GET(request: Request) {
   upstream.searchParams.set("TRANSPARENT", "false");
   upstream.searchParams.set("SRS", "EPSG:4326");
   upstream.searchParams.set("BBOX", `${minLon},${minLat},${maxLon},${maxLat}`);
-  upstream.searchParams.set("WIDTH", "256");
-  upstream.searchParams.set("HEIGHT", "256");
+  // 512 px tiles: sharper, and the service stamps one watermark per request.
+  upstream.searchParams.set("WIDTH", "512");
+  upstream.searchParams.set("HEIGHT", "512");
 
-  const response = await fetch(upstream);
+  let response: Response;
+  try {
+    response = await fetch(upstream, { signal: AbortSignal.timeout(12_000) });
+  } catch {
+    return new Response("upstream wms unreachable", { status: 504 });
+  }
   if (!response.ok) {
     return new Response("upstream wms error", { status: 502 });
   }

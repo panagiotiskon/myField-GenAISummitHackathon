@@ -1,5 +1,5 @@
-import { DeskApp } from "@/components/DeskApp";
+import { Dashboard } from "@/components/Dashboard";
 
 export default function Page() {
-  return <DeskApp />;
+  return <Dashboard />;
 }

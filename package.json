@@ -2,19 +2,23 @@
   "name": "myfield-uncleared-plots-desk",
   "version": "0.1.0",
   "private": true,
-  "description": "Hackathon demo of myField: municipal desk for the Greek uncleared-plot duty.",
+  "description": "PlotCheck: hackathon demo that screens Greek plot-cleaning declarations against real imagery.",
+  "engines": { "node": ">=20.19" },
   "scripts": {
     "dev": "next dev --turbopack --hostname 127.0.0.1 --port 3000",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3000",
-    "test": "vitest run"
+    "test": "vitest run",
+    "imagery": "node scripts/fetch-imagery.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
     "@turf/turf": "^7.2.0",
     "maplibre-gl": "^5.7.3",
     "next": "^15.5.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.16",
