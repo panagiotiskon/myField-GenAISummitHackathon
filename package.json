@@ -3,14 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "description": "myField: hackathon demo that screens Greek plot-cleaning declarations against real imagery.",
-  "engines": { "node": ">=20.19" },
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
     "dev": "next dev --turbopack --hostname 127.0.0.1 --port 3000",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3000",
     "test": "vitest run",
     "imagery": "node scripts/fetch-imagery.mjs",
-    "flight": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/fetch-flight.mjs"
+    "flight": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/fetch-flight.mjs",
+    "pitch": "remotion studio src/film/index.ts --port 3001",
+    "pitch:still": "remotion still src/film/index.ts MyFieldPitch",
+    "pitch:render": "remotion render src/film/index.ts MyFieldPitch out/myfield-pitch-en.mp4"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",
@@ -22,10 +27,13 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@remotion/cli": "^4.0.543",
+    "@remotion/google-fonts": "^4.0.543",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^22.18.8",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
+    "remotion": "^4.0.543",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   }
