@@ -433,6 +433,18 @@ p.kv { display: block; color: var(--muted); }
   text-align: left;
 }
 .draft th { font-weight: 500; color: var(--muted); background: var(--bg); }
+/* narrow pane: each label/value pair takes its own row, nothing is cut */
+.panel.right { container-type: inline-size; }
+@container (max-width: 560px) {
+  .draft { margin: var(--s-3); padding: var(--s-4); }
+  .draft table { border: 1px solid var(--line-strong); border-bottom: 0; }
+  .draft tr { display: grid; grid-template-columns: 42% 58%; }
+  .draft td, .draft th {
+    border: 0;
+    border-bottom: 1px solid var(--line-strong);
+    overflow-wrap: anywhere;
+  }
+}
 .draft .cite { margin: var(--s-2) 0; font-size: var(--t-label); color: var(--muted); }
 
 /* ------------------------------------------------------------ owner pack */
@@ -488,7 +500,10 @@ p.kv { display: block; color: var(--muted); }
 }
 
 @media print {
-  .topbar, .banner, .toolbar, .panel, .footer-log, .thread-actions, .tabs { display: none !important; }
+  .topbar, .banner, .toolbar, .panel, .map-wrap, .footer-log, .thread-actions, .tabs, .status-pill { display: none !important; }
+  .app-shell { display: block; height: auto !important; }
+  .panel.right { overflow: visible; }
+  .draft ~ .kv { display: none; }
   .workspace { display: block; }
   .panel.right { display: block !important; border: 0; }
   .draft { border: 0; margin: 0; }
