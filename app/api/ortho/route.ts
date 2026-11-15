@@ -33,7 +33,11 @@ export async function GET(request: Request) {
 
   let response: Response;
   try {
-    response = await fetch(upstream, { signal: AbortSignal.timeout(12_000) });
+    response = await fetch(upstream, {
+      signal: AbortSignal.timeout(12_000),
+      // Next data cache: same tile hits the WMS once per day, not per visitor.
+      next: { revalidate: 86_400 },
+    });
   } catch {
     return new Response("upstream wms unreachable", { status: 504 });
   }
@@ -43,7 +47,7 @@ export async function GET(request: Request) {
   return new Response(response.body, {
     headers: {
       "content-type": response.headers.get("content-type") ?? "image/jpeg",
-      "cache-control": "public, max-age=86400",
+      "cache-control": "public, max-age=86400, stale-while-revalidate=604800",
     },
   });
 }

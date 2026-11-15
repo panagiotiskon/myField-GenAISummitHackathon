@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
-import { BackLink, LayerSwitch, TopBar, VERDICT_COLOR, VerdictDot } from "@/components/Chrome";
+import { BackLink, LayerSwitch, PlotCode, TopBar, VERDICT_COLOR, VerdictDot } from "@/components/Chrome";
+import { KaekNotFound } from "@/components/KaekNotFound";
 import { PlotSurvey } from "@/components/PlotShape";
 import { MapView } from "@/components/MapView";
 import { PlotPhoto } from "@/components/PlotPhoto";
@@ -39,15 +39,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
   const flaggedIds = useMemo(() => Object.keys(flags), [flags]);
 
   if (!parcel || !rule) {
-    return (
-      <div className="app-shell prop film-world">
-        <TopBar lang={lang} setLang={setLang} section={t(lang, copy.property)} hideBanner />
-        <main className="empty">
-          <p>{t(lang, copy.unknownParcel)}</p>
-          <Link href="/dashboard">{t(lang, copy.backDashboard)}</Link>
-        </main>
-      </div>
-    );
+    return <KaekNotFound code={parcelId} lang={lang} setLang={setLang} />;
   }
 
   const p = parcel.properties;
@@ -88,7 +80,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
         <aside className="panel right prop-panel prop-quiet">
           <header className="prop-head">
             <div className="prop-title">
-              <span className="prop-code">{p.id}</span>
+              <PlotCode id={p.id} className="prop-code" />
               <h1>{t(lang, p.street)}</h1>
               <p className="prop-facts">
                 {Math.round(p.areaM2).toLocaleString(locale)} m², {t(lang, copy.zones[p.zone]).toLowerCase()}

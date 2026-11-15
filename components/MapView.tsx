@@ -90,6 +90,10 @@ export function MapView(props: {
   orthophoto: boolean;
   onSelect?: (id: string) => void;
   offlineNote?: string;
+  /** Pin each plot's number on the map, so the list and the map read by the same number. */
+  labels?: boolean;
+  /** Accessible name for a number tag, e.g. "Open plot". */
+  labelAction?: string;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -100,6 +104,8 @@ export function MapView(props: {
   // Bumps each time a style finishes loading, so the effects below re-apply.
   const [ready, setReady] = useState(0);
   const [offline, setOffline] = useState(false);
+  const tags = useRef<Record<string, HTMLButtonElement>>({});
+  const initialLabels = useRef(props.labels ? (props.labelAction ?? "") : null);
 
   useEffect(() => {
     if (!root.current || mapRef.current) return;
@@ -115,6 +121,30 @@ export function MapView(props: {
       "top-right",
     );
     mapRef.current = map;
+
+    // Number tags are DOM markers, not a symbol layer: they need no glyph server and survive a style swap.
+    const markers: maplibregl.Marker[] = [];
+    if (initialLabels.current !== null) {
+      for (const feature of scenario.parcels.features) {
+        const id = (feature.properties as { id: string }).id;
+        const number = id.match(/(\d{1,4})$/)?.[1] ?? id;
+        const tag = document.createElement("button");
+        tag.type = "button";
+        tag.className = "map-tag";
+        tag.textContent = number;
+        tag.setAttribute("aria-label", `${initialLabels.current} ${id}`.trim());
+        tag.addEventListener("click", (event) => {
+          event.stopPropagation();
+          onSelectRef.current?.(id);
+        });
+        tags.current[id] = tag;
+        markers.push(
+          new maplibregl.Marker({ element: tag, anchor: "center" })
+            .setLngLat(parcelBounds(id).getCenter())
+            .addTo(map),
+        );
+      }
+    }
 
     let styled = false;
     const goOffline = () => {
@@ -157,6 +187,8 @@ export function MapView(props: {
 
     return () => {
       window.clearTimeout(timer);
+      for (const marker of markers) marker.remove();
+      tags.current = {};
       map.remove();
       mapRef.current = null;
     };
@@ -174,6 +206,13 @@ export function MapView(props: {
         : IDLE,
     );
   }, [props.colors, ready]);
+
+  useEffect(() => {
+    for (const [id, tag] of Object.entries(tags.current)) {
+      tag.style.setProperty("--tag", props.colors[id] ?? IDLE);
+      tag.classList.toggle("flagged", props.flaggedIds?.includes(id) ?? false);
+    }
+  }, [props.colors, props.flaggedIds]);
 
   useEffect(() => {
     const map = mapRef.current;

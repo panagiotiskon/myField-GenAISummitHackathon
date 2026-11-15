@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { Mark } from "@/components/Chrome";
+import { Mark, VerdictDot } from "@/components/Chrome";
 import type { Analysis, ScreeningRow, Verdict } from "@/lib/assess";
 import { copy, t } from "@/lib/i18n";
 import { scenario } from "@/lib/scenario";
@@ -94,7 +94,7 @@ export function SitePlan({
         <ul className="tb-key">
           {KEY.map((v) => (
             <li key={v}>
-              <span className={`swatch v-${v}`} />
+              <VerdictDot verdict={v} />
               {t(lang, copy.verdict[v])}
             </li>
           ))}

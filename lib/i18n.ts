@@ -315,6 +315,16 @@ export const copy = {
 
   property: { el: "Έλεγχος οικοπέδου", en: "Plot verification" },
   unknownParcel: { el: "Άγνωστος κωδικός οικοπέδου.", en: "Unknown plot code." },
+  notFound: {
+    eyebrow: { el: "Δεν βρέθηκε ΚΑΕΚ", en: "KAEK not found" },
+    title: { el: "Δεν υπάρχει οικόπεδο με αυτόν τον κωδικό", en: "No plot matches this code" },
+    body: {
+      el: "Ο κωδικός μπορεί να έχει τυπογραφικό λάθος ή το οικόπεδο να μην ανήκει στην περιοχή επίδειξης. Ελέγξτε τον κωδικό ή επιλέξτε ένα από τα παρακάτω.",
+      en: "The code may have a typo, or the plot sits outside the demo area. Check the code, or pick one of the plots below.",
+    },
+    search: { el: "Νέα αναζήτηση", en: "Search again" },
+    tryTitle: { el: "{n} οικόπεδα που υπάρχουν", en: "{n} plots that exist" },
+  },
   facts: { el: "Στοιχεία", en: "Facts" },
   demoId: { el: "Κωδικός (όχι ΚΑΕΚ)", en: "Code (not a KAEK)" },
   address: { el: "Θέση", en: "Location" },

@@ -842,7 +842,6 @@ input:focus { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px col
   .prop-body { grid-template-columns: 1fr; grid-template-rows: auto; }
   .panel.right { border-left: 0; }
   .panel { overflow: visible; }
-  .topbar { flex-wrap: wrap; }
   .map-wrap { min-height: 380px; height: 380px; }
   .btn { min-height: 44px; }
 }
@@ -972,9 +971,23 @@ dialog.signin-dialog {
 
 
 
+/* ------------------------------------------------------------ top bar, narrow
+   One row on every page: mark left, controls right. What does not fit drops out
+   in the same order on the landing and in the app. */
+@media (max-width: 900px) {
+  .topbar { flex-wrap: nowrap; gap: var(--s-3); }
+  .brand { flex: none; }
+  .meta-line { flex-wrap: nowrap; justify-content: flex-end; gap: var(--s-3); min-width: 0; white-space: nowrap; }
+  .place { display: none; }
+  .seg button, .back, .linkish, .landing .land-enter { min-height: 44px; }
+}
 @media (max-width: 560px) {
+  .brand-link .wordmark { font-size: var(--t-m); }
   .officer { padding-left: 0; border-left: 0; }
-  .landing .place { display: none; }
+  .officer-name { display: none; }
+  .back { padding-inline: var(--s-2); }
+  .back-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .seg button { min-width: 36px; padding: 0 var(--s-2); }
 }
 
 /* ------------------------------------------------------------ the two worlds on the landing
@@ -1051,7 +1064,8 @@ dialog.signin-dialog {
 .film-copy {
   position: absolute;
   left: var(--gutter);
-  top: clamp(52px, 10vh, 96px);
+  /* lower left, on the scrim: it shares the bottom band with the subtitles instead of floating under the top bar */
+  bottom: calc(var(--rail-h) + clamp(48px, 13vh, 132px));
   width: var(--copy-w);
   display: grid;
   gap: 18px;
@@ -1059,13 +1073,24 @@ dialog.signin-dialog {
 }
 .film-copy h1 {
   margin: 0;
-  font-size: clamp(32px, min(3.6vw, 6.4vh), 58px);
-  font-weight: 760;
-  line-height: 0.98;
-  letter-spacing: -0.035em;
+  max-width: 11ch;
+  font-size: clamp(40px, min(4.9vw, 8.2vh), 74px);
+  font-weight: 780;
+  line-height: 0.96;
+  letter-spacing: -0.038em;
   font-variation-settings: "FLAR" 100;
   text-wrap: balance;
   color: #fff;
+  text-shadow: 0 1px 24px rgb(6 10 8 / 0.55);
+}
+/* the survey line under the punchline: the plot outline's yellow and two boundary pins */
+.film-copy h1::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 12px;
+  margin-top: 0.42em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 12'%3E%3Cpath d='M6 6h72' stroke='%23ffe14a' stroke-width='2.5'/%3E%3Ccircle cx='6' cy='6' r='4.25' fill='%23060a08' stroke='%23ffe14a' stroke-width='2.5'/%3E%3Ccircle cx='78' cy='6' r='4.25' fill='%23060a08' stroke='%23ffe14a' stroke-width='2.5'/%3E%3C/svg%3E") no-repeat left center / contain;
 }
 
 /* subtitles: one line per chapter, in the cinema's own place */
@@ -1258,16 +1283,19 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
 /* narrow: the frame first, with the title set over its top; the lead follows below */
 @media (max-width: 900px) {
   .film { --rail-h: 96px; height: auto; display: grid; overflow: visible; }
-  .film-frame { position: relative; inset: auto; grid-row: 1; height: min(78svh, 700px); min-height: 520px; overflow: clip; }
+  /* the film is the whole page here: fill the screen under the top bar, so no page ground shows below */
+  .film-frame { position: relative; inset: auto; grid-row: 1; height: calc(100svh - var(--chrome-h, 65px)); min-height: 520px; overflow: clip; }
   .film-copy { display: contents; }
   .film-copy h1 {
     position: absolute;
     z-index: 1;
-    top: 36px;
+    top: 32px;
     left: var(--pad);
     right: var(--pad);
-    font-size: clamp(26px, 7.4vw, 36px);
+    max-width: 12ch;
+    font-size: clamp(32px, 9.6vw, 44px);
   }
+  .film-copy h1::after { width: 64px; height: 10px; }
   .film-shade {
     background:
       linear-gradient(180deg, rgb(6 10 8 / 0.94) 0, rgb(6 10 8 / 0.7) 18%, rgb(6 10 8 / 0) 38%),
@@ -1287,7 +1315,9 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
     gap: 2px var(--s-4);
     padding-inline: var(--pad);
   }
-  .film-source { grid-column: 1 / -1; }
+  .film-source { grid-column: 1 / -1; grid-row: 1; }
+  .film-chapters { grid-column: 1; grid-row: 2; }
+  .film-control { grid-column: 2; grid-row: 2; }
   .film-chapters button { min-height: 44px; }
   .chapter-bar { height: 3px; }
   .chapter-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -1308,3 +1338,136 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .reading-ndvi { display: flex; align-items: baseline; gap: 6px; margin: 0; font-size: 13px; color: var(--ink-2); }
 .reading-ndvi strong { font-size: 18px; font-weight: 650; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------ page ground
+   Every screen is the dark film world. The page under it must match, or iOS shows a
+   limestone strip below the footer on overscroll and when the toolbar collapses. */
+html:has(.film-world), html:has(.film-world) body { background: #060a08; }
+@media (max-width: 900px) {
+  .film-frame { height: calc(100dvh - var(--chrome-h, 65px)); }
+}
+
+/* ------------------------------------------------------------ verdict marks: shape + colour */
+.vmark { flex: none; width: 14px; height: 14px; margin-right: var(--s-2); color: var(--v); overflow: visible; }
+.map-legend .vmark { width: 12px; height: 12px; }
+.plot-verdict .vmark, .prop-verdict .vmark { width: 15px; height: 15px; }
+
+/* ------------------------------------------------------------ plot codes: read by number */
+.plot-code { display: inline-flex; flex-direction: column; gap: 1px; line-height: 1; }
+.plot-code-prefix {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.plot-code-num {
+  font-size: 30px;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "FLAR" 100;
+  color: var(--ink);
+}
+.plot-id.plot-code { margin-bottom: 4px; }
+.prop-code.plot-code { flex-direction: row; align-items: baseline; gap: 8px; }
+.prop-code .plot-code-num { font-size: var(--t-xl); }
+
+/* map number tags: the same number as the list, ringed in the plot's verdict colour */
+.map-tag {
+  --tag: #6a6a6a;
+  min-width: 34px;
+  height: 24px;
+  padding: 0 7px;
+  border: 2px solid var(--tag);
+  border-radius: 12px;
+  background: #0f1612;
+  color: #eef1ea;
+  font: 700 12px/1 var(--font);
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "FLAR" 100;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.45);
+  cursor: pointer;
+  transition: transform var(--m-out) var(--ease);
+}
+.map-tag.flagged { outline: 2px dashed #eef1ea; outline-offset: 2px; }
+.map-tag:focus-visible { outline: 2px solid #ffe14a; outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .map-tag:hover { transform: scale(1.08); }
+}
+.map-tag:active { transform: scale(0.96); }
+
+/* ------------------------------------------------------------ dashboard on a phone */
+@media (max-width: 560px) {
+  /* the key sits under the layer switch, clear of the map credits along the bottom */
+  .film-world .map-legend {
+    top: 64px;
+    bottom: auto;
+    left: var(--pad);
+    right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dash-tally { column-gap: 12px; }
+  .dash-tally dd { font-size: 34px; }
+  .plot-list { grid-auto-rows: auto; }
+  .plot-row { gap: 14px; padding: 12px 10px; }
+  .plot-thumb { width: 104px; height: 104px; min-height: 0; }
+  .plot-verdict { margin-top: 6px; }
+}
+
+/* ------------------------------------------------------------ KAEK not found
+   One card: what was asked, why it failed, one way out. Real plots below as the second way out. */
+.nf {
+  display: grid;
+  gap: var(--s-6);
+  align-content: start;
+  justify-items: center;
+  padding: 56px var(--s-4) var(--s-6);
+  background: var(--paper);
+  min-height: 100%;
+}
+.nf-card {
+  width: 100%;
+  max-width: 460px;
+  display: grid;
+  justify-items: start;
+  gap: var(--s-3);
+}
+.nf-mark { color: var(--v-uncleaned); margin-bottom: var(--s-1); }
+.nf-eyebrow {
+  margin: 0;
+  font-size: var(--t-xs);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v-uncleaned);
+}
+.nf-title { margin: 0; font-size: var(--t-xl); line-height: 1.15; color: var(--ink); text-wrap: balance; }
+.nf-code { margin: 0; max-width: 100%; }
+.nf-code code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 4px 10px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-s);
+  background: var(--well);
+  color: var(--ink-2);
+  font-size: var(--t-s);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, var(--v-uncleaned) 70%, transparent);
+}
+.nf-body { margin: 0; color: var(--muted); font-size: var(--t-m); line-height: 1.5; text-wrap: pretty; }
+.nf-actions { margin-top: var(--s-2); }
+.nf-try { width: 100%; max-width: 460px; border-top: 1px solid var(--line); padding-top: var(--s-5); }
+.nf-try h2 { margin: 0 0 var(--s-3); font-size: var(--t-s); font-weight: 650; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) {
+  .nf-card, .nf-try { animation: nf-in 320ms var(--ease-out) both; }
+  .nf-try { animation-delay: 80ms; }
+}
+@keyframes nf-in { from { opacity: 0; transform: translateY(6px); } }
+@media (max-width: 560px) {
+  .nf { padding-top: var(--s-6); }
+  .nf-actions, .nf-actions .btn { width: 100%; }
+}

@@ -57,7 +57,7 @@ export function Wordmark() {
   );
 }
 
-function Pin() {
+export function Pin() {
   return (
     <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
       <path d="M8 14.5s4.5-4.2 4.5-7.7A4.5 4.5 0 0 0 3.5 6.8c0 3.5 4.5 7.7 4.5 7.7z" fill="none" stroke="currentColor" strokeWidth="1.4" />
@@ -137,8 +137,53 @@ export function Banner({ lang }: { lang: Lang }) {
   );
 }
 
+/**
+ * The verdict as a shape as well as a colour, so it never relies on colour alone:
+ * uncleaned a warning triangle, cleaned a tick in a disc, uncertain a dashed ring with a "?".
+ */
 export function VerdictDot({ verdict }: { verdict: Verdict }) {
-  return <span className={`swatch v-${verdict}`} />;
+  return (
+    <svg className={`vmark v-${verdict}`} viewBox="0 0 16 16" aria-hidden="true">
+      {verdict === "potentially_uncleaned" ? (
+        <>
+          <path d="M8 1.6L15 14H1z" fill="currentColor" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M8 6.2v3.4" stroke="#fff" strokeWidth="1.7" strokeLinecap="round" />
+          <circle cx="8" cy="11.8" r="1" fill="#fff" />
+        </>
+      ) : verdict === "likely_cleaned" ? (
+        <>
+          <circle cx="8" cy="8" r="7" fill="currentColor" />
+          <path d="M4.8 8.2l2.2 2.2 4.2-4.6" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </>
+      ) : verdict === "uncertain" ? (
+        <>
+          <circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" strokeWidth="1.8" strokeDasharray="2.6 1.9" />
+          <path d="M6.3 6.4a1.8 1.8 0 1 1 2.5 1.6c-.5.2-.8.6-.8 1.1v.3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="8" cy="11.4" r=".9" fill="currentColor" />
+        </>
+      ) : (
+        <path d="M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      )}
+    </svg>
+  );
+}
+
+/** Splits a plot code into its sheet prefix and the plot number the officer actually reads. */
+export function splitPlotCode(id: string): { prefix: string; number: string } {
+  const match = id.match(/^(.*?)-?(\d{1,4})$/);
+  if (!match) return { prefix: "", number: id };
+  return { prefix: match[1].replace(/-/g, " "), number: match[2] };
+}
+
+/** "KAEK 05119 · 002": the prefix quiet, the plot number set large so rows scan by number. */
+export function PlotCode({ id, className = "" }: { id: string; className?: string }) {
+  const { prefix, number } = splitPlotCode(id);
+  return (
+    <span className={`plot-code ${className}`} aria-label={id}>
+      {prefix ? <span className="plot-code-prefix" aria-hidden="true">{prefix}</span> : null}
+      <span className="plot-code-num" aria-hidden="true">{number}</span>
+    </span>
+  );
 }
 
 export function VerdictPill({ verdict, lang, prefix }: { verdict: Verdict; lang: Lang; prefix?: string }) {
@@ -186,7 +231,7 @@ export function BackLink({ label }: { label: string }) {
       <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
         <path d="M10 3.5L5.5 8 10 12.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      {label}
+      <span className="back-label">{label}</span>
     </Link>
   );
 }

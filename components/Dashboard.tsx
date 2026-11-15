@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type FormEvent } from "react";
-import { LayerSwitch, TopBar, VERDICT_COLOR, VerdictDot } from "@/components/Chrome";
+import { LayerSwitch, PlotCode, TopBar, VERDICT_COLOR, VerdictDot } from "@/components/Chrome";
 import { MapView } from "@/components/MapView";
 import { PlotPhoto } from "@/components/PlotPhoto";
 import { priorityList, resolveParcelCode, screen, type Verdict } from "@/lib/assess";
@@ -70,6 +70,8 @@ export function Dashboard() {
             orthophoto={orthophoto}
             onSelect={(id) => router.push(`/property/${id}`)}
             offlineNote={t(lang, copy.mapOffline)}
+            labels
+            labelAction={t(lang, copy.open)}
           />
           <div className="map-legend">
             {LEGEND.map((key) => (
@@ -163,7 +165,7 @@ export function Dashboard() {
                     <Link href={`/property/${id}`} className="plot-row">
                       <PlotPhoto id={id} geometry={row.parcel.geometry} className="plot-thumb" />
                       <span className="plot-text">
-                        <span className="plot-id">{id}</span>
+                        <PlotCode id={id} className="plot-id" />
                         <span className="plot-street">{t(lang, p.street)}</span>
                         <span className="plot-area">{Math.round(p.areaM2).toLocaleString(lang === "el" ? "el-GR" : "en-GB")} m²</span>
                         <span className="plot-verdict">

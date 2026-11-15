@@ -4,6 +4,7 @@ import { buffer } from "@turf/turf";
 import type { Feature, FeatureCollection, Polygon } from "geojson";
 import maplibregl, { type GeoJSONSource, type Map as MapLibreMap, type StyleSpecification } from "maplibre-gl";
 import { useEffect, useRef } from "react";
+import { fetchOnce } from "@/lib/fetcher";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { VERDICT_COLOR } from "@/components/Chrome";
 import type { FilmClock } from "@/components/FilmClock";
@@ -230,9 +231,7 @@ function installProtocol() {
     const key = params.url.slice("flight://s2/".length);
     const hit = tileStore.get(key);
     if (hit) return { data: hit.slice(0) };
-    const response = await fetch(`/flight/s2/${key}.jpg`, { signal: abort.signal });
-    if (!response.ok) throw new Error(`flight tile ${key}: ${response.status}`);
-    const data = await response.arrayBuffer();
+    const data = await fetchOnce(`/flight/s2/${key}.jpg`, abort.signal);
     tileStore.set(key, data);
     return { data: data.slice(0) };
   });
@@ -248,8 +247,7 @@ async function prefetch(keys: string[], signal: AbortSignal, onCoarse: () => voi
       next += 1;
       if (!tileStore.has(key)) {
         try {
-          const response = await fetch(`/flight/s2/${key}.jpg`, { signal });
-          if (response.ok) tileStore.set(key, await response.arrayBuffer());
+          tileStore.set(key, await fetchOnce(`/flight/s2/${key}.jpg`, signal));
         } catch {
           // a missing tile falls back to its coarser parent on the map
         }

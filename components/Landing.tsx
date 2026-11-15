@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import { LangSwitch, Mark, Wordmark } from "@/components/Chrome";
+import { LangSwitch, Mark, Pin, Wordmark } from "@/components/Chrome";
 import { useFilmClock } from "@/components/FilmClock";
 import { NdviScale } from "@/components/NdviScale";
 import savedAnalyses from "@/data/analysis-cache.json";
@@ -225,9 +225,12 @@ export function Landing() {
             </Link>
           </div>
           <div className="meta-line">
-            <span className="place">
-              {t(lang, copy.region)}
-            </span>
+            {officer ? (
+              <span className="place">
+                <Pin />
+                {t(lang, copy.region)}
+              </span>
+            ) : null}
             <LangSwitch lang={lang} setLang={setLang} />
             {officer ? (
               <Link href="/dashboard" className="btn land-enter">
