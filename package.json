@@ -1,0 +1,35 @@
+{
+  "name": "myfield",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Municipal desk for the Greek uncleared-plot duty — GenAI Summit hackathon demo",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@turf/area": "^7.2.0",
+    "@turf/bbox": "^7.2.0",
+    "@turf/boolean-point-in-polygon": "^7.2.0",
+    "@turf/boolean-intersects": "^7.2.0",
+    "@turf/buffer": "^7.2.0",
+    "@turf/centroid": "^7.2.0",
+    "@turf/distance": "^7.2.0",
+    "@turf/helpers": "^7.2.0",
+    "maplibre-gl": "^5.7.3",
+    "next": "^15.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/geojson": "^7946.0.16",
+    "@types/node": "^22.18.8",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

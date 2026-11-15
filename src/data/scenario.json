@@ -1,0 +1,1670 @@
+{
+  "meta": {
+    "municipality": {
+      "el": "Δήμος Δρυότοπου",
+      "en": "Municipality of Dryotopos"
+    },
+    "settlement": {
+      "el": "οικισμός Δρυότοπος",
+      "en": "Dryotopos settlement"
+    },
+    "region": {
+      "el": "Ανατολική Αττική (προσομοίωση)",
+      "en": "Eastern Attica (simulated)"
+    },
+    "deskDate": "2026-06-23",
+    "deadline": "2026-06-22",
+    "legalDeadline": "2026-06-15",
+    "extension": "ΥΠ 1859/2026",
+    "instrument": "ΥΠ 1157 / ΦΕΚ Β' 2323/24.4.2026",
+    "disclaimer": {
+      "el": "Τα όρια των γεωτεμαχίων είναι δημόσια γεωμετρία κτηματολογίου (χειροκίνητο απόσπασμα / εναλλακτικό ίχνος, διότι το WFS του Κτηματολογίου δεν αποκρίθηκε). Ιδιοκτήτες, δηλώσεις, καταγγελίες και ευρήματα είναι προσομοιωμένα και δεν αποτελούν κρίση για πραγματικά ακίνητα. Τα αναγνωριστικά MYF- δεν είναι ΚΑΕΚ.",
+      "en": "Parcel outlines are public cadastre-style geometry (hand-traced fallback — the Hellenic Cadastre WFS did not respond). Owners, declarations, complaints and findings are simulated and are not statements about real properties. MYF- ids are not KAEK numbers."
+    },
+    "imageryNote": {
+      "el": "Το δημόσιο WMS ορθοφωτογραφιών του Κτηματολογίου χρησιμοποιείται ως υπόβαθρο θέασης. Δεν είναι ζεύγος άνοιξης / μετά την προθεσμία 2026. Το Sentinel-2 στα 10 m δεν επαρκεί για οικόπεδα ~400 m²· δεν βάφεται δείκτης βλάστησης.",
+      "en": "The public Hellenic Cadastre orthophoto WMS is a viewing basemap, not a spring vs post-deadline 2026 pair. Sentinel-2 at 10 m cannot judge a ~400 m² plot; no vegetation index is painted."
+    },
+    "wfsAttempt": "https://gis.ktimanet.gr/inspire/rest/services/cadastralparcels/CadastralParcel/MapServer/exts/InspireFeatureDownload/service — HTTP 404 at build time",
+    "origin": {
+      "lon": 23.9084,
+      "lat": 38.031
+    },
+    "metersPerDegree": {
+      "lon": 87684.26301457085,
+      "lat": 111320
+    }
+  },
+  "context": {
+    "inPlan": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            23.9082289,
+            38.0305059
+          ],
+          [
+            23.9103958,
+            38.0305059
+          ],
+          [
+            23.9103958,
+            38.0320959
+          ],
+          [
+            23.9082289,
+            38.03206
+          ],
+          [
+            23.9082289,
+            38.0305059
+          ]
+        ]
+      ]
+    },
+    "settlement": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            23.9082289,
+            38.0305059
+          ],
+          [
+            23.9114564,
+            38.0305059
+          ],
+          [
+            23.9114564,
+            38.0321498
+          ],
+          [
+            23.910795,
+            38.0322397
+          ],
+          [
+            23.9082289,
+            38.03206
+          ],
+          [
+            23.9082289,
+            38.0305059
+          ]
+        ]
+      ]
+    },
+    "forest": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            23.9074876,
+            38.0330481
+          ],
+          [
+            23.913304,
+            38.0331559
+          ],
+          [
+            23.913418,
+            38.0348627
+          ],
+          [
+            23.9076017,
+            38.0346831
+          ],
+          [
+            23.9074876,
+            38.0330481
+          ]
+        ]
+      ]
+    },
+    "sensitiveSites": [
+      {
+        "id": "school-dryotopos",
+        "kind": "school",
+        "label": {
+          "el": "Δημοτικό Δρυότοπου",
+          "en": "Dryotopos primary school"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9089474,
+                38.0313234
+              ],
+              [
+                23.9092896,
+                38.0313234
+              ],
+              [
+                23.9092896,
+                38.031521
+              ],
+              [
+                23.9089474,
+                38.031521
+              ],
+              [
+                23.9089474,
+                38.0313234
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "houses": [
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9086509,
+          38.0310719
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9089474,
+          38.0310539
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9092667,
+          38.0310898
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9095861,
+          38.0310629
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9099054,
+          38.0310808
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9102247,
+          38.0310719
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9086737,
+          38.0313773
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.908993,
+          38.0313953
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9096317,
+          38.0314132
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9099966,
+          38.0314312
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9086509,
+          38.0308383
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9093124,
+          38.0308203
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9101107,
+          38.0308563
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.9106809,
+          38.0311797
+        ]
+      },
+      {
+        "type": "Point",
+        "coordinates": [
+          23.911023,
+          38.0313593
+        ]
+      }
+    ],
+    "road": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          23.9081719,
+          38.031
+        ],
+        [
+          23.9088562,
+          38.031018
+        ],
+        [
+          23.9097685,
+          38.031
+        ],
+        [
+          23.9106809,
+          38.0310359
+        ],
+        [
+          23.9115933,
+          38.0310719
+        ],
+        [
+          23.9122775,
+          38.0311617
+        ]
+      ]
+    }
+  },
+  "parcels": [
+    {
+      "id": "MYF-01",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9084912,
+              38.0310719
+            ],
+            [
+              23.9087421,
+              38.0310629
+            ],
+            [
+              23.9087535,
+              38.0312875
+            ],
+            [
+              23.9084798,
+              38.0312964
+            ],
+            [
+              23.9084912,
+              38.0310719
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9086168,
+          38.0311813
+        ]
+      },
+      "areaM2": 575.0,
+      "localOriginM": {
+        "x": 19.0,
+        "y": 20.2
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 12"
+    },
+    {
+      "id": "MYF-02",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9087649,
+              38.0310629
+            ],
+            [
+              23.908993,
+              38.0310584
+            ],
+            [
+              23.9090044,
+              38.0312156
+            ],
+            [
+              23.9087706,
+              38.0312246
+            ],
+            [
+              23.9087649,
+              38.0310629
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9088828,
+          38.0311407
+        ]
+      },
+      "areaM2": 360.0,
+      "localOriginM": {
+        "x": 42.3,
+        "y": 15.7
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 14"
+    },
+    {
+      "id": "MYF-03",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9090158,
+              38.0310584
+            ],
+            [
+              23.9092896,
+              38.0310539
+            ],
+            [
+              23.909301,
+              38.0313054
+            ],
+            [
+              23.9090101,
+              38.0313099
+            ],
+            [
+              23.9090158,
+              38.0310584
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9091542,
+          38.0311832
+        ]
+      },
+      "areaM2": 693.1,
+      "localOriginM": {
+        "x": 66.1,
+        "y": 20.4
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 16"
+    },
+    {
+      "id": "MYF-04",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9093124,
+              38.0310539
+            ],
+            [
+              23.9095861,
+              38.0310629
+            ],
+            [
+              23.9095975,
+              38.0312964
+            ],
+            [
+              23.9093067,
+              38.0312875
+            ],
+            [
+              23.9093124,
+              38.0310539
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9094506,
+          38.0311763
+        ]
+      },
+      "areaM2": 643.2,
+      "localOriginM": {
+        "x": 92.1,
+        "y": 19.6
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": true,
+      "frontage": "Οδός Κουμαριάς 18"
+    },
+    {
+      "id": "MYF-05",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9096089,
+              38.0310629
+            ],
+            [
+              23.9098826,
+              38.0310539
+            ],
+            [
+              23.9099054,
+              38.0313144
+            ],
+            [
+              23.9096032,
+              38.0313054
+            ],
+            [
+              23.9096089,
+              38.0310629
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9097518,
+          38.0311862
+        ]
+      },
+      "areaM2": 707.0,
+      "localOriginM": {
+        "x": 118.5,
+        "y": 20.7
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 20"
+    },
+    {
+      "id": "MYF-06",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9099168,
+              38.0310539
+            ],
+            [
+              23.9102019,
+              38.0310629
+            ],
+            [
+              23.9102133,
+              38.0312785
+            ],
+            [
+              23.9099111,
+              38.0312875
+            ],
+            [
+              23.9099168,
+              38.0310539
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9100588,
+          38.0311718
+        ]
+      },
+      "areaM2": 643.8,
+      "localOriginM": {
+        "x": 145.5,
+        "y": 19.1
+      },
+      "exclusion": "garden",
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 22"
+    },
+    {
+      "id": "MYF-07",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9084912,
+              38.0313234
+            ],
+            [
+              23.9087535,
+              38.0313144
+            ],
+            [
+              23.9087421,
+              38.0316109
+            ],
+            [
+              23.9084684,
+              38.0315929
+            ],
+            [
+              23.9084912,
+              38.0313234
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9086159,
+          38.0314616
+        ]
+      },
+      "areaM2": 741.0,
+      "localOriginM": {
+        "x": 18.9,
+        "y": 51.4
+      },
+      "exclusion": null,
+      "slope": "moderate",
+      "poorEscape": true,
+      "powerline": false,
+      "frontage": "Οδός Πεύκης 3"
+    },
+    {
+      "id": "MYF-08",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9087706,
+              38.0312425
+            ],
+            [
+              23.9090044,
+              38.0312336
+            ],
+            [
+              23.9090158,
+              38.031521
+            ],
+            [
+              23.9087764,
+              38.03153
+            ],
+            [
+              23.9087706,
+              38.0312425
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9088919,
+          38.0313824
+        ]
+      },
+      "areaM2": 664.8,
+      "localOriginM": {
+        "x": 43.1,
+        "y": 42.6
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Πεύκης 5"
+    },
+    {
+      "id": "MYF-09",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9090158,
+              38.0313234
+            ],
+            [
+              23.909301,
+              38.0313234
+            ],
+            [
+              23.9093124,
+              38.0315749
+            ],
+            [
+              23.9090101,
+              38.0315659
+            ],
+            [
+              23.9090158,
+              38.0313234
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9091607,
+          38.0314481
+        ]
+      },
+      "areaM2": 708.0,
+      "localOriginM": {
+        "x": 66.7,
+        "y": 49.9
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Πεύκης 7"
+    },
+    {
+      "id": "MYF-10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9093238,
+              38.0313144
+            ],
+            [
+              23.9095975,
+              38.0313234
+            ],
+            [
+              23.9096089,
+              38.0315929
+            ],
+            [
+              23.9093124,
+              38.0315749
+            ],
+            [
+              23.9093238,
+              38.0313144
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9094613,
+          38.0314532
+        ]
+      },
+      "areaM2": 737.5,
+      "localOriginM": {
+        "x": 93.1,
+        "y": 50.5
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Πεύκης 9"
+    },
+    {
+      "id": "MYF-11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9096203,
+              38.0313234
+            ],
+            [
+              23.9099054,
+              38.0313324
+            ],
+            [
+              23.9099168,
+              38.0316288
+            ],
+            [
+              23.9096089,
+              38.0316109
+            ],
+            [
+              23.9096203,
+              38.0313234
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9097635,
+          38.0314758
+        ]
+      },
+      "areaM2": 845.0,
+      "localOriginM": {
+        "x": 119.6,
+        "y": 53.0
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Πεύκης 11"
+    },
+    {
+      "id": "MYF-12",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9084912,
+              38.0309281
+            ],
+            [
+              23.9087878,
+              38.0309192
+            ],
+            [
+              23.9087992,
+              38.0306766
+            ],
+            [
+              23.9084798,
+              38.0306946
+            ],
+            [
+              23.9084912,
+              38.0309281
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9081596,
+          38.0311969
+        ]
+      },
+      "areaM2": 715.5,
+      "localOriginM": {
+        "x": -21.1,
+        "y": 21.9
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 11"
+    },
+    {
+      "id": "MYF-13",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.91043,
+              38.0310898
+            ],
+            [
+              23.9107721,
+              38.0311078
+            ],
+            [
+              23.910795,
+              38.0314312
+            ],
+            [
+              23.9104072,
+              38.0314132
+            ],
+            [
+              23.91043,
+              38.0310898
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9106009,
+          38.0312639
+        ]
+      },
+      "areaM2": 1152.0,
+      "localOriginM": {
+        "x": 193.0,
+        "y": 29.4
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Ρεματιάς 2"
+    },
+    {
+      "id": "MYF-14",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.91043,
+              38.0314492
+            ],
+            [
+              23.9108064,
+              38.0314671
+            ],
+            [
+              23.9108406,
+              38.0318264
+            ],
+            [
+              23.9104072,
+              38.0317905
+            ],
+            [
+              23.91043,
+              38.0314492
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9106225,
+          38.0316375
+        ]
+      },
+      "areaM2": 1383.0,
+      "localOriginM": {
+        "x": 194.9,
+        "y": 71.0
+      },
+      "exclusion": null,
+      "slope": "moderate",
+      "poorEscape": true,
+      "powerline": true,
+      "frontage": "Οδός Ρεματιάς 4"
+    },
+    {
+      "id": "MYF-15",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.908514,
+              38.0322756
+            ],
+            [
+              23.9089474,
+              38.0322936
+            ],
+            [
+              23.9089246,
+              38.0326888
+            ],
+            [
+              23.9084912,
+              38.0326529
+            ],
+            [
+              23.908514,
+              38.0322756
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.908721,
+          38.0324779
+        ]
+      },
+      "areaM2": 1640.0,
+      "localOriginM": {
+        "x": 28.1,
+        "y": 164.5
+      },
+      "exclusion": null,
+      "slope": "steep",
+      "poorEscape": true,
+      "powerline": false,
+      "frontage": "χωρίς πρόσοψη — μονοπάτι"
+    },
+    {
+      "id": "MYF-16",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.908993,
+              38.0322936
+            ],
+            [
+              23.9094492,
+              38.0323115
+            ],
+            [
+              23.9094264,
+              38.0326709
+            ],
+            [
+              23.9089702,
+              38.0326529
+            ],
+            [
+              23.908993,
+              38.0322936
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9092097,
+          38.0324822
+        ]
+      },
+      "areaM2": 1604.0,
+      "localOriginM": {
+        "x": 71.0,
+        "y": 165.0
+      },
+      "exclusion": null,
+      "slope": "moderate",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "χωρίς πρόσοψη"
+    },
+    {
+      "id": "MYF-17",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9094948,
+              38.0323115
+            ],
+            [
+              23.9099738,
+              38.0323295
+            ],
+            [
+              23.9099966,
+              38.0327787
+            ],
+            [
+              23.909472,
+              38.0327248
+            ],
+            [
+              23.9094948,
+              38.0323115
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9097375,
+          38.0325396
+        ]
+      },
+      "areaM2": 2112.0,
+      "localOriginM": {
+        "x": 117.3,
+        "y": 171.4
+      },
+      "exclusion": null,
+      "slope": "moderate",
+      "poorEscape": true,
+      "powerline": true,
+      "frontage": "χωρίς πρόσοψη"
+    },
+    {
+      "id": "MYF-18",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9100423,
+              38.0323295
+            ],
+            [
+              23.9105212,
+              38.0323475
+            ],
+            [
+              23.9105441,
+              38.0327607
+            ],
+            [
+              23.9100194,
+              38.0327248
+            ],
+            [
+              23.9100423,
+              38.0323295
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9102834,
+          38.0325438
+        ]
+      },
+      "areaM2": 1980.0,
+      "localOriginM": {
+        "x": 165.1,
+        "y": 171.9
+      },
+      "exclusion": null,
+      "slope": "moderate",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "χωρίς πρόσοψη"
+    },
+    {
+      "id": "MYF-19",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9106353,
+              38.0322397
+            ],
+            [
+              23.9120266,
+              38.0322756
+            ],
+            [
+              23.9120723,
+              38.0328685
+            ],
+            [
+              23.9105897,
+              38.0327787
+            ],
+            [
+              23.9106353,
+              38.0322397
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9113415,
+          38.0325441
+        ]
+      },
+      "areaM2": 7938.0,
+      "localOriginM": {
+        "x": 257.9,
+        "y": 171.9
+      },
+      "exclusion": null,
+      "slope": "moderate",
+      "poorEscape": true,
+      "powerline": false,
+      "frontage": "αγροτική οδός Δρυότοπου"
+    },
+    {
+      "id": "MYF-20",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9085369,
+              38.0306227
+            ],
+            [
+              23.9091983,
+              38.0306047
+            ],
+            [
+              23.9092439,
+              38.0302095
+            ],
+            [
+              23.908514,
+              38.0302454
+            ],
+            [
+              23.9085369,
+              38.0306227
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9079243,
+          38.0315826
+        ]
+      },
+      "areaM2": 2620.0,
+      "localOriginM": {
+        "x": -41.7,
+        "y": 64.9
+      },
+      "exclusion": null,
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Ελαιώνα 4"
+    },
+    {
+      "id": "MYF-21",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9111371,
+              38.0332458
+            ],
+            [
+              23.9119354,
+              38.0332907
+            ],
+            [
+              23.9119582,
+              38.0338746
+            ],
+            [
+              23.9110915,
+              38.0338027
+            ],
+            [
+              23.9111371,
+              38.0332458
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9115332,
+          38.0335576
+        ]
+      },
+      "areaM2": 4642.0,
+      "localOriginM": {
+        "x": 274.7,
+        "y": 284.7
+      },
+      "exclusion": "forest_law",
+      "slope": "steep",
+      "poorEscape": true,
+      "powerline": false,
+      "frontage": "δασική έκταση"
+    },
+    {
+      "id": "MYF-22",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9115933,
+              38.0311797
+            ],
+            [
+              23.9123916,
+              38.0311976
+            ],
+            [
+              23.9123688,
+              38.0317007
+            ],
+            [
+              23.9115477,
+              38.0316648
+            ],
+            [
+              23.9115933,
+              38.0311797
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9119776,
+          38.031437
+        ]
+      },
+      "areaM2": 3914.0,
+      "localOriginM": {
+        "x": 313.7,
+        "y": 48.6
+      },
+      "exclusion": "cultivated",
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "αγρός ελιάς"
+    },
+    {
+      "id": "MYF-23",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9102247,
+              38.0310719
+            ],
+            [
+              23.9103958,
+              38.0310719
+            ],
+            [
+              23.9104072,
+              38.0312875
+            ],
+            [
+              23.9102133,
+              38.0312785
+            ],
+            [
+              23.9102247,
+              38.0310719
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9103109,
+          38.0311796
+        ]
+      },
+      "areaM2": 376.0,
+      "localOriginM": {
+        "x": 167.6,
+        "y": 20.0
+      },
+      "exclusion": "garden",
+      "slope": "low",
+      "poorEscape": false,
+      "powerline": false,
+      "frontage": "Οδός Κουμαριάς 24"
+    },
+    {
+      "id": "MYF-24",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9121635,
+              38.0324373
+            ],
+            [
+              23.9128478,
+              38.0324912
+            ],
+            [
+              23.912825,
+              38.0330661
+            ],
+            [
+              23.9121179,
+              38.0329763
+            ],
+            [
+              23.9121635,
+              38.0324373
+            ]
+          ]
+        ]
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          23.9124919,
+          38.0327447
+        ]
+      },
+      "areaM2": 3806.0,
+      "localOriginM": {
+        "x": 358.8,
+        "y": 194.2
+      },
+      "exclusion": "inaccessible",
+      "slope": "steep",
+      "poorEscape": true,
+      "powerline": false,
+      "frontage": "γκρεμός / βράχος"
+    }
+  ],
+  "declarations": [
+    {
+      "id": "D-2026-02",
+      "parcelId": "MYF-02",
+      "submittedAt": "2026-06-10T09:14:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-03",
+      "parcelId": "MYF-03",
+      "submittedAt": "2026-05-22T16:02:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-04",
+      "parcelId": "MYF-04",
+      "submittedAt": "2026-06-18T11:40:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-08",
+      "parcelId": "MYF-08",
+      "submittedAt": "2026-06-12T08:05:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-09",
+      "parcelId": "MYF-09",
+      "submittedAt": "2026-06-14T19:22:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-10",
+      "parcelId": "MYF-10",
+      "submittedAt": "2026-06-01T10:00:00+03:00",
+      "claimedCleaned": true,
+      "channel": "KEP"
+    },
+    {
+      "id": "D-2026-12",
+      "parcelId": "MYF-12",
+      "submittedAt": "2026-06-21T21:11:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-13",
+      "parcelId": "MYF-13",
+      "submittedAt": "2026-06-08T12:30:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-16",
+      "parcelId": "MYF-16",
+      "submittedAt": "2026-06-15T07:45:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-19",
+      "parcelId": "MYF-19",
+      "submittedAt": "2026-06-11T15:18:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-20",
+      "parcelId": "MYF-20",
+      "submittedAt": "2026-05-30T09:00:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    },
+    {
+      "id": "D-2026-23",
+      "parcelId": "MYF-23",
+      "submittedAt": "2026-06-02T11:11:00+03:00",
+      "claimedCleaned": true,
+      "channel": "akatharista.gov.gr"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "C-441",
+      "parcelId": "MYF-02",
+      "submittedAt": "2026-06-20T18:03:00+03:00",
+      "severity": "serious",
+      "text": "Το οικόπεδο δίπλα στο σπίτι μου είναι ακόμα γεμάτο ξερά χόρτα, παρότι εμφανίζεται δηλωμένο."
+    },
+    {
+      "id": "C-442",
+      "parcelId": "MYF-07",
+      "submittedAt": "2026-06-19T08:40:00+03:00",
+      "severity": "urgent",
+      "text": "Ξερά πεύκα και χόρτα στο πίσω οικόπεδο, δίπλα στα σπίτια. Δύσκολη πρόσβαση."
+    },
+    {
+      "id": "C-443",
+      "parcelId": "MYF-15",
+      "submittedAt": "2026-06-22T10:12:00+03:00",
+      "severity": "very_serious",
+      "text": "Αδήλωτο οικόπεδο στην άκρη του δάσους, κλίση, ξερή καύσιμη ύλη."
+    },
+    {
+      "id": "C-444",
+      "parcelId": "MYF-09",
+      "submittedAt": "2026-06-17T13:00:00+03:00",
+      "severity": "serious",
+      "text": "Δίπλα στο δημοτικό, τα χόρτα φτάνουν στο πεζοδρόμιο."
+    },
+    {
+      "id": "C-445",
+      "parcelId": "MYF-17",
+      "submittedAt": "2026-06-21T16:55:00+03:00",
+      "severity": "typical",
+      "text": "Καταγγελία κατοίκου για ακαθάριστο οικόπεδο προς το ρέμα."
+    }
+  ],
+  "owners": {
+    "MYF-01": {
+      "label": "Υπόχρεος MYF-01 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-02": {
+      "label": "Υπόχρεος MYF-02 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-03": {
+      "label": "Υπόχρεος MYF-03 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-04": {
+      "label": "Υπόχρεος MYF-04 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-05": {
+      "label": "Υπόχρεος MYF-05 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-06": {
+      "label": "Υπόχρεος MYF-06 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-07": {
+      "label": "Υπόχρεος MYF-07 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-08": {
+      "label": "Υπόχρεος MYF-08 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-09": {
+      "label": "Υπόχρεος MYF-09 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-10": {
+      "label": "Υπόχρεος MYF-10 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-11": {
+      "label": "Υπόχρεος MYF-11 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-12": {
+      "label": "Υπόχρεος MYF-12 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-13": {
+      "label": "Υπόχρεος MYF-13 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-14": {
+      "label": "Υπόχρεος MYF-14 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-15": {
+      "label": "Υπόχρεος MYF-15 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-16": {
+      "label": "Υπόχρεος MYF-16 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-17": {
+      "label": "Υπόχρεος MYF-17 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-18": {
+      "label": "Υπόχρεος MYF-18 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-19": {
+      "label": "Υπόχρεος MYF-19 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-20": {
+      "label": "Υπόχρεος MYF-20 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-21": {
+      "label": "Υπόχρεος MYF-21 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-22": {
+      "label": "Υπόχρεος MYF-22 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-23": {
+      "label": "Υπόχρεος MYF-23 (προσομοίωση)",
+      "channel": "in-app"
+    },
+    "MYF-24": {
+      "label": "Υπόχρεος MYF-24 (προσομοίωση)",
+      "channel": "in-app"
+    }
+  },
+  "imagerySnapshots": {
+    "MYF-19": {
+      "spring": {
+        "id": "S2C_34SGH_20260429_0_L2A",
+        "datetime": "2026-04-29T09:19:52.290000Z",
+        "cloudCover": 0.267451,
+        "collection": "sentinel-2-l2a"
+      },
+      "summer": {
+        "id": "S2B_34SGH_20260623_0_L2A",
+        "datetime": "2026-06-23T09:19:49.615000Z",
+        "cloudCover": 0.088875,
+        "collection": "sentinel-2-l2a"
+      },
+      "ndviSpring": 0.887,
+      "ndviSummer": 0.705,
+      "ndviDelta": -0.182,
+      "sampledInteriorM2": 0,
+      "note": "Mean NDVI of five interior 10 m samples from Element84 Sentinel-2 L2A COGs (B04/B08, reflectance = max(0, DN*0.0001-0.1)). Summer NDVI 0.705 still indicates live cover on a declared-cleaned parcel. Not a painted index overlay."
+    }
+  }
+}
