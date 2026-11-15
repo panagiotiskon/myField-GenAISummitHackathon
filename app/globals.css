@@ -601,8 +601,7 @@ input:focus { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px col
 .land { width: 100%; max-width: var(--land-max); margin: 0 auto; padding: 0 var(--pad); }
 /* the top bar and banner share the page's content edges here, not the app's full-bleed ones */
 .landing .topbar,
-.landing .banner,
-.land-foot { padding-inline: max(var(--pad), calc((100% - var(--land-max)) / 2 + var(--pad))); }
+.landing .banner { padding-inline: max(var(--pad), calc((100% - var(--land-max)) / 2 + var(--pad))); }
 
 .skip-link {
   position: absolute;
@@ -678,110 +677,8 @@ dialog.signin-dialog {
   .signin-dialog[open], .signin-dialog[open]::backdrop { animation: none; }
 }
 
-/* three steps, each on the worked example's own evidence */
-.land-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 48px 0 40px;
-  border-top: 1.5px solid var(--ink);
-}
-.land-steps h2 {
-  font-size: clamp(26px, 2.4vw, 34px);
-  font-weight: 750;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  font-variation-settings: "FLAR" 100;
-}
-.land-steps ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); }
-.land-steps li { display: grid; grid-template-columns: 36px 1fr; column-gap: var(--s-3); row-gap: 6px; align-content: start; }
-.step-visual {
-  grid-column: 1 / -1;
-  aspect-ratio: 3 / 2;
-  margin-bottom: var(--s-4);
-  overflow: hidden;
-  border: 1.5px solid var(--ink);
-  border-radius: 2px;
-  background: var(--well);
-}
-.step-visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.step-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--ink); }
-.step-mock { display: grid; place-items: center; padding: var(--s-5); background: var(--paper); }
-.mock-card {
-  display: grid;
-  gap: var(--s-4);
-  width: min(100%, 300px);
-  padding: var(--s-4);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-m);
-  background: var(--ground);
-}
-.mock-row { display: flex; align-items: center; gap: var(--s-4); }
-.mock-id { display: grid; gap: 6px; justify-items: start; }
-.mock-id strong { font-size: var(--t-m); font-weight: 720; }
-.step-n {
-  grid-row: span 2;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  font-weight: 720;
-}
-.land-steps h3 { padding-top: 4px; font-size: var(--t-l); font-weight: 720; letter-spacing: -0.015em; }
-.land-steps p { max-width: 42ch; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
 
-.land-close {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: var(--s-5) var(--s-6);
-  padding-top: var(--s-2);
-}
-.owner-note { display: grid; gap: 4px; max-width: 62ch; }
-.land-steps .owner-note h3 { padding-top: 0; }
-.owner-link {
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  min-height: 44px;
-  color: var(--accent);
-  font-weight: 650;
-  font-size: var(--t-m);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
-  text-underline-offset: 4px;
-}
-.owner-link:hover { text-decoration-color: currentColor; }
-.owner-link svg { transition: transform var(--m-out) var(--ease); }
-.owner-link:hover svg { transform: translate(2px, -2px); }
 
-.land-foot p {
-  padding-block: var(--s-5) var(--s-6);
-  border-top: 1px solid var(--line-strong);
-  color: var(--muted);
-  font-size: var(--t-xs);
-}
-.land-foot a { color: var(--ink); text-underline-offset: 3px; text-decoration-color: var(--line-strong); }
-.land-foot a:hover { text-decoration-color: currentColor; }
-
-@media (max-width: 1080px) {
-  .land-steps ol { grid-template-columns: 1fr; gap: 40px; }
-  .land-steps li { grid-template-columns: 36px minmax(0, 1fr); }
-  .step-visual { aspect-ratio: 16 / 9; }
-  .land-close { align-items: start; }
-}
-@media (min-width: 561px) and (max-width: 1080px) {
-  /* tablets: the evidence beside its step, not a full-width poster */
-  .land-steps li { grid-template-columns: minmax(0, 5fr) 36px minmax(0, 6fr); column-gap: var(--s-4); }
-  .land-steps .step-visual { grid-column: 1; grid-row: 1 / span 3; margin-bottom: 0; aspect-ratio: 3 / 2; }
-  .land-steps .step-n { grid-column: 2; grid-row: 1 / span 2; }
-  .land-steps li > h3 { grid-column: 3; grid-row: 1; }
-  .land-steps li > p { grid-column: 3; grid-row: 2; }
-}
 @media (max-width: 560px) {
   .officer { padding-left: 0; border-left: 0; }
   .landing .place { display: none; }
@@ -867,14 +764,13 @@ dialog.signin-dialog {
   gap: 20px;
 }
 .film-copy h1 {
-  font-size: clamp(32px, min(3.5vw, 6vh), 52px);
+  font-size: clamp(24px, min(2.4vw, 4.2vh), 36px);
   font-weight: 720;
   line-height: 1.04;
   letter-spacing: -0.03em;
   font-variation-settings: "FLAR" 100;
   text-wrap: balance;
 }
-.land-lead { max-width: 46ch; font-size: clamp(15px, 1.2vw, 17px); line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
 
 /* subtitles: one line per chapter, in the cinema's own place */
 .film-words {
@@ -924,7 +820,7 @@ dialog.signin-dialog {
   transform: none;
   transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
 }
-.film-meter .ndvi, .film-reading .ndvi { margin: 0; padding: 0; border: 0; }
+.film-meter .ndvi { margin: 0; padding: 0; border: 0; }
 .film-meter .ndvi-track { container-type: inline-size; }
 .film-meter .ndvi-dot.now, .film-meter .ndvi-span { transition: transform 700ms var(--ease-in-out), opacity 240ms var(--ease-out); }
 .film-meter .ndvi-later { transition: opacity 400ms var(--ease-out) 300ms; }
@@ -957,17 +853,9 @@ dialog.signin-dialog {
   transform: none;
   transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out), visibility 0s;
 }
-.reading-head { display: flex; align-items: start; justify-content: space-between; gap: var(--s-3); }
+.reading-head { display: grid; gap: 2px; }
 .reading-head strong { display: block; font-size: var(--t-l); font-weight: 740; letter-spacing: -0.01em; }
 .reading-head div span { color: var(--muted); font-size: var(--t-s); }
-.reading-head .tag { margin-top: 3px; border: 1px solid var(--line-strong); color: var(--muted); }
-.reading-why { max-width: 46ch; font-size: var(--t-m); line-height: 1.45; color: var(--ink-2); }
-.film-reading .ndvi { padding-top: var(--s-3); border-top: 1px solid var(--line); }
-.reading-facts { display: grid; gap: 4px; margin: 0; font-size: var(--t-s); }
-.reading-facts div { display: flex; justify-content: space-between; gap: var(--s-4); }
-.reading-facts dt { color: var(--muted); }
-.reading-facts dd { margin: 0; font-weight: 600; text-align: right; }
-.reading-decides { padding-top: var(--s-3); border-top: 1px dashed var(--line-strong); font-size: var(--t-s); font-weight: 600; line-height: 1.45; }
 .reading-open { justify-self: start; text-decoration: none; }
 .reading-open svg { transition: transform var(--m-out) var(--ease); }
 @media (hover: hover) and (pointer: fine) { .reading-open:hover svg { transform: translateX(3px); } }
@@ -1061,9 +949,8 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
     top: 18px;
     left: var(--pad);
     right: var(--pad);
-    font-size: clamp(25px, 7vw, 34px);
+    font-size: clamp(21px, 5.6vw, 27px);
   }
-  .film-copy .land-lead { grid-row: 2; max-width: none; padding: 26px var(--pad) 36px; font-size: 16px; }
   .film-shade {
     background:
       linear-gradient(180deg, rgb(6 10 8 / 0.94) 0, rgb(6 10 8 / 0.7) 18%, rgb(6 10 8 / 0) 38%),
@@ -1075,10 +962,7 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
   .film-line { font-size: 17px; }
   .film-meter { right: auto; padding: 12px 14px 10px; }
   .film-reading { left: var(--pad); right: var(--pad); bottom: calc(var(--rail-h) + 8px); width: auto; gap: 10px; padding: 12px 16px 16px; }
-  /* the measurement was on screen a moment ago; here the sheet keeps to the verdict and its reason */
-  .film-reading .reading-facts, .film-reading .ndvi { display: none; }
   .film-reading .verdict { font-size: var(--t-l); }
-  .reading-why { font-size: var(--t-s); }
   .film-rail {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto auto;
@@ -1101,3 +985,9 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
   html.m-enter [data-enter] > * { animation: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+
+/* landing result card: id, verdict, NDVI, open */
+.reading-note { margin: 0; color: var(--muted); font-size: var(--t-xs); line-height: 1.4; text-wrap: balance; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.reading-ndvi { display: flex; align-items: baseline; gap: 8px; margin: 0; font-size: 15px; color: var(--ink-2); }
+.reading-ndvi strong { font-size: 22px; font-weight: 650; color: var(--ink); font-variant-numeric: tabular-nums; }

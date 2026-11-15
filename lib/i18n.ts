@@ -9,9 +9,10 @@ export const copy = {
   },
   dashboard: { el: "Πίνακας δήμου", en: "Municipal dashboard" },
   backDashboard: { el: "Πίνακας δήμου", en: "Dashboard" },
+  region: { el: "Ανατολική Αττική", en: "East Attica" },
   banner: {
-    el: "Δορυφορικές λήψεις και ορθοφωτογραφίες είναι πραγματικές. Τα όρια είναι χειροκίνητα ιχνηλατημένα και οι ιδιοκτήτες, δηλώσεις και καταγγελίες προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-RAF-* δεν είναι ΚΑΕΚ.",
-    en: "Satellite scenes and orthophotos are real. Outlines are hand-traced and owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-RAF-* codes are not KAEKs.",
+    el: "Δορυφορικές λήψεις και ορθοφωτογραφίες είναι πραγματικές. Τα όρια είναι χειροκίνητα ιχνηλατημένα (DEMO-RAF-*) ή από το OpenStreetMap (DEMO-FIELD-*). Ιδιοκτήτες, δηλώσεις και καταγγελίες είναι προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-* δεν είναι ΚΑΕΚ.",
+    en: "Satellite scenes and orthophotos are real. Outlines are hand-traced (DEMO-RAF-*) or from OpenStreetMap (DEMO-FIELD-*). Owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-* codes are not KAEKs.",
   },
 
   demoTag: { el: "Επίδειξη", en: "Demo" },
@@ -99,8 +100,8 @@ export const copy = {
   },
   film: {
     stageLabel: {
-      el: "Ταινία: από την τροχιά του Sentinel-2 ως το οικόπεδο {code} στο Δράφι, με τις δύο λήψεις και την εκτίμηση.",
-      en: "Film: from Sentinel-2's orbit down to plot {code} in Drafi, with the two scenes and the assessment.",
+      el: "Ταινία: από την τροχιά του Sentinel-2 ως το οικόπεδο {code} στα Μεσόγεια, με τις δύο λήψεις και την εκτίμηση.",
+      en: "Film: from Sentinel-2's orbit down to plot {code} in the Mesogeia plain, with the two scenes and the assessment.",
     },
     chapters: {
       orbit: { el: "Τροχιά", en: "Orbit" },
@@ -134,8 +135,8 @@ export const copy = {
     },
     sources: {
       mosaic: {
-        el: "Εικόνα: μωσαϊκό Sentinel-2 χωρίς νέφη, 2016 (EOX)",
-        en: "Imagery: Sentinel-2 cloudless mosaic, 2016 (EOX)",
+        el: "Εικόνα: Sentinel-2 cloudless 2016, s2maps.eu, EOX IT Services GmbH (τροποποιημένα δεδομένα Copernicus Sentinel), CC BY 4.0",
+        en: "Imagery: Sentinel-2 cloudless 2016, s2maps.eu, EOX IT Services GmbH (modified Copernicus Sentinel data), CC BY 4.0",
       },
       ortho: {
         el: "Εικόνα: ορθοφωτογραφία Κτηματολογίου, ημερομηνία λήψης μη δημοσιευμένη",
@@ -150,6 +151,11 @@ export const copy = {
       en: "A screening, not a compliance finding. A site visit decides.",
     },
     openPlot: { el: "Άνοιγμα του {code}", en: "Open {code}" },
+    cardTo: { el: "έως", en: "to" },
+    cardNote: {
+      el: "{from} → {to} · Sentinel-2 · Προέλεγχος, όχι κρίση συμμόρφωσης",
+      en: "{from} → {to} · Sentinel-2 · Screening, not a compliance finding",
+    },
     signInShort: { el: "Σύνδεση", en: "Sign in" },
     close: { el: "Κλείσιμο", en: "Close" },
     planTitle: { el: "Και τα {n} οικόπεδα της επίδειξης", en: "All {n} demo plots" },

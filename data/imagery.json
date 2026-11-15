@@ -521,7 +521,45 @@
         ],
         "sideM": 240
       },
-      "sentinel": null,
+      "sentinel": {
+        "before": {
+          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
+          "date": "2026-04-29",
+          "ndvi": 0.647,
+          "pixelCount": 36,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/DEMO-FIELD-001-s2-before.jpg",
+            "bounds": [
+              23.97459973206377,
+              37.96894233037815,
+              23.983260267936227,
+              37.975817669621854
+            ],
+            "sideM": 760
+          }
+        },
+        "after": {
+          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
+          "date": "2026-06-20",
+          "ndvi": 0.38,
+          "pixelCount": 36,
+          "sclMajority": 4,
+          "clear": true,
+          "chip": {
+            "src": "/imagery/DEMO-FIELD-001-s2-after.jpg",
+            "bounds": [
+              23.97459973206377,
+              37.96894233037815,
+              23.983260267936227,
+              37.975817669621854
+            ],
+            "sideM": 760
+          }
+        },
+        "delta": -0.267
+      },
       "interiorAfterBufferM2": 3727.1,
       "errors": []
     }

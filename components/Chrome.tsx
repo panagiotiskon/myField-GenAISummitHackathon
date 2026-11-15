@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import type { Verdict } from "@/lib/assess";
 import { copy, t } from "@/lib/i18n";
-import { scenario } from "@/lib/scenario";
 import { useOfficer } from "@/lib/store";
 import type { Lang } from "@/lib/types";
 
@@ -65,7 +64,7 @@ export function TopBar(props: {
           {props.left}
           <span className="place">
             <Pin />
-            {t(lang, scenario.meta.settlement)}, {t(lang, scenario.meta.municipality)}
+            {t(lang, copy.region)}
           </span>
           <LangSwitch lang={lang} setLang={setLang} />
           {officer ? (

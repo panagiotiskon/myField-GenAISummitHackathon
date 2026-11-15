@@ -3,10 +3,10 @@
 // fetch script all read the same flight. Erasable TypeScript only: Node runs
 // this file directly from scripts/fetch-flight.mjs.
 
-export const FILM_PLOT = "DEMO-RAF-017";
+export const FILM_PLOT = "DEMO-FIELD-001";
 /** Centre of the plot's outline and its longer side in metres. tests/film.test.ts holds these to the scenario. */
-export const PLOT_CENTER: [number, number] = [23.917675, 38.017831];
-export const PLOT_SIDE_M = 35.9;
+export const PLOT_CENTER: [number, number] = [23.97893, 37.97238];
+export const PLOT_SIDE_M = 114.8;
 
 export type ChapterId = "orbit" | "scan" | "descent" | "analysis" | "result";
 export const CHAPTERS: { id: ChapterId; at: number }[] = [
@@ -330,8 +330,12 @@ export const FETCH_VIEWS: View[] = [
   },
 ];
 
-/** Cadastre stills that carry the last stretch of the descent, widest first. */
-export const ORTHO_STILLS = [8000, 1600, 360].map((sideM) => {
+/**
+ * Cadastre stills that carry the last stretch of the descent, widest first.
+ * The closest one is sized to the plot so it still fills the final frame.
+ */
+export const ORTHO_STILL_SIDES = [8000, 3000, 1200];
+export const ORTHO_STILLS = ORTHO_STILL_SIDES.map((sideM) => {
   const dLat = sideM / 2 / 111320;
   const dLng = sideM / 2 / (111320 * Math.cos(PLOT_CENTER[1] * RAD));
   return {

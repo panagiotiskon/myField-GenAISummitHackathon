@@ -40,7 +40,10 @@ describe("film flight", () => {
       expect(end.lng).toBeCloseTo(PLOT_CENTER[0], 6);
       expect(end.lat).toBeCloseTo(PLOT_CENTER[1], 6);
       expect(end.bearing).toBe(0);
-      expect(end.zoom).toBeGreaterThan(17);
+      // the closest Cadastre still covers the whole final frame, so no coarser layer shows at the edges
+      const metresPerPx = (78271.517 * Math.cos((PLOT_CENTER[1] * Math.PI) / 180)) / 2 ** end.zoom;
+      const closest = ORTHO_STILLS[ORTHO_STILLS.length - 1].sideM;
+      expect(Math.max(view.width, view.height) * metresPerPx).toBeLessThan(closest);
       expect(cameraAt(10400, view)).toEqual(end);
     }
   });
