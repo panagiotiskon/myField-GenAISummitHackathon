@@ -17,3 +17,8 @@ next-env.d.ts
 skills/
 skills-lock.json
 .vercel
+
+# Stock footage for the pitch video: kept locally, too large for the repo
+*.mp4
+*.mov
+*.webm
