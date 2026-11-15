@@ -1083,15 +1083,6 @@ dialog.signin-dialog {
   color: #fff;
   text-shadow: 0 1px 24px rgb(6 10 8 / 0.55);
 }
-/* the survey line under the punchline: the plot outline's yellow and two boundary pins */
-.film-copy h1::after {
-  content: "";
-  display: block;
-  width: 84px;
-  height: 12px;
-  margin-top: 0.42em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 12'%3E%3Cpath d='M6 6h72' stroke='%23ffe14a' stroke-width='2.5'/%3E%3Ccircle cx='6' cy='6' r='4.25' fill='%23060a08' stroke='%23ffe14a' stroke-width='2.5'/%3E%3Ccircle cx='78' cy='6' r='4.25' fill='%23060a08' stroke='%23ffe14a' stroke-width='2.5'/%3E%3C/svg%3E") no-repeat left center / contain;
-}
 
 /* subtitles: one line per chapter, in the cinema's own place */
 .film-words {
@@ -1295,7 +1286,6 @@ html.m-enter:not(.m-enter-done) [data-enter] > * { animation: land-rise 600ms va
     max-width: 12ch;
     font-size: clamp(32px, 9.6vw, 44px);
   }
-  .film-copy h1::after { width: 64px; height: 10px; }
   .film-shade {
     background:
       linear-gradient(180deg, rgb(6 10 8 / 0.94) 0, rgb(6 10 8 / 0.7) 18%, rgb(6 10 8 / 0) 38%),
