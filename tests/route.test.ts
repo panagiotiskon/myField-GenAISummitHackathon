@@ -14,7 +14,7 @@ describe("day-route ranking, article 6.2", () => {
       limit: 6,
     });
     expect(declarationCount).toBe(scenario.declarations.length);
-    expect(sampleSize).toBe(1);
+    expect(sampleSize).toBe(statutorySampleSize(declarationCount));
     expect(stops[0]?.parcelId).toBe("DEMO-RAF-013");
     expect(stops.map((row) => row.parcelId)).toContain("DEMO-RAF-002");
     const forest = stops.find((row) => row.parcelId === "DEMO-RAF-013");

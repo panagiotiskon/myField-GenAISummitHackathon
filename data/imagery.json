@@ -509,6 +509,171 @@
       },
       "sentinel": null,
       "interiorAfterBufferM2": 0
+    },
+    "DEMO-PIK-001": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-001-ortho.jpg",
+        "bounds": [
+          23.945017681643563,
+          37.9901148100597,
+          23.947797918356443,
+          37.992321389940294
+        ],
+        "sideM": 244
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 2770.5,
+      "errors": []
+    },
+    "DEMO-PIK-002": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-002-ortho.jpg",
+        "bounds": [
+          23.943313041317676,
+          37.9883265100597,
+          23.946895558682325,
+          37.99116988994029
+        ],
+        "sideM": 314
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 3625.1,
+      "errors": []
+    },
+    "DEMO-PIK-003": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-003-ortho.jpg",
+        "bounds": [
+          23.944587580021334,
+          37.98833071005971,
+          23.948150819978665,
+          37.99115878994029
+        ],
+        "sideM": 313
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 16311.5,
+      "errors": []
+    },
+    "DEMO-PIK-004": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-004-ortho.jpg",
+        "bounds": [
+          23.977562896960055,
+          37.97129482011941,
+          23.980297803039942,
+          37.97346597988059
+        ],
+        "sideM": 240
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 3727.1,
+      "errors": []
+    },
+    "DEMO-PIK-005": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-005-ortho.jpg",
+        "bounds": [
+          23.979163467850537,
+          37.97179993332827,
+          23.982148532149463,
+          37.97416966667174
+        ],
+        "sideM": 262
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 3432.3,
+      "errors": []
+    },
+    "DEMO-PIK-006": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-006-ortho.jpg",
+        "bounds": [
+          23.88839253975301,
+          37.9961765848218,
+          23.891624060246993,
+          37.998741115178206
+        ],
+        "sideM": 283
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 2549.6,
+      "errors": []
+    },
+    "DEMO-PIK-007": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-007-ortho.jpg",
+        "bounds": [
+          23.88541146197421,
+          37.99346350270576,
+          23.889474838025787,
+          37.99668829729425
+        ],
+        "sideM": 356
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 5259.6,
+      "errors": []
+    },
+    "DEMO-PIK-008": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-008-ortho.jpg",
+        "bounds": [
+          23.936177849866386,
+          37.995024259878555,
+          23.939580250133613,
+          37.99772444012144
+        ],
+        "sideM": 298
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 4548.6,
+      "errors": []
+    },
+    "DEMO-PIK-009": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-009-ortho.jpg",
+        "bounds": [
+          23.93515804941199,
+          37.99530597011941,
+          23.93789385058801,
+          37.997477129880586
+        ],
+        "sideM": 240
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 3276.5,
+      "errors": []
+    },
+    "DEMO-PIK-010": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-010-ortho.jpg",
+        "bounds": [
+          23.95055696326085,
+          37.97214637959272,
+          23.953910636739153,
+          37.974808720407275
+        ],
+        "sideM": 294
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 6753.5,
+      "errors": []
+    },
+    "DEMO-PIK-011": {
+      "ortho": {
+        "src": "/imagery/fieldwatch/DEMO-PIK-011-ortho.jpg",
+        "bounds": [
+          23.949251467518014,
+          37.97189052926909,
+          23.952098232481983,
+          37.974150470730905
+        ],
+        "sideM": 250
+      },
+      "sentinel": null,
+      "interiorAfterBufferM2": 2443.1,
+      "errors": []
     }
   }
 }

@@ -2,6 +2,8 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
+import OpenAI from "openai";
+import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import {
   capConfidence,
@@ -13,12 +15,14 @@ import {
   type ParcelImagery,
   type RuleAssessment,
 } from "@/lib/assess";
+import { cleanSeries, fieldRecord, fieldWatch } from "@/lib/fieldwatch";
 import { getParcel, scenario } from "@/lib/scenario";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const MODEL = "claude-opus-5-5";
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.5";
 const CACHE_FILE = path.join(process.cwd(), "data", "analysis-cache.json");
 
 const Bilingual = z.object({ el: z.string(), en: z.string() });
@@ -41,6 +45,8 @@ const SYSTEM = `You help a Greek municipal civil-protection officer screen plots
 You look at imagery of one plot and report what is visible. The officer decides; you never decide compliance. Imagery alone cannot prove that a plot is cleaned or uncleaned.
 
 The plot is the area inside the yellow outline on each image. Describe only what you can see inside it, and say plainly when resolution or image age stops you from telling. The orthophoto has no published capture date and may be years old: use it to understand what kind of land this is (trees, shrubs, bare soil, buildings, paving), not its present state. The Sentinel-2 images are dated but each pixel is 10 m, so they show overall greenness only.
+
+Some plots come with a full year of Sentinel-2 dates. For those the question is whether the ground was worked (ploughed, rotavated or cut) before the fire season opened on 1 May and stayed that way. Worked ground shows as tan or bare soil appearing from one date to the next; vegetation left standing turns from green to straw slowly over weeks. Compare the plot with the neighbouring fields in the same frames.
 
 The request states which verdicts the measurements allow. Stay inside that list. Choose "uncertain" whenever the evidence does not clearly support another allowed verdict.
 
@@ -101,6 +107,28 @@ async function buildContent(
     content.push(await imageBlock(after.chip.src));
   }
 
+  const record = fieldRecord(parcelId);
+  const keyFrames = record?.keyFrames ?? [];
+  for (const [i, frame] of keyFrames.entries()) {
+    content.push({
+      type: "text",
+      text: `Image ${i + 2}. Sentinel-2 true colour, ${frame.date}. ${frame.sideM} m window, 10 m pixels, plot outlined in yellow.`,
+    });
+    content.push(await imageBlock(frame.src));
+  }
+  const timeline = rule.timeline && record
+    ? {
+        fireSeason: `${fieldWatch.seasonStart} to ${fieldWatch.seasonEnd}`,
+        clearDates: rule.timeline.dates,
+        pixelsInsidePlot: rule.timeline.pixels,
+        ndviByDate: cleanSeries(record.series).map((p) => `${p[0]} ${p[1].toFixed(2)}`),
+        stepDropDetected: rule.timeline.event,
+        ndviClosestToSeasonStart: { date: rule.timeline.startDate, ndvi: rule.timeline.startNdvi },
+        springPeakNdvi: rule.timeline.springPeak,
+        note: "Median NDVI over cloud-free pixels inside a 10 m inward buffer. Going from 0.45 or more to 0.30 or less within 45 days and staying there counts as worked ground. Natural drying is slower and usually levels off above 0.30.",
+      }
+    : null;
+
   const facts = {
     plotAreaM2: parcel.properties.areaM2,
     zone: parcel.properties.zone,
@@ -109,7 +137,10 @@ async function buildContent(
       ? { submitted: declaration.submittedAt.slice(0, 10), ownerSaysCleaned: declaration.claimedCleaned }
       : null,
     neighbourComplaint: complaint?.text.en ?? null,
-    sentinel: imagery.sentinel
+    yearRecord: timeline,
+    sentinel: timeline
+      ? "See yearRecord."
+      : imagery.sentinel
       ? {
           ndviSpring: imagery.sentinel.before.ndvi,
           ndviLateJune: imagery.sentinel.after.ndvi,
@@ -147,7 +178,36 @@ async function askModel(
 
   const text = response.content.find((block) => block.type === "text");
   if (!text || text.type !== "text") throw new Error("no text block in model answer");
-  const finding = Finding.parse(JSON.parse(text.text));
+  return toAnalysis(parcelId, Finding.parse(JSON.parse(text.text)), rule, response.model);
+}
+
+/** Same images and facts, sent to OpenAI's Responses API. */
+async function askOpenAI(
+  parcelId: string,
+  imagery: ParcelImagery,
+  rule: RuleAssessment,
+): Promise<Analysis | "declined"> {
+  const blocks = await buildContent(parcelId, imagery, rule);
+  const content = blocks.flatMap((block): OpenAI.Responses.ResponseInputContent[] => {
+    if (block.type === "text") return [{ type: "input_text", text: block.text }];
+    if (block.type === "image" && block.source.type === "base64") {
+      return [{ type: "input_image", image_url: `data:${block.source.media_type};base64,${block.source.data}`, detail: "high" }];
+    }
+    return [];
+  });
+  const client = new OpenAI({ timeout: 120_000, maxRetries: 1 });
+  const response = await client.responses.parse({
+    model: OPENAI_MODEL,
+    instructions: SYSTEM,
+    input: [{ role: "user", content }],
+    reasoning: { effort: "medium" },
+    text: { format: zodTextFormat(Finding, "finding") },
+  });
+  if (!response.output_parsed) return "declined";
+  return toAnalysis(parcelId, Finding.parse(response.output_parsed), rule, response.model);
+}
+
+function toAnalysis(parcelId: string, finding: z.infer<typeof Finding>, rule: RuleAssessment, model: string): Analysis {
   const { verdict, clamped } = clampVerdict(finding.verdict, rule);
   const pct = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 
@@ -156,7 +216,7 @@ async function askModel(
     verdict,
     confidence: capConfidence(finding.confidence, rule.confidenceCap),
     source: "ai_live",
-    model: response.model,
+    model,
     analysedAt: new Date().toISOString(),
     rule,
     ai: {
@@ -196,9 +256,14 @@ export async function POST(request: Request) {
   }
 
   let aiNote: Analysis["aiNote"] = "no_key";
-  if (process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN) {
+  // Anthropic when its key is set, otherwise OpenAI when that key is set.
+  const useAnthropic = Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+  const useOpenAI = !useAnthropic && Boolean(process.env.OPENAI_API_KEY);
+  if (useAnthropic || useOpenAI) {
     try {
-      const result = await askModel(parcelId, imagery, rule);
+      const result = useAnthropic
+        ? await askModel(parcelId, imagery, rule)
+        : await askOpenAI(parcelId, imagery, rule);
       if (result !== "declined") {
         await writeCache(result);
         return Response.json(result);
@@ -212,6 +277,8 @@ export async function POST(request: Request) {
         console.error("analyze: rate limited");
       } else if (error instanceof Anthropic.APIError) {
         console.error(`analyze: API error ${error.status}: ${error.message}`);
+      } else if (error instanceof OpenAI.APIError) {
+        console.error(`analyze: OpenAI error ${error.status}: ${error.message}`);
       } else {
         console.error("analyze:", error);
       }

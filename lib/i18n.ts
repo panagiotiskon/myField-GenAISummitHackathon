@@ -244,6 +244,22 @@ export const copy = {
       el: "Ο δείκτης βλάστησης δεν είναι ούτε καθαρά υψηλός ούτε καθαρά χαμηλός.",
       en: "The vegetation index is neither clearly high nor clearly low.",
     },
+    worked_before_season: {
+      el: "Πριν από την 1η Μαΐου ο δείκτης βλάστησης πέφτει από πράσινο σε γυμνό έδαφος μέσα σε 45 ημέρες και μένει χαμηλά: το έδαφος δουλεύτηκε (όργωμα, φρεζάρισμα ή κοπή).",
+      en: "Before 1 May the vegetation index goes from green to bare ground within 45 days and stays down: the ground was worked (ploughed, rotavated or cut).",
+    },
+    worked_after_season_start: {
+      el: "Το έδαφος δουλεύτηκε, αλλά μετά την έναρξη της αντιπυρικής περιόδου (1η Μαΐου).",
+      en: "The ground was worked, but after the fire season opened on 1 May.",
+    },
+    covered_at_season_start: {
+      el: "Καμία γρήγορη πτώση σε γυμνό έδαφος σε όλο το έτος. Την 1η Μαΐου ο δείκτης είναι ακόμα υψηλός και μετά πέφτει σιγά σιγά, όπως όταν η βλάστηση ξεραίνεται επιτόπου.",
+      en: "No fast drop to bare ground all year. On 1 May the index is still high, then it slides down slowly, as when vegetation dries where it stands.",
+    },
+    series_inconclusive: {
+      el: "Η καμπύλη του έτους δεν δείχνει ούτε καθαρό δούλεμα του εδάφους ούτε πράσινη κάλυψη στην έναρξη της περιόδου.",
+      en: "The year's curve shows neither clearly worked ground nor green cover at the start of the season.",
+    },
   } satisfies Record<RuleReason, Localized>,
   source: {
     ai_live: { el: "Ανάλυση ΤΝ, ζωντανή", en: "AI analysis, live" },

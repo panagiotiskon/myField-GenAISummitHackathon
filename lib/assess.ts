@@ -1,4 +1,5 @@
 import raw from "@/data/imagery.json";
+import { fieldRecord, readField, type FieldReading } from "./fieldwatch";
 import { inspectionScore } from "./route";
 import type { Declaration, Localized, ParcelFeature, Scenario } from "./types";
 import { isInDuty } from "./zones";
@@ -19,7 +20,11 @@ export type RuleReason =
   | "image_older_than_declaration"
   | "green_cover_after"
   | "low_cover_after_with_drop"
-  | "index_in_between";
+  | "index_in_between"
+  | "worked_before_season"
+  | "worked_after_season_start"
+  | "covered_at_season_start"
+  | "series_inconclusive";
 
 export type Chip = { src: string; bounds: number[]; sideM: number };
 
@@ -72,6 +77,8 @@ export type RuleAssessment = {
   ndviBefore: number | null;
   ndviAfter: number | null;
   pixelCount: number;
+  /** Present when the plot has a year of Sentinel-2 dates rather than one pair. */
+  timeline?: FieldReading;
 };
 
 export const NDVI_GREEN = 0.3;
@@ -109,6 +116,9 @@ export function ruleAssessment(
       reason: "outside_duty",
     };
   }
+
+  const record = fieldRecord(parcel.properties.id);
+  if (record) return timelineAssessment(base, readField(record));
 
   const s2 = imagery?.sentinel;
   if (!s2) {
@@ -160,6 +170,56 @@ export function ruleAssessment(
     allowed: ["uncertain", "potentially_uncleaned"],
     reason: "index_in_between",
   };
+}
+
+/** Year-long record: the question is whether the ground was worked before the fire season opened. */
+function timelineAssessment(
+  base: Pick<RuleAssessment, "parcelId">,
+  reading: FieldReading,
+): RuleAssessment {
+  const measured = {
+    ...base,
+    timeline: reading,
+    pixelCount: reading.pixels,
+    imageDate: reading.event?.date ?? reading.startDate,
+    ndviBefore: reading.event?.before ?? reading.springPeak,
+    ndviAfter: reading.event?.after ?? reading.startNdvi,
+  };
+  const confidenceCap: Confidence = reading.pixels >= PIXELS_FOR_MEDIUM ? "medium" : "low";
+  switch (reading.status) {
+    case "worked_before_season":
+      return {
+        ...measured,
+        verdict: "likely_cleaned",
+        confidenceCap,
+        allowed: ["likely_cleaned", "uncertain"],
+        reason: "worked_before_season",
+      };
+    case "covered_at_season_start":
+      return {
+        ...measured,
+        verdict: "potentially_uncleaned",
+        confidenceCap,
+        allowed: ["potentially_uncleaned", "uncertain"],
+        reason: "covered_at_season_start",
+      };
+    case "worked_after_season_start":
+      return {
+        ...measured,
+        verdict: "uncertain",
+        confidenceCap: "low",
+        allowed: ["uncertain", "potentially_uncleaned"],
+        reason: "worked_after_season_start",
+      };
+    default:
+      return {
+        ...measured,
+        verdict: "uncertain",
+        confidenceCap: "low",
+        allowed: ["uncertain"],
+        reason: "series_inconclusive",
+      };
+  }
 }
 
 const CONFIDENCE_ORDER: Confidence[] = ["low", "medium", "high"];
@@ -272,7 +332,7 @@ export function priorityList(rows: ScreeningRow[], limit = 6): ScreeningRow[] {
     .slice(0, limit);
 }
 
-/** Accepts "DEMO-RAF-018", "raf-18", "18". Real KAEK lookup is not wired. */
+/** Accepts "DEMO-RAF-018", "raf-18", "pik-3", "18". Real KAEK lookup is not wired. */
 export function resolveParcelCode(input: string, ids: string[]): string | null {
   const value = input.trim().toUpperCase();
   if (!value) return null;
@@ -280,5 +340,6 @@ export function resolveParcelCode(input: string, ids: string[]): string | null {
   const digits = value.match(/(\d{1,3})$/)?.[1];
   if (!digits || /^\d{4,}$/.test(value)) return null;
   const padded = digits.padStart(3, "0");
-  return ids.find((id) => id.endsWith(`-${padded}`)) ?? null;
+  const area = value.match(/(RAF|PIK)/)?.[1];
+  return ids.find((id) => id.endsWith(`-${padded}`) && (!area || id.includes(`-${area}-`))) ?? null;
 }

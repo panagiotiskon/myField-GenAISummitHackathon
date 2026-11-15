@@ -1182,6 +1182,747 @@
           "poorEscapeRoad": true,
           "enclosed": false
         }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-001",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9467031,
+                37.9917786
+              ],
+              [
+                23.9467026,
+                37.9906745
+              ],
+              [
+                23.9461125,
+                37.9906576
+              ],
+              [
+                23.9461232,
+                37.9915032
+              ],
+              [
+                23.946547,
+                37.9917357
+              ],
+              [
+                23.9467031,
+                37.9917786
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-001",
+          "areaM2": 5641,
+          "street": {
+            "el": "Μεσόγεια · OSM way 464852335",
+            "en": "Mesogeia · OSM way 464852335"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-002",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9453406,
+                37.9906236
+              ],
+              [
+                23.9453293,
+                37.9888819
+              ],
+              [
+                23.944868,
+                37.9888693
+              ],
+              [
+                23.9448716,
+                37.9900478
+              ],
+              [
+                23.9448733,
+                37.9906271
+              ],
+              [
+                23.9453406,
+                37.9906236
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-002",
+          "areaM2": 7921,
+          "street": {
+            "el": "Μεσόγεια · OSM way 464852143",
+            "en": "Mesogeia · OSM way 464852143"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-003",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9457107,
+                37.9888784
+              ],
+              [
+                23.9457161,
+                37.990616
+              ],
+              [
+                23.947011,
+                37.9906112
+              ],
+              [
+                23.9470277,
+                37.9888784
+              ],
+              [
+                23.9468421,
+                37.9888735
+              ],
+              [
+                23.9465199,
+                37.98889
+              ],
+              [
+                23.9457107,
+                37.9888784
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-003",
+          "areaM2": 22043,
+          "street": {
+            "el": "Μεσόγεια · OSM way 464852150",
+            "en": "Mesogeia · OSM way 464852150"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-004",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9786034,
+                37.9726439
+              ],
+              [
+                23.9786688,
+                37.9728961
+              ],
+              [
+                23.9788673,
+                37.9728611
+              ],
+              [
+                23.9792152,
+                37.9728427
+              ],
+              [
+                23.9791965,
+                37.9725224
+              ],
+              [
+                23.9794254,
+                37.9725003
+              ],
+              [
+                23.9792712,
+                37.9719444
+              ],
+              [
+                23.9791335,
+                37.9719628
+              ],
+              [
+                23.979104,
+                37.9718647
+              ],
+              [
+                23.9784353,
+                37.972007
+              ],
+              [
+                23.9786034,
+                37.9726439
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-004",
+          "areaM2": 6804,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1288746850",
+            "en": "Mesogeia · OSM way 1288746850"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-005",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9814524,
+                37.9728312
+              ],
+              [
+                23.9814648,
+                37.9727814
+              ],
+              [
+                23.9814509,
+                37.9727583
+              ],
+              [
+                23.9814309,
+                37.9727437
+              ],
+              [
+                23.98138,
+                37.9727401
+              ],
+              [
+                23.9810211,
+                37.9727401
+              ],
+              [
+                23.9805666,
+                37.972768
+              ],
+              [
+                23.9802832,
+                37.972802
+              ],
+              [
+                23.979952,
+                37.9728385
+              ],
+              [
+                23.9798472,
+                37.9731748
+              ],
+              [
+                23.9801214,
+                37.9732295
+              ],
+              [
+                23.9813415,
+                37.9732222
+              ],
+              [
+                23.9813831,
+                37.9731141
+              ],
+              [
+                23.9814524,
+                37.9728312
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-005",
+          "areaM2": 6630,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1288746852",
+            "en": "Mesogeia · OSM way 1288746852"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-006",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.8890765,
+                37.9970404
+              ],
+              [
+                23.8893201,
+                37.996818
+              ],
+              [
+                23.8893598,
+                37.9968078
+              ],
+              [
+                23.8894048,
+                37.9968138
+              ],
+              [
+                23.8895046,
+                37.996867
+              ],
+              [
+                23.8909401,
+                37.9978875
+              ],
+              [
+                23.8907212,
+                37.9981099
+              ],
+              [
+                23.8904898,
+                37.9979594
+              ],
+              [
+                23.889765,
+                37.9974881
+              ],
+              [
+                23.8890765,
+                37.9970404
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-006",
+          "areaM2": 6553,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1352261349",
+            "en": "Mesogeia · OSM way 1352261349"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-007",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.8867353,
+                37.9953671
+              ],
+              [
+                23.8863559,
+                37.995376
+              ],
+              [
+                23.8862228,
+                37.9953046
+              ],
+              [
+                23.8861265,
+                37.9951373
+              ],
+              [
+                23.8860954,
+                37.995019
+              ],
+              [
+                23.8861718,
+                37.9949989
+              ],
+              [
+                23.888754,
+                37.9947758
+              ],
+              [
+                23.8887909,
+                37.9947981
+              ],
+              [
+                23.8886776,
+                37.9952176
+              ],
+              [
+                23.888553,
+                37.9952042
+              ],
+              [
+                23.8867353,
+                37.9953671
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-007",
+          "areaM2": 10280,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1352259386",
+            "en": "Mesogeia · OSM way 1352259386"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-008",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9368933,
+                37.9968368
+              ],
+              [
+                23.9372112,
+                37.9968387
+              ],
+              [
+                23.9372156,
+                37.9962885
+              ],
+              [
+                23.938375,
+                37.9962532
+              ],
+              [
+                23.9384254,
+                37.9968065
+              ],
+              [
+                23.9388963,
+                37.9967871
+              ],
+              [
+                23.9388842,
+                37.9966228
+              ],
+              [
+                23.9388235,
+                37.99591
+              ],
+              [
+                23.9383871,
+                37.9959349
+              ],
+              [
+                23.9372425,
+                37.9959387
+              ],
+              [
+                23.9368618,
+                37.9959463
+              ],
+              [
+                23.9368933,
+                37.9968368
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-008",
+          "areaM2": 10729,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1351977408",
+            "en": "Mesogeia · OSM way 1351977408"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-009",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9368933,
+                37.9968368
+              ],
+              [
+                23.9361732,
+                37.9968368
+              ],
+              [
+                23.9361586,
+                37.9959807
+              ],
+              [
+                23.9368618,
+                37.9959463
+              ],
+              [
+                23.9368933,
+                37.9968368
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-009",
+          "areaM2": 6063,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1351977407",
+            "en": "Mesogeia · OSM way 1351977407"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-010",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9512407,
+                37.9728014
+              ],
+              [
+                23.9515922,
+                37.9729807
+              ],
+              [
+                23.9526483,
+                37.9734624
+              ],
+              [
+                23.953109,
+                37.9736699
+              ],
+              [
+                23.9532269,
+                37.9739114
+              ],
+              [
+                23.9519226,
+                37.9741454
+              ],
+              [
+                23.9518604,
+                37.9741537
+              ],
+              [
+                23.9516144,
+                37.9736041
+              ],
+              [
+                23.9514145,
+                37.97315
+              ],
+              [
+                23.9512407,
+                37.9728014
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-010",
+          "areaM2": 11220,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1288609863",
+            "en": "Mesogeia · OSM way 1288609863"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "DEMO-PIK-011",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.9506216,
+                37.9733567
+              ],
+              [
+                23.9505862,
+                37.9732277
+              ],
+              [
+                23.9505008,
+                37.9732317
+              ],
+              [
+                23.9504059,
+                37.9732282
+              ],
+              [
+                23.9499352,
+                37.9731725
+              ],
+              [
+                23.9499764,
+                37.9728972
+              ],
+              [
+                23.9500374,
+                37.9729285
+              ],
+              [
+                23.950087,
+                37.9729385
+              ],
+              [
+                23.9501284,
+                37.9729322
+              ],
+              [
+                23.9501825,
+                37.9729169
+              ],
+              [
+                23.9502333,
+                37.9729083
+              ],
+              [
+                23.9503183,
+                37.972919
+              ],
+              [
+                23.9504179,
+                37.9729375
+              ],
+              [
+                23.9504498,
+                37.9729256
+              ],
+              [
+                23.9504889,
+                37.9729109
+              ],
+              [
+                23.950988,
+                37.9726843
+              ],
+              [
+                23.9512407,
+                37.9728014
+              ],
+              [
+                23.9514145,
+                37.97315
+              ],
+              [
+                23.9506216,
+                37.9733567
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "id": "DEMO-PIK-011",
+          "areaM2": 5417,
+          "street": {
+            "el": "Μεσόγεια · OSM way 1199243518",
+            "en": "Mesogeia · OSM way 1199243518"
+          },
+          "zone": "within_100m",
+          "owner": "Ιδιοκτήτης (προσομοίωση)",
+          "forestEdge": false,
+          "nearbyHouses": true,
+          "sensitiveSite": false,
+          "slopeClass": "low",
+          "poorEscapeRoad": false,
+          "enclosed": false
+        }
       }
     ]
   },
@@ -1245,6 +1986,72 @@
       "submittedAt": "2026-06-16T12:18:00+03:00",
       "claimedCleaned": true,
       "registryRef": "SIM-ΔΗΛ-2026-0338"
+    },
+    {
+      "parcelId": "DEMO-PIK-001",
+      "submittedAt": "2026-04-25T10:11:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0901"
+    },
+    {
+      "parcelId": "DEMO-PIK-002",
+      "submittedAt": "2026-04-26T10:12:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0902"
+    },
+    {
+      "parcelId": "DEMO-PIK-003",
+      "submittedAt": "2026-04-27T10:13:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0903"
+    },
+    {
+      "parcelId": "DEMO-PIK-004",
+      "submittedAt": "2026-04-28T10:14:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0904"
+    },
+    {
+      "parcelId": "DEMO-PIK-005",
+      "submittedAt": "2026-04-29T10:15:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0905"
+    },
+    {
+      "parcelId": "DEMO-PIK-006",
+      "submittedAt": "2026-04-24T10:16:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0906"
+    },
+    {
+      "parcelId": "DEMO-PIK-007",
+      "submittedAt": "2026-04-25T10:17:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0907"
+    },
+    {
+      "parcelId": "DEMO-PIK-008",
+      "submittedAt": "2026-04-26T10:18:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0908"
+    },
+    {
+      "parcelId": "DEMO-PIK-009",
+      "submittedAt": "2026-04-27T10:19:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0909"
+    },
+    {
+      "parcelId": "DEMO-PIK-010",
+      "submittedAt": "2026-04-28T10:20:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0910"
+    },
+    {
+      "parcelId": "DEMO-PIK-011",
+      "submittedAt": "2026-04-29T10:21:00+03:00",
+      "claimedCleaned": true,
+      "registryRef": "SIM-ΔΗΛ-2026-0911"
     }
   ],
   "complaints": [
