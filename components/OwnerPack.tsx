@@ -75,9 +75,7 @@ export function OwnerPack({ parcelId }: { parcelId: string }) {
             />
           </section>
           <section className="pack-card">
-            <h1 style={{ fontFamily: "var(--serif)", fontSize: "1.4rem" }}>
-              {parcel.properties.id}
-            </h1>
+            <h1>{parcel.properties.id}</h1>
             <p className="muted">{t(lang, parcel.properties.street)}</p>
             <div className="kv">
               <span>{t(lang, copy.owner)}</span>

@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 
-const sans = Source_Sans_3({
+const sans = Manrope({
   subsets: ["latin", "greek"],
   variable: "--font-sans",
 });
 
-const serif = Source_Serif_4({
+const mono = JetBrains_Mono({
   subsets: ["latin", "greek"],
-  variable: "--font-serif",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -19,10 +19,12 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
 };
 
+export const viewport: Viewport = { themeColor: "#f8f8f8" };
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="el">
-      <body className={`${sans.variable} ${serif.variable}`}>{children}</body>
+    <html lang="el" className={`${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

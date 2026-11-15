@@ -11,11 +11,11 @@ const STREET_STYLE = "https://tiles.openfreemap.org/styles/positron";
 const WMS = "/api/ortho?bbox={bbox-epsg-3857}";
 
 const COLORS: Record<QueueBucket | "idle", string> = {
-  idle: "#5c574e",
-  no_declaration: "#9c3b24",
-  declaration_vs_imagery: "#b0893e",
-  complaint: "#5c2e4a",
-  out_of_scope: "#8a8578",
+  idle: "#6a6a6a",
+  no_declaration: "#c2331f",
+  declaration_vs_imagery: "#b97a09",
+  complaint: "#1d5fbf",
+  out_of_scope: "#8c8c8c",
 };
 
 function addDeskLayers(map: MapLibreMap) {
@@ -46,7 +46,7 @@ function addDeskLayers(map: MapLibreMap) {
     type: "line",
     source: "settlement",
     paint: {
-      "line-color": "#2f3b28",
+      "line-color": "#1f6b3a",
       "line-width": 2,
       "line-dasharray": [2, 1.4],
     },
@@ -69,7 +69,7 @@ function addDeskLayers(map: MapLibreMap) {
     type: "line",
     source: "parcels",
     paint: {
-      "line-color": "#1c1814",
+      "line-color": "#0a0a0a",
       "line-width": 1.2,
     },
   });
@@ -79,8 +79,8 @@ function addDeskLayers(map: MapLibreMap) {
     source: "parcels",
     filter: ["==", ["get", "id"], ""],
     paint: {
-      "line-color": "#fff8ee",
-      "line-width": 4,
+      "line-color": "#0a0a0a",
+      "line-width": 3,
     },
   });
 }
