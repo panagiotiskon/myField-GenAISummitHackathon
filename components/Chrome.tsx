@@ -80,7 +80,7 @@ export function TopBar(props: {
     <>
       <header className="topbar">
         <div className="brand">
-          <Link href="/dashboard" className="brand-link">
+          <Link href="/" className="brand-link" aria-label="myField, home">
             <Mark />
             <Wordmark />
           </Link>

@@ -36,10 +36,10 @@
       },
       "sentinel": {
         "before": {
-          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
+          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
           "date": "2026-04-29",
-          "ndvi": 0.647,
-          "pixelCount": 44,
+          "ndvi": 0.641,
+          "pixelCount": 53,
           "sclMajority": 4,
           "clear": true,
           "chip": {
@@ -54,11 +54,11 @@
           }
         },
         "after": {
-          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
+          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
           "date": "2026-06-20",
-          "ndvi": 0.38,
-          "pixelCount": 44,
-          "sclMajority": 4,
+          "ndvi": 0.427,
+          "pixelCount": 53,
+          "sclMajority": 5,
           "clear": true,
           "chip": {
             "src": "/imagery/KAEK-05119-001-s2-after.jpg",
@@ -71,7 +71,7 @@
             "sideM": 760
           }
         },
-        "delta": -0.267,
+        "delta": -0.214,
         "ndviChips": {
           "before": {
             "src": "/imagery/KAEK-05119-001-ndvi-before.png",
@@ -105,7 +105,7 @@
         }
       },
       "orthoHd": {
-        "src": "/imagery/KAEK-05119-001-ortho-hd.jpg",
+        "src": "/imagery/KAEK-05119-001-ortho-hd.webp",
         "bounds": [
           23.97781823313841,
           37.97150370999999,
@@ -113,6 +113,17 @@
           37.973257090000004
         ],
         "sideM": 195
+      },
+      "thumb": {
+        "src": "/imagery/KAEK-05119-001-thumb.webp",
+        "bounds": [
+          23.97781823313841,
+          37.97150370999999,
+          23.980042466861587,
+          37.973257090000004
+        ],
+        "sideM": 195,
+        "outlined": false
       }
     },
     "KAEK-05119-002": {
@@ -129,10 +140,10 @@
       },
       "sentinel": {
         "before": {
-          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
+          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
           "date": "2026-04-29",
-          "ndvi": 0.584,
-          "pixelCount": 1,
+          "ndvi": 0.574,
+          "pixelCount": 6,
           "sclMajority": 4,
           "clear": true,
           "chip": {
@@ -147,10 +158,10 @@
           }
         },
         "after": {
-          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
+          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
           "date": "2026-06-20",
-          "ndvi": 0.354,
-          "pixelCount": 1,
+          "ndvi": 0.492,
+          "pixelCount": 6,
           "sclMajority": 4,
           "clear": true,
           "chip": {
@@ -164,7 +175,7 @@
             "sideM": 760
           }
         },
-        "delta": -0.23,
+        "delta": -0.082,
         "ndviChips": {
           "before": {
             "src": "/imagery/KAEK-05119-002-ndvi-before.png",
@@ -196,6 +207,17 @@
           ],
           "colormap": "RdYlGn"
         }
+      },
+      "thumb": {
+        "src": "/imagery/KAEK-05119-002-thumb.webp",
+        "bounds": [
+          23.88141209598288,
+          38.02752174241031,
+          23.88415790401712,
+          38.02969825758969
+        ],
+        "sideM": 241.9,
+        "outlined": true
       }
     },
     "KAEK-05119-003": {
@@ -212,10 +234,10 @@
       },
       "sentinel": {
         "before": {
-          "item": "S2A_MSIL2A_20260429T091551_R050_T34SGH",
+          "item": "S2C_MSIL2A_20260429T090551_R050_T34SGH_20260429T130711",
           "date": "2026-04-29",
-          "ndvi": 0.548,
-          "pixelCount": 21,
+          "ndvi": 0.497,
+          "pixelCount": 28,
           "sclMajority": 4,
           "clear": true,
           "chip": {
@@ -230,11 +252,11 @@
           }
         },
         "after": {
-          "item": "S2B_MSIL2A_20260620T092039_R050_T34SGH",
+          "item": "S2A_MSIL2A_20260620T091041_R050_T34SGH_20260620T143109",
           "date": "2026-06-20",
-          "ndvi": 0.383,
-          "pixelCount": 21,
-          "sclMajority": 4,
+          "ndvi": 0.421,
+          "pixelCount": 28,
+          "sclMajority": 5,
           "clear": true,
           "chip": {
             "src": "/imagery/KAEK-05119-003-s2-after.jpg",
@@ -247,7 +269,7 @@
             "sideM": 760
           }
         },
-        "delta": -0.165,
+        "delta": -0.076,
         "ndviChips": {
           "before": {
             "src": "/imagery/KAEK-05119-003-ndvi-before.png",
@@ -281,7 +303,7 @@
         }
       },
       "orthoHd": {
-        "src": "/imagery/KAEK-05119-003-ortho-hd.jpg",
+        "src": "/imagery/KAEK-05119-003-ortho-hd.webp",
         "bounds": [
           23.883751101872157,
           38.029225895,
@@ -289,6 +311,17 @@
           38.030375604999996
         ],
         "sideM": 128
+      },
+      "thumb": {
+        "src": "/imagery/KAEK-05119-003-thumb.webp",
+        "bounds": [
+          23.883751101872157,
+          38.029225895,
+          23.885210698127842,
+          38.030375604999996
+        ],
+        "sideM": 128,
+        "outlined": false
       }
     },
     "DEMO-FIELD-001": {
@@ -341,6 +374,17 @@
           }
         },
         "delta": -0.267
+      },
+      "thumb": {
+        "src": "/imagery/DEMO-FIELD-001-thumb.webp",
+        "bounds": [
+          23.97607775988514,
+          37.970222055627254,
+          23.98178224011486,
+          37.97453794437274
+        ],
+        "sideM": 500,
+        "outlined": true
       }
     }
   }

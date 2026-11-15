@@ -43,7 +43,8 @@ export async function GET(request: Request) {
   return new Response(response.body, {
     headers: {
       "content-type": response.headers.get("content-type") ?? "image/jpeg",
-      "cache-control": "public, max-age=86400",
+      // browsers keep a tile for a day; Vercel's CDN for a week, so the slow upstream is rarely asked
+      "cache-control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=604800",
     },
   });
 }

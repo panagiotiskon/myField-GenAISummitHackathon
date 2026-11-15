@@ -161,7 +161,7 @@ export function Dashboard() {
                 return (
                   <li key={id}>
                     <Link href={`/property/${id}`} className="plot-row">
-                      <PlotPhoto id={id} geometry={row.parcel.geometry} className="plot-thumb" />
+                      <PlotPhoto id={id} geometry={row.parcel.geometry} className="plot-thumb" small />
                       <span className="plot-text">
                         <span className="plot-id">{id}</span>
                         <span className="plot-street">{t(lang, p.street)}</span>

@@ -11,12 +11,21 @@ import savedAnalyses from "@/data/analysis-cache.json";
 import { imageryFor, rulesOnlyAnalysis, screen, type Analysis } from "@/lib/assess";
 import { CHAPTERS, FILM_END, FILM_PLOT, ORTHO_STILLS, type ChapterId } from "@/lib/film";
 import { copy, fill, t } from "@/lib/i18n";
+import { warmOrbitTiles } from "@/lib/flightTiles";
 import { scenario } from "@/lib/scenario";
 import { useAnalyses, useLang, useOfficer } from "@/lib/store";
 import type { Lang } from "@/lib/types";
 
 // The map engine is only worth loading in a browser that can draw it.
-const FilmStage = dynamic(() => import("@/components/Film").then((mod) => mod.FilmStage), { ssr: false });
+const loadFilm = () => import("@/components/Film").then((mod) => mod.FilmStage);
+const FilmStage = dynamic(loadFilm, { ssr: false });
+
+// Start the engine and the opening tiles downloading as soon as this module runs in a browser,
+// side by side, rather than one after the other once the page has rendered.
+if (typeof window !== "undefined") {
+  void loadFilm();
+  void warmOrbitTiles();
+}
 
 const SKIP = { el: "Μετάβαση στο περιεχόμενο", en: "Skip to content" };
 const SAVED = savedAnalyses as unknown as Record<string, Analysis>;

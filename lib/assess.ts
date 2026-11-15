@@ -44,6 +44,8 @@ export type ParcelImagery = {
   ortho: Chip | null;
   /** Sharper aerial photo without an outline in its pixels (scripts/fetch-ortho-hd.mjs). */
   orthoHd?: Chip;
+  /** 320 px WebP for small views; `outlined` when the outline is already in its pixels. */
+  thumb?: Chip & { outlined: boolean };
   sentinel: {
     before: SentinelScene;
     after: SentinelScene;

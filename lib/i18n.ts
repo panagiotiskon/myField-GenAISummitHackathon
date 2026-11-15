@@ -363,7 +363,6 @@ export const copy = {
     el: "Υψηλή ανάλυση Κτηματολογίου (240 μ.). Το οικόπεδο παραμένει ακούρευτο με πυκνή βιομάζα, ενώ τα γύρω οικόπεδα είναι πλήρως καθαρισμένα.",
     en: "Cadastre high-res view (240 m). The plot remains uncleaned with dense biomass, while surrounding parcels are fully cleared.",
   },
-  s2PlotBadge: { el: "Εντός ορίου: Πράσινο (NDVI 0.38)", en: "Inside outline: Green (NDVI 0.38)" },
   s2NeighbourBadge: { el: "Γύρω χωράφια: Θερισμένα & ξερά", en: "Surrounding fields: Harvested & dry" },
   s2Desc: {
     el: "Δορυφόρος Sentinel-2 τέλη Ιουνίου (760 μ.). Όλη η γύρω περιοχή έχει θεριστεί και ξεραθεί, αλλά εντός του οικοπέδου παραμένει ενεργό πράσινο φορτίο.",

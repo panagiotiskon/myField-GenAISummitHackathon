@@ -1,60 +1,82 @@
-# myField 🛰️🌿
+# myField
 
-> **Satellite-Powered Wildfire Screening & Plot-Cleaning Verification for Municipalities**  
-> *Cross-referencing annual citizen cleaning declarations against real-world Sentinel-2 and Cadastre imagery.*
+myField helps a Greek municipality decide which plots to inspect before fire season. It compares each owner's plot-cleaning declaration with satellite and aerial imagery, and flags the plots where the pictures and the declaration disagree.
 
----
+Live demo: https://myfield-vert.vercel.app
 
-## ⏱️ 60-Second Overview
+This is a hackathon demo. The imagery is real; the owners, declarations and complaints are made up.
 
-### 👤 What Product It Is & Who Uses It
-**myField** is an intelligent triage and screening platform designed specifically for **Municipal Civil Protection Officers** (*Πολιτική Προστασία*) and fire-prevention teams across Greece.
+## The problem
 
-### ⚠️ The Problem
-Under Greek law ([ΦΕΚ Β' 2323/2026](https://civilprotection.gov.gr/sites/default/files/2026-04/20260202323.pdf)), millions of property owners are legally required each spring to declare on `gov.gr` that they have cleared dry vegetation from their land.  
-* **The Reality:** Municipalities lack the human crews to physically inspect thousands of plots before fire season opens on May 1st. False or neglected declarations go unchecked, turning overgrown parcels into catastrophic wildfire fuses.
+Every spring, owners of plots in and around settlements must clear dry grass, weeds and brush, and declare on gov.gr that they have done so ([ΦΕΚ Β' 2323/24.4.2026](https://civilprotection.gov.gr/sites/default/files/2026-04/20260202323.pdf)). Municipalities do not have the staff to visit every plot, so in practice most declarations are never checked. An uncleared plot next to houses is fuel for a fire.
 
-### 💡 The Solution: *Screen, Never Decide*
-myField eliminates blind spot guesswork by triaging declarations against multi-temporal satellite data and high-resolution orthophotos.  
-* **Not an automated fine bot:** Imagery alone cannot legally penalize an owner. Instead, myField acts as an evidence-backed radar: identifying evident violations (**«Ακαθάριστο»**) and ranking physical inspection routes for municipal teams.
+## What myField does
 
----
+It does not decide whether an owner broke the rules. It points an officer to the plots most worth a site visit, and shows why.
 
-## 🔍 How We Solve It
+For each plot it puts three things side by side:
 
-1. **Multispectral Sentinel-2 NDVI Tracking:**  
-   Measures seasonal biomass drop from spring (April) to dry summer (June). When surrounding agricultural fields dry out or get mown, uncleared plots remain distinct high-NDVI green anomalies.
-2. **Hellenic Cadastre Orthophoto Verification:**  
-   Displays crisp aerial survey photography inside the plot boundary, visually contrasting overgrown wild brush with neighboring mowed or built properties.
-3. **Risk-Weighted Triage Queue:**  
-   Prioritizes field crews based on combined hazard metrics: forest-settlement edges, steep fire-climbing slopes, narrow escape roads, citizen complaints, and conflicting cleaning declarations.
+1. **The declaration**: the date the owner said the plot was cleaned.
+2. **Two Sentinel-2 satellite scenes**, 29 April and 20 June 2026, at 10 m per pixel. From each it measures NDVI, a standard index of how green the vegetation is. A cleaned plot should go from green in spring to bare or dry by summer, like the fields around it. A plot that is still green in late June probably was not cleaned.
+3. **The Hellenic Cadastre aerial photo**, sharper than the satellite, so the officer can see the plot itself. The Cadastre does not publish when it was taken, so it is context, not evidence.
 
----
+From the measurements, fixed rules give one of three readings:
 
-## 🛠️ Tech Stack
+- **Likely cleaned**: June NDVI below 0.20, and at least 0.15 lower than in April.
+- **Potentially uncleaned**: June NDVI of 0.30 or more.
+- **Uncertain**: the plot is too small to measure (nothing left after trimming 10 m from the edge, so no whole satellite pixel), there was cloud over it, or the image is older than the declaration.
 
-* **Core Framework:** Next.js 15 (App Router, Turbopack) & React 19 (TypeScript).
-* **Geospatial & Mapping:** MapLibre GL 5.7, Turf.js spatial analysis, Hellenic Cadastre (Ktimanet) WMS service.
-* **Earth Observation:** ESA Sentinel-2 L2A via Microsoft Planetary Computer, NDVI time-series processing.
-* **Design & Accessibility:** High-craft architectural UI adhering to Impeccable principles and WCAG 2.1 AA standards; bilingual (Greek / English).
-* **Testing:** Vitest (100% passing test suite across assessment rules, spatial calculations, and navigation).
+Uncertain is a common and honest answer. Many town plots are too small for 10 m pixels.
 
----
+An AI model (Claude, or OpenAI as a fallback) can also look at the images and describe what it sees. It can only agree with the rules or step down to Uncertain. It can never make a reading stronger than the measurements allow. Every result says whether it came from a live AI call, a saved AI answer, or the measurements alone.
 
-## ⚡ Quickstart
+## Using it
+
+- `/` opens with a short film from orbit down to one plot and its reading. Sign in with any name (there is no password; this is a demo).
+- `/dashboard` shows the plots on a map and lists the ones most worth inspecting. Search by plot code.
+- `/property/KAEK-05119-001` shows one plot: the reading, the aerial photo, the two NDVI images, and a button to flag it for inspection. Flags are kept in your browser only.
+
+## Real and simulated
+
+| Real | Simulated |
+| --- | --- |
+| Sentinel-2 scenes and the NDVI measured over each plot | Owners, declarations and complaints |
+| Cadastre aerial photos | Plot outlines (traced by hand or taken from OpenStreetMap) |
+| The AI's reading, when an API key is set | Plot codes: they look like KAEK codes but are not real ones |
+
+## Running it locally
+
+Needs Node 20 or later.
 
 ```bash
-# 1. Install dependencies (Node 20+)
 npm install
-
-# 2. Run unit & integration tests
 npm test
-
-# 3. Start local development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view:
-* **`/` (Landing Screen):** Interactive 3D orbital descent down to Attica with automated film playback.
-* **`/dashboard`:** Municipal prioritization desk and parcel search.
-* **`/property/KAEK-05119-001`:** Distilled evidence inspection showing uncleaned vegetative biomass contrasted with cleared surroundings.
+Then open http://localhost:3000.
+
+To let the AI look at the images, copy `.env.local.example` to `.env.local` and add an Anthropic or OpenAI key. Without a key everything still works: the Analyze button shows the saved AI answer or the measurements alone, and says so.
+
+## Refreshing the imagery
+
+The imagery is fetched once and committed, so the demo needs no network at show time apart from map tiles and the optional AI call.
+
+| Script | What it does |
+| --- | --- |
+| `npm run imagery` | Aerial photos and Sentinel-2 pictures for every plot |
+| `node scripts/remeasure-sentinel.mjs` | Re-measures the NDVI numbers from the two scenes |
+| `node scripts/fetch-ndvi-chips.mjs` | The coloured NDVI pictures on the plot page |
+| `node scripts/fetch-ortho-hd.mjs` | Sharper aerial photos, without the Cadastre watermark over the plot |
+| `node scripts/optimize-images.mjs` | Small copies for the dashboard list |
+| `npm run flight` | Tiles for the landing film |
+
+## Limits
+
+- The Cadastre's plot-boundary service was not available (it returns 404), so outlines are approximate and search accepts the demo codes only.
+- A 10 m satellite pixel cannot see a small town plot. These plots read Uncertain, and the aerial photo is the only picture.
+- NDVI shows how green a plot is, not what is growing there. Healthy trees may stay under the rules, so a green reading needs a person to look.
+
+## Built with
+
+Next.js 15 and React 19, MapLibre GL, Turf. Sentinel-2 L2A via Microsoft Planetary Computer; aerial photos from the Hellenic Cadastre WMS; landing film mosaic: Sentinel-2 cloudless 2016 by EOX (CC BY 4.0). Greek and English throughout.

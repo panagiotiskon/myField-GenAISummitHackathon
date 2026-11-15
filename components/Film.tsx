@@ -2,7 +2,7 @@
 
 import { buffer } from "@turf/turf";
 import type { Feature, FeatureCollection, Polygon } from "geojson";
-import maplibregl, { type GeoJSONSource, type Map as MapLibreMap, type StyleSpecification } from "maplibre-gl";
+import maplibregl, { type GeoJSONSource, type ImageSource, type Map as MapLibreMap, type StyleSpecification } from "maplibre-gl";
 import { useEffect, useRef } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { VERDICT_COLOR } from "@/components/Chrome";
@@ -24,11 +24,13 @@ import {
   swathPolygon,
   type View,
 } from "@/lib/film";
+import { fetchTile, fetchTiles, warmOrbitTiles } from "@/lib/flightTiles";
 import { getParcel } from "@/lib/scenario";
 
 // ------------------------------------------------------------------ stage
 
 const PLOT_YELLOW = "#ffe14a"; // the app's selected-plot outline
+const ORBIT_GATE = 2000; // the orbit holds its distance until here; the push needs the coarse tiles
 const DESCENT_GATE = 5700; // the clock waits here until the deep tiles are in
 
 const corners = (b: number[]): [[number, number], [number, number], [number, number], [number, number]] => [
@@ -101,13 +103,13 @@ function filmStyle(verdict: Verdict): StyleSpecification {
       ...Object.fromEntries(
         ORTHO_STILLS.map((still) => [
           `ortho-${still.sideM}`,
-          { type: "image", url: still.src, coordinates: corners(still.bounds) },
+          { type: "image", url: BLANK, coordinates: corners(still.bounds) },
         ]),
       ),
       ...(s2
         ? {
-            april: { type: "image", url: s2.before.chip.src, coordinates: corners(s2.before.chip.bounds) },
-            june: { type: "image", url: s2.after.chip.src, coordinates: corners(s2.after.chip.bounds) },
+            april: { type: "image", url: BLANK, coordinates: corners(s2.before.chip.bounds) },
+            june: { type: "image", url: BLANK, coordinates: corners(s2.after.chip.bounds) },
           }
         : {}),
       // dims the orthophoto around the two Sentinel-2 chips, so the chips read as the subject
@@ -218,48 +220,24 @@ function filmStyle(verdict: Verdict): StyleSpecification {
   return style as unknown as StyleSpecification;
 }
 
-// Tiles are fetched once into memory and handed to the map from there, so the
-// descent never waits on the network mid-flight.
-const tileStore = new Map<string, ArrayBuffer>();
+// Tiles come from the shared in-memory store (lib/flightTiles), which the landing page starts
+// filling before this module has even loaded, so the descent never waits on the network mid-flight.
 let protocolReady = false;
 
 function installProtocol() {
   if (protocolReady) return;
   protocolReady = true;
-  maplibregl.addProtocol("flight", async (params, abort) => {
+  maplibregl.addProtocol("flight", async (params) => {
     const key = params.url.slice("flight://s2/".length);
-    const hit = tileStore.get(key);
-    if (hit) return { data: hit.slice(0) };
-    const response = await fetch(`/flight/s2/${key}.jpg`, { signal: abort.signal });
-    if (!response.ok) throw new Error(`flight tile ${key}: ${response.status}`);
-    const data = await response.arrayBuffer();
-    tileStore.set(key, data);
+    const data = await fetchTile(key);
+    if (!data) throw new Error(`flight tile ${key}`);
     return { data: data.slice(0) };
   });
 }
 
-async function prefetch(keys: string[], signal: AbortSignal, onCoarse: () => void) {
-  const coarse = keys.filter((key) => Number(key.split("/")[0]) <= 5).length;
-  let done = 0;
-  let next = 0;
-  const worker = async () => {
-    while (next < keys.length && !signal.aborted) {
-      const key = keys[next];
-      next += 1;
-      if (!tileStore.has(key)) {
-        try {
-          const response = await fetch(`/flight/s2/${key}.jpg`, { signal });
-          if (response.ok) tileStore.set(key, await response.arrayBuffer());
-        } catch {
-          // a missing tile falls back to its coarser parent on the map
-        }
-      }
-      done += 1;
-      if (done === coarse) onCoarse();
-    }
-  };
-  await Promise.all(Array.from({ length: 8 }, worker));
-}
+// A transparent pixel stands in for each still until the film is running: MapLibre downloads image
+// sources at once and holds its first frame for them, and the stills only show near the end.
+const BLANK = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
 function measureView(frame: HTMLElement): View | null {
   const box = frame.getBoundingClientRect();
@@ -390,29 +368,60 @@ export function FilmStage({
     apply(time());
 
     const abort = new AbortController();
-    let coarse = false;
+    // Three gates, each opening further into the film:
+    //  orbit tiles in + map loaded -> show the picture, play the orbit (hold before the push)
+    //  coarse path tiles (z <= 5) in -> play on to the descent
+    //  every path tile in            -> play to the end
     let loaded = false;
+    let orbit = false;
+    let coarse = false;
     let allTiles = false;
-    const maybeStart = () => {
-      if (!coarse || !loaded) return;
-      // the tiles can all arrive before the map loads; never re-close the gate after that
-      setLimit(allTiles ? FILM_END : Math.max(DESCENT_GATE, 0));
-      onStateRef.current("ready");
+    let stillsIn = false;
+    const loadStills = () => {
+      if (stillsIn || !loaded) return;
+      stillsIn = true;
+      for (const still of ORTHO_STILLS) {
+        (map.getSource(`ortho-${still.sideM}`) as ImageSource | undefined)?.updateImage({
+          url: still.src,
+          coordinates: corners(still.bounds),
+        });
+      }
+      const s2 = imageryFor(FILM_PLOT)?.sentinel;
+      if (s2) {
+        (map.getSource("april") as ImageSource | undefined)?.updateImage({ url: s2.before.chip.src, coordinates: corners(s2.before.chip.bounds) });
+        (map.getSource("june") as ImageSource | undefined)?.updateImage({ url: s2.after.chip.src, coordinates: corners(s2.after.chip.bounds) });
+      }
     };
-    void prefetch(flightTiles(view), abort.signal, () => {
-      coarse = true;
-      maybeStart();
-    }).then(() => {
+    const gate = () => {
+      if (!loaded || !orbit) return;
+      setLimit(allTiles ? FILM_END : coarse ? DESCENT_GATE : ORBIT_GATE);
+      onStateRef.current("ready");
+      if (coarse) loadStills();
+    };
+    const path = flightTiles(view);
+    void warmOrbitTiles().then(() => {
       if (abort.signal.aborted) return;
-      allTiles = true;
-      if (coarse && loaded) setLimit(FILM_END);
+      orbit = true;
+      gate();
     });
+    void fetchTiles(path.filter((key) => Number(key.split("/")[0]) <= 5), abort.signal)
+      .then(() => {
+        if (abort.signal.aborted) return;
+        coarse = true;
+        gate();
+        return fetchTiles(path, abort.signal);
+      })
+      .then(() => {
+        if (abort.signal.aborted) return;
+        allTiles = true;
+        gate();
+      });
 
     map.on("load", () => {
       styled = true;
       loaded = true;
       apply(time());
-      maybeStart();
+      gate();
     });
     // a tile the committed set does not hold is not an error worth surfacing
     map.on("error", () => undefined);
