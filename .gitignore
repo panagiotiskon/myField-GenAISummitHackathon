@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.turbo
+*.log
+.DS_Store
+coverage
+.venv
+__pycache__
+.env
+.env.local
+tsconfig.tsbuildinfo
+next-env.d.ts
+.taste-skill
