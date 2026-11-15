@@ -39,7 +39,7 @@ function addDeskLayers(map: MapLibreMap) {
     id: "settlement-line",
     type: "line",
     source: "settlement",
-    paint: { "line-color": "#1f6b3a", "line-width": 2, "line-dasharray": [2, 1.4] },
+    paint: { "line-color": "#23408e", "line-width": 2, "line-dasharray": [2, 1.4] },
   });
   map.addSource("parcels", { type: "geojson", data: scenario.parcels });
   map.addLayer({
@@ -52,14 +52,14 @@ function addDeskLayers(map: MapLibreMap) {
     id: "parcels-line",
     type: "line",
     source: "parcels",
-    paint: { "line-color": "#0a0a0a", "line-width": 1.2 },
+    paint: { "line-color": "#16261d", "line-width": 1.2 },
   });
   map.addLayer({
     id: "parcels-flagged",
     type: "line",
     source: "parcels",
     filter: ["in", ["get", "id"], ["literal", []]],
-    paint: { "line-color": "#0a0a0a", "line-width": 3, "line-dasharray": [1.2, 1] },
+    paint: { "line-color": "#16261d", "line-width": 3, "line-dasharray": [1.2, 1] },
   });
   map.addLayer({
     id: "parcels-selected",

@@ -2,18 +2,168 @@ import type { AnalysisSource, Confidence, RuleReason, Verdict } from "./assess";
 import type { Lang, Localized, ZoneClass } from "./types";
 
 export const copy = {
-  appTitle: { el: "PlotCheck", en: "PlotCheck" },
+  appTitle: { el: "myField", en: "myField" },
   tagline: {
     el: "Έλεγχος δηλώσεων καθαρισμού οικοπέδων",
     en: "Plot-cleaning declaration check",
   },
   dashboard: { el: "Πίνακας δήμου", en: "Municipal dashboard" },
-  backDashboard: { el: "← Πίνακας δήμου", en: "← Dashboard" },
+  backDashboard: { el: "Πίνακας δήμου", en: "Dashboard" },
   banner: {
-    el: "Επίδειξη. Δορυφορικές λήψεις και ορθοφωτογραφίες είναι πραγματικές. Τα όρια είναι χειροκίνητα ιχνηλατημένα και οι ιδιοκτήτες, δηλώσεις και καταγγελίες προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-RAF-* δεν είναι ΚΑΕΚ.",
-    en: "Demo. Satellite scenes and orthophotos are real. Outlines are hand-traced and owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-RAF-* codes are not KAEKs.",
+    el: "Δορυφορικές λήψεις και ορθοφωτογραφίες είναι πραγματικές. Τα όρια είναι χειροκίνητα ιχνηλατημένα και οι ιδιοκτήτες, δηλώσεις και καταγγελίες προσομοιωμένα: τίποτα εδώ δεν αποτελεί ισχυρισμό για πραγματικό ακίνητο. Οι κωδικοί DEMO-RAF-* δεν είναι ΚΑΕΚ.",
+    en: "Satellite scenes and orthophotos are real. Outlines are hand-traced and owners, declarations and complaints are simulated: nothing here is a statement about a real property. DEMO-RAF-* codes are not KAEKs.",
   },
 
+  demoTag: { el: "Επίδειξη", en: "Demo" },
+  findTitle: { el: "Εύρεση οικοπέδου", en: "Find a plot" },
+  mapLayer: { el: "Υπόβαθρο χάρτη", en: "Map layer" },
+  screening: { el: "Προέλεγχος", en: "Screening" },
+  ndviScale: { el: "Κάτω από 0,20 γυμνό, από 0,30 και πάνω πράσινο", en: "Below 0.20 reads bare, 0.30 and up reads green" },
+  insetLabel: {
+    el: "Κάθε τετράγωνο είναι 10 μ., ένα εικονοστοιχείο Sentinel-2. Μετράμε μόνο μέσα στη διακεκομμένη, 10 μ. από το όριο.",
+    en: "Each square is 10 m, one Sentinel-2 pixel. Only the area inside the dashed line, 10 m in from the edge, is measured.",
+  },
+  noInsetLabel: {
+    el: "Κάθε τετράγωνο είναι 10 μ., ένα εικονοστοιχείο Sentinel-2. Τίποτα δεν μένει 10 μ. μέσα από το όριο, άρα ο δορυφόρος δεν μπορεί να το μετρήσει.",
+    en: "Each square is 10 m, one Sentinel-2 pixel. Nothing is left 10 m in from the edge, so the satellite cannot measure this plot.",
+  },
+  duty: { el: "υπόχρεα οικόπεδα", en: "plots under the duty" },
+  tallyLead: {
+    el: "από {n} υπόχρεα οικόπεδα έχουν δηλωθεί καθαρισμένα",
+    en: "of {n} plots under the duty are declared cleaned",
+  },
+  flaggedOn: { el: "Σημειώθηκε για αυτοψία στις", en: "Flagged for inspection on" },
+  landing: {
+    title: {
+      el: "Δορυφορικός έλεγχος δηλώσεων καθαρισμού για δήμους",
+      en: "Satellite checks of plot-cleaning declarations for municipalities",
+    },
+    lead: {
+      el: "Το myField βάζει κάθε δήλωση δίπλα σε δύο λήψεις Sentinel-2 και στην ορθοφωτογραφία του Κτηματολογίου, και δείχνει στον υπάλληλο πολιτικής προστασίας ποια οικόπεδα αξίζουν αυτοψία.",
+      en: "myField sets each declaration beside two Sentinel-2 scenes and the Cadastre orthophoto, and shows the civil-protection officer which plots are worth a site visit.",
+    },
+    signIn: { el: "Σύνδεση υπαλλήλου", en: "Officer sign-in" },
+    name: { el: "Το όνομά σας", en: "Your name" },
+    namePlaceholder: { el: "π.χ. Μ. Παπαδοπούλου", en: "e.g. M. Papadopoulou" },
+    nameHint: {
+      el: "Προαιρετικό. Εμφανίζεται στον πίνακα και μένει σε αυτόν τον περιηγητή.",
+      en: "Optional. Shown on the dashboard and kept in this browser.",
+    },
+    enter: { el: "Άνοιγμα πίνακα δήμου", en: "Open the dashboard" },
+    continueAs: { el: "Συνέχεια ως {name}", en: "Continue as {name}" },
+    switchUser: { el: "Σύνδεση με άλλο όνομα", en: "Sign in with another name" },
+    noAuth: {
+      el: "Επίδειξη: δεν χρειάζεται λογαριασμός ή κωδικός. Η πραγματική σύνδεση υπαλλήλων δεν είναι συνδεδεμένη.",
+      en: "Demo: no account or password. Real staff sign-in is not connected.",
+    },
+    ownerTitle: { el: "Για ιδιοκτήτες οικοπέδων", en: "For plot owners" },
+    ownerBody: {
+      el: "Η δήλωση καθαρισμού υποβάλλεται και φαίνεται στην επίσημη υπηρεσία του gov.gr. Το myField το χρησιμοποιούν μόνο οι δήμοι.",
+      en: "Cleaning declarations are filed and shown on the official gov.gr service. myField is used by municipalities only.",
+    },
+    ownerLink: { el: "Δείτε τη δήλωσή σας στο gov.gr", en: "See your declaration on gov.gr" },
+    ownerUrl: "https://www.gov.gr/el/services/1001947/delose-katharismou-oikopedou",
+    stepsTitle: { el: "Τρία βήματα ανά οικόπεδο", en: "Three steps per plot" },
+    steps: [
+      {
+        el: "Πληκτρολογήστε τον κωδικό. Το οικόπεδο ανοίγει πάνω στην ορθοφωτογραφία του Κτηματολογίου.",
+        en: "Type its code. The plot opens on the Cadastre orthophoto.",
+      },
+      {
+        el: "Ο δείκτης βλάστησης από τις λήψεις Sentinel-2 της {spring} και της {june}, μαζί με ό,τι βλέπει το μοντέλο μέσα στο όριο.",
+        en: "The vegetation index from the Sentinel-2 scenes of {spring} and {june}, read with what the model sees inside the outline.",
+      },
+      {
+        el: "Η εκτίμηση δεν είναι κρίση συμμόρφωσης. Η αυτοψία αποφασίζει, και τα σημειωμένα οικόπεδα μετρώνται στον πίνακα.",
+        en: "The reading is not a compliance finding. A site visit decides, and flagged plots are counted on the dashboard.",
+      },
+    ] as Localized[],
+    stepAlt: [
+      { el: "Ορθοφωτογραφία Κτηματολογίου του DEMO-RAF-017 με το όριό του", en: "Cadastre orthophoto of DEMO-RAF-017 with its outline" },
+      { el: "Λήψη Sentinel-2 της άνοιξης πάνω στο DEMO-RAF-017", en: "Spring Sentinel-2 scene over DEMO-RAF-017" },
+      { el: "Λήψη Sentinel-2 του Ιουνίου πάνω στο DEMO-RAF-017", en: "June Sentinel-2 scene over DEMO-RAF-017" },
+    ] as Localized[],
+    planLabel: {
+      el: "Τοπογραφικό των 24 οικοπέδων επίδειξης στο Δράφι, χρωματισμένα κατά τον προέλεγχο.",
+      en: "Site plan of the 24 demo plots in Drafi, coloured by screening result.",
+    },
+    plots: { el: "Οικόπεδα", en: "Plots" },
+    declarations: { el: "Δηλώσεις (προσομοίωση)", en: "Declarations (simulated)" },
+    scenes: { el: "Λήψεις Sentinel-2", en: "Sentinel-2 scenes" },
+    scale: { el: "Κλίμακα", en: "Scale" },
+    settlementEdge: { el: "Όριο οικισμού", en: "Settlement edge" },
+    sources: {
+      el: "Ορθοφωτογραφίες: Ελληνικό Κτηματολόγιο. Δορυφορικές λήψεις: Copernicus Sentinel-2 L2A. Πλαίσιο:",
+      en: "Orthophotos: Hellenic Cadastre. Satellite scenes: Copernicus Sentinel-2 L2A. Rules:",
+    },
+  },
+  film: {
+    stageLabel: {
+      el: "Ταινία: από την τροχιά του Sentinel-2 ως το οικόπεδο {code} στο Δράφι, με τις δύο λήψεις και την εκτίμηση.",
+      en: "Film: from Sentinel-2's orbit down to plot {code} in Drafi, with the two scenes and the assessment.",
+    },
+    chapters: {
+      orbit: { el: "Τροχιά", en: "Orbit" },
+      scan: { el: "Σάρωση", en: "Scan" },
+      descent: { el: "Οικόπεδο", en: "Plot" },
+      analysis: { el: "Ανάλυση", en: "Analysis" },
+      result: { el: "Εκτίμηση", en: "Assessment" },
+    },
+    chaptersLabel: { el: "Κεφάλαια ταινίας", en: "Film chapters" },
+    lines: {
+      orbit: {
+        el: "Το Sentinel-2 φωτογραφίζει όλη την Ελλάδα κάθε λίγες ημέρες.",
+        en: "Sentinel-2 photographs all of Greece every few days.",
+      },
+      scan: {
+        el: "Κάθε πέρασμα καλύπτει λωρίδα 290 χλμ., με εικονοστοιχεία 10 μέτρων.",
+        en: "Each pass covers a strip 290 km wide, in 10-metre pixels.",
+      },
+      descent: {
+        el: "Το myField κοιτά ένα οικόπεδο τη φορά. Στην επίδειξη, το {code} δηλώθηκε καθαρισμένο στις {date}.",
+        en: "myField looks at one plot at a time. In this demo, {code} was declared cleaned on {date}.",
+      },
+      april: {
+        el: "Έτσι το βλέπει ο δορυφόρος: {n} εικονοστοιχεία μέσα στο όριο. {date}: δείκτης βλάστησης {ndvi}.",
+        en: "This is what the satellite sees: {n} pixels inside the outline. {date}: vegetation index {ndvi}.",
+      },
+      june: {
+        el: "{date}, {days} ημέρες μετά τη δήλωση: {ndvi}.",
+        en: "{date}, {days} days after the declaration: {ndvi}.",
+      },
+    },
+    sources: {
+      mosaic: {
+        el: "Εικόνα: μωσαϊκό Sentinel-2 χωρίς νέφη, 2016 (EOX)",
+        en: "Imagery: Sentinel-2 cloudless mosaic, 2016 (EOX)",
+      },
+      ortho: {
+        el: "Εικόνα: ορθοφωτογραφία Κτηματολογίου, ημερομηνία λήψης μη δημοσιευμένη",
+        en: "Imagery: Cadastre orthophoto, capture date not published",
+      },
+      scenes: { el: "Εικόνα: Sentinel-2 L2A, {date}", en: "Imagery: Sentinel-2 L2A, {date}" },
+    },
+    skip: { el: "Παράλειψη", en: "Skip" },
+    replay: { el: "Επανάληψη", en: "Replay" },
+    decides: {
+      el: "Προέλεγχος, όχι κρίση συμμόρφωσης. Η αυτοψία αποφασίζει.",
+      en: "A screening, not a compliance finding. A site visit decides.",
+    },
+    openPlot: { el: "Άνοιγμα του {code}", en: "Open {code}" },
+    signInShort: { el: "Σύνδεση", en: "Sign in" },
+    close: { el: "Κλείσιμο", en: "Close" },
+    planTitle: { el: "Και τα {n} οικόπεδα της επίδειξης", en: "All {n} demo plots" },
+    planBody: {
+      el: "Κάθε περίγραμμα είναι ένα οικόπεδο στο Δράφι, χρωματισμένο κατά τον προέλεγχο. Επιλέξτε ένα για να το ανοίξετε.",
+      en: "Each outline is one plot in Drafi, coloured by its screening result. Pick one to open it.",
+    },
+    mosaicCredit: {
+      el: "Μωσαϊκό πτήσης: Sentinel-2 cloudless, s2maps.eu, EOX IT Services GmbH (περιέχει τροποποιημένα δεδομένα Copernicus Sentinel 2016 και 2017), CC BY 4.0.",
+      en: "Flight mosaic: Sentinel-2 cloudless, s2maps.eu, by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2016 and 2017), CC BY 4.0.",
+    },
+  },
+  signOut: { el: "Αποσύνδεση", en: "Sign out" },
+  demoOfficer: { el: "Υπάλληλος επίδειξης", en: "Demo officer" },
   searchLabel: { el: "ΚΑΕΚ", en: "KAEK" },
   searchPlaceholder: { el: "π.χ. DEMO-RAF-017", en: "e.g. DEMO-RAF-017" },
   searchGo: { el: "Εύρεση οικοπέδου", en: "Find plot" },
@@ -96,9 +246,9 @@ export const copy = {
     },
   } satisfies Record<RuleReason, Localized>,
   source: {
-    ai_live: { el: "Ανάλυση ΤΝ · ζωντανή κλήση", en: "AI analysis · live call" },
-    ai_saved: { el: "Ανάλυση ΤΝ · αποθηκευμένη", en: "AI analysis · saved result" },
-    rules_only: { el: "Μόνο μετρήσεις · χωρίς ΤΝ", en: "Measurements only · no AI" },
+    ai_live: { el: "Ανάλυση ΤΝ, ζωντανή", en: "AI analysis, live" },
+    ai_saved: { el: "Ανάλυση ΤΝ, αποθηκευμένη", en: "AI analysis, saved" },
+    rules_only: { el: "Μόνο μετρήσεις, χωρίς ΤΝ", en: "Measurements only, no AI" },
   } satisfies Record<AnalysisSource, Localized>,
   aiNote: {
     no_key: {
@@ -127,14 +277,14 @@ export const copy = {
   area: { el: "Εμβαδόν", en: "Area" },
   zone: { el: "Ζώνη", en: "Zone" },
   declaration: { el: "Δήλωση (προσομοίωση)", en: "Declaration (simulated)" },
-  declaredCleaned: { el: "δηλώθηκε καθαρισμένο στις", en: "declared cleaned on" },
+  declaredCleaned: { el: "Δηλώθηκε καθαρισμένο στις", en: "Declared cleaned on" },
   none: { el: "Καμία", en: "None" },
   complaint: { el: "Καταγγελία (προσομοίωση)", en: "Complaint (simulated)" },
 
   imagery: { el: "Εικόνες", en: "Imagery" },
   orthoCaption: { el: "Ορθοφωτογραφία Κτηματολογίου", en: "Cadastre orthophoto" },
   orthoDate: { el: "ημερομηνία λήψης μη δημοσιευμένη", en: "capture date not published" },
-  s2Caption: { el: "Sentinel-2 · 10 μ.", en: "Sentinel-2 · 10 m" },
+  s2Caption: { el: "Sentinel-2, 10 μ.", en: "Sentinel-2, 10 m" },
   real: { el: "πραγματική", en: "real" },
   noSentinel: {
     el: "Δεν υπάρχει χρήσιμη λήψη Sentinel-2 για οικόπεδο αυτού του μεγέθους.",

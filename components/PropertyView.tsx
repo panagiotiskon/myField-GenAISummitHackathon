@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import { TopBar, VERDICT_COLOR } from "@/components/Chrome";
+import { BackLink, LayerSwitch, TopBar, VERDICT_COLOR, VerdictPill } from "@/components/Chrome";
+import { PlotSurvey } from "@/components/PlotShape";
 import { MapView } from "@/components/MapView";
+import { NdviScale } from "@/components/NdviScale";
 import {
   imageryDoc,
   imageryFor,
@@ -49,7 +51,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
         <TopBar lang={lang} setLang={setLang} section={t(lang, copy.property)} />
         <main className="empty">
           <p>{t(lang, copy.unknownParcel)}</p>
-          <Link href="/">{t(lang, copy.backDashboard)}</Link>
+          <Link href="/dashboard">{t(lang, copy.backDashboard)}</Link>
         </main>
       </div>
     );
@@ -88,7 +90,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
         lang={lang}
         setLang={setLang}
         section={t(lang, copy.property)}
-        left={<Link href="/">{t(lang, copy.backDashboard)}</Link>}
+        left={<BackLink label={t(lang, copy.backDashboard)} />}
       />
 
       <div className="prop-body">
@@ -100,31 +102,44 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
             orthophoto={orthophoto}
             offlineNote={t(lang, copy.mapOffline)}
           />
-          <button type="button" className="btn map-toggle" onClick={() => setOrthophoto((v) => !v)}>
-            {orthophoto ? t(lang, copy.streets) : t(lang, copy.orthophoto)}
-          </button>
+          <LayerSwitch lang={lang} orthophoto={orthophoto} setOrthophoto={setOrthophoto} />
         </section>
 
         <aside className="panel right prop-panel">
           <header className="prop-head">
-            <h1>{p.id}</h1>
-            <p className="muted">{t(lang, p.street)}</p>
+            <div className="prop-title">
+              <h1 aria-describedby="code-note">{p.id}</h1>
+              <p className="code-note" id="code-note">{t(lang, copy.demoId)}</p>
+              <p className="street">{t(lang, p.street)}</p>
+              <VerdictPill verdict={analysis?.verdict ?? rule.verdict} lang={lang} prefix={analysis ? undefined : t(lang, copy.screening)} />
+              <p className="area-big">
+                {Math.round(p.areaM2).toLocaleString("el-GR")} <span>m²</span>
+              </p>
+            </div>
+            <PlotSurvey
+              geometry={parcel.geometry}
+              verdict={analysis?.verdict ?? rule.verdict}
+              insetLabel={t(lang, copy.insetLabel)}
+              noInsetLabel={t(lang, copy.noInsetLabel)}
+              lang={lang}
+            />
           </header>
 
-          <div className="kv">
-            <span>{t(lang, copy.demoId)}</span>
-            <strong>{p.id}</strong>
-            <span>{t(lang, copy.area)}</span>
-            <span>{Math.round(p.areaM2).toLocaleString("el-GR")} m²</span>
+          <div className="kv facts">
             <span>{t(lang, copy.zone)}</span>
             <span>
-              {t(lang, copy.zones[p.zone])} · {membership.article}
+              {t(lang, copy.zones[p.zone])} ({membership.article})
             </span>
             <span>{t(lang, copy.declaration)}</span>
             <span>
-              {declaration
-                ? `${declaration.registryRef} · ${t(lang, copy.declaredCleaned)} ${declaration.submittedAt.slice(0, 10)}`
-                : t(lang, copy.none)}
+              {declaration ? (
+                <>
+                  {t(lang, copy.declaredCleaned)} {declaration.submittedAt.slice(0, 10)}
+                  <small className="ref">{declaration.registryRef}</small>
+                </>
+              ) : (
+                t(lang, copy.none)
+              )}
             </span>
             <span>{t(lang, copy.complaint)}</span>
             <span>
@@ -141,7 +156,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
                 <figcaption>
                   <strong>{t(lang, copy.orthoCaption)}</strong>
                   <span>
-                    {t(lang, copy.orthoDate)} · {imagery.ortho.sideM} m
+                    {t(lang, copy.orthoDate)}, {imagery.ortho.sideM} m
                   </span>
                 </figcaption>
               </figure>
@@ -153,10 +168,10 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
                     <img src={scene.chip.src} alt={`Sentinel-2 ${scene.date}`} width={512} height={512} />
                     <figcaption>
                       <strong>
-                        {t(lang, copy.s2Caption)} · {scene.date}
+                        {scene.date}
                       </strong>
                       <span>
-                        NDVI {scene.ndvi.toFixed(2)} · {scene.chip.sideM} m
+                        {t(lang, copy.s2Caption)}, NDVI {scene.ndvi.toFixed(2)}
                       </span>
                     </figcaption>
                   </figure>
@@ -164,14 +179,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
               : null}
           </div>
           {s2 ? (
-            <p className="ndvi-line">
-              {t(lang, copy.ndvi)}: <strong>{s2.before.ndvi.toFixed(2)}</strong> →{" "}
-              <strong>{s2.after.ndvi.toFixed(2)}</strong>
-              <span className="muted">
-                {" "}
-                · {s2.after.pixelCount} {t(lang, copy.pixels)}
-              </span>
-            </p>
+            <NdviScale before={s2.before.ndvi} after={s2.after.ndvi} pixels={s2.after.pixelCount} lang={lang} />
           ) : (
             <p className="panel-sub">{t(lang, copy.noSentinel)}</p>
           )}
@@ -193,7 +201,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
                 <span>{t(lang, copy.imageDate)}</span>
                 <span>
                   {analysis.rule.imageDate
-                    ? `${analysis.rule.imageDate} · Sentinel-2`
+                    ? `${analysis.rule.imageDate}, Sentinel-2`
                     : t(lang, copy.imageDateNone)}
                 </span>
               </div>
@@ -267,7 +275,7 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
             {flaggedAt ? (
               <>
                 <span className="flag-on">
-                  {t(lang, copy.flagged)} · {flaggedAt.slice(0, 16).replace("T", " ")}
+                  {t(lang, copy.flaggedOn)} {flaggedAt.slice(0, 16).replace("T", " ")}
                 </span>
                 <button type="button" className="btn" onClick={() => toggle(parcelId)}>
                   {t(lang, copy.unflag)}

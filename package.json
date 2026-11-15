@@ -2,14 +2,15 @@
   "name": "myfield-uncleared-plots-desk",
   "version": "0.1.0",
   "private": true,
-  "description": "PlotCheck: hackathon demo that screens Greek plot-cleaning declarations against real imagery.",
+  "description": "myField: hackathon demo that screens Greek plot-cleaning declarations against real imagery.",
   "engines": { "node": ">=20.19" },
   "scripts": {
     "dev": "next dev --turbopack --hostname 127.0.0.1 --port 3000",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3000",
     "test": "vitest run",
-    "imagery": "node scripts/fetch-imagery.mjs"
+    "imagery": "node scripts/fetch-imagery.mjs",
+    "flight": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/fetch-flight.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",

@@ -93,3 +93,16 @@ export function useAnalyses() {
 export function useLang(): [Lang, (lang: Lang) => void] {
   return useStored<Lang>("plotcheck.lang", "el");
 }
+
+export type Officer = { name: string; at: string };
+
+/** Demo sign-in: a display name kept in this browser. No account, no password. */
+export function useOfficer() {
+  const [officer, setOfficer] = useStored<Officer | null>("plotcheck.officer", null);
+  const signIn = useCallback(
+    (name: string) => setOfficer({ name: name.trim(), at: new Date().toISOString() }),
+    [setOfficer],
+  );
+  const signOut = useCallback(() => setOfficer(null), [setOfficer]);
+  return { officer, signIn, signOut };
+}

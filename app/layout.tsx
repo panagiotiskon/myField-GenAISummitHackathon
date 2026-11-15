@@ -1,29 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Manrope } from "next/font/google";
+import { Commissioner } from "next/font/google";
 import "./globals.css";
 
-const sans = Manrope({
+// Commissioner: drawn by a Greek type designer, Greek and Latin of equal standing.
+// FLAR opens the terminals for the plot code; VOLM is left at rest.
+const sans = Commissioner({
   subsets: ["latin", "greek"],
+  axes: ["FLAR", "VOLM"],
   variable: "--font-sans",
 });
 
-const mono = JetBrains_Mono({
-  subsets: ["latin", "greek"],
-  variable: "--font-mono",
-});
-
 export const metadata: Metadata = {
-  title: "PlotCheck · Έλεγχος δηλώσεων καθαρισμού οικοπέδων",
+  title: "myField: Έλεγχος δηλώσεων καθαρισμού οικοπέδων",
   description:
     "Hackathon demo: screen Greek plot-cleaning declarations against real imagery. Simulated declarations, demo plot codes, no compliance findings.",
   icons: { icon: "/favicon.svg" },
+  openGraph: {
+    title: "myField: Δορυφορικός έλεγχος δηλώσεων καθαρισμού για δήμους",
+    description: "Hackathon demo: screen Greek plot-cleaning declarations against real Sentinel-2 and Cadastre imagery.",
+    type: "website",
+  },
+  twitter: { card: "summary" },
 };
 
-export const viewport: Viewport = { themeColor: "#f8f8f8" };
+export const viewport: Viewport = { themeColor: "#edefea" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="el" className={`${sans.variable} ${mono.variable}`}>
+    // suppressHydrationWarning: the head line below adds m-enter to <html> before React hydrates
+    <html lang="el" className={sans.variable} suppressHydrationWarning>
+      <head>
+        {/* the landing hero's one entrance on load; without script nothing is hidden */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)",
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

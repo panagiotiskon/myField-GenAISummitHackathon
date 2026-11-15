@@ -12,3 +12,7 @@ __pycache__
 tsconfig.tsbuildinfo
 next-env.d.ts
 .taste-skill
+
+# Agent skill installs (skills CLI) — local tooling, not app code
+skills/
+skills-lock.json
