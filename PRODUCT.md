@@ -49,7 +49,7 @@ It screens; it does not decide. Code turns measurements into the verdict. Claude
 ## Evidence on Hand
 
 - Imagery: `public/imagery/` (orthophotos for the demo plots; Sentinel-2 before/after for DEMO-RAF-017 to 020), `data/imagery.json`.
-- Landing film imagery: `public/flight/` (Sentinel-2 cloudless 2016 mosaic tiles by EOX, CC BY 4.0, and three Cadastre orthophoto stills), `data/flight-manifest.json`.
+- Landing film: `public/film/` (one recorded video per layout, built from the Sentinel-2 cloudless 2016 mosaic by EOX, CC BY 4.0, and Cadastre orthophoto stills).
 - Scenario: `data/scenario.json`. Saved AI readings: `data/analysis-cache.json`.
 - Legal sources: the gov.gr declaration service and ΦΕΚ Β' 2323/24.4.2026 (linked in the README).
 - Absent, so never fabricate: real municipalities using it, testimonials, accuracy benchmarks, real owners or KAEKs, deployment or pricing claims.

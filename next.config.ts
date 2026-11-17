@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/analyze": ["./public/imagery/**/*", "./data/**/*"],
   },
+  // the landing film: versioned by folder (public/film/vN), so it can be cached for good
+  async headers() {
+    return [{ source: "/film/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] }];
+  },
 };
 
 export default nextConfig;

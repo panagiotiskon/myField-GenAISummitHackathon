@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { CHAPTERS, CHAPTER_STILL, FILM_END, cuesAt, type ChapterId, type Cues, type View } from "@/lib/film";
+import { CHAPTERS, CHAPTER_STILL, FILM_END, cuesAt, type ChapterId, type Cues } from "@/lib/film";
 
-// The film's clock lives apart from its picture, so the page can start counting
-// (and render its words) before the map engine has been downloaded.
+// The film's clock lives apart from its picture, so the page can render its words
+// before the video has loaded; the video then holds the clock to the frame on screen.
 
 type Listener = (time: number) => void;
 const SEEN_KEY = "plotcheck.film.seen";
@@ -15,21 +15,18 @@ export type FilmClock = {
   playing: boolean;
   /** true while the stage is dipped to black for a cut */
   cutting: boolean;
-  /** stills only: the visitor asked for reduced motion */
+  /** stills only: the visitor asked for reduced motion, or for data saving */
   reduced: boolean;
   /** false until the browser has decided how to start, so nothing flashes */
   booted: boolean;
   time: () => number;
   subscribe: (listener: Listener) => () => void;
-  /** how far the stage lets the clock run: tiles for the descent may still be arriving */
+  /** how far the stage lets the clock run: the video may still be buffering */
   setLimit: (limit: number) => void;
-  setView: (view: View) => void;
   skip: () => void;
   replay: () => void;
   goTo: (chapter: ChapterId) => void;
 };
-
-const BOOT_VIEW: View = { width: 1440, height: 800, pad: { top: 0, right: 0, bottom: 0, left: 0 } };
 
 function sameCues(a: Cues, b: Cues) {
   return (
@@ -49,13 +46,13 @@ function sameCues(a: Cues, b: Cues) {
 export function useFilmClock(): FilmClock {
   const timeRef = useRef(0);
   const limitRef = useRef(0);
-  const viewRef = useRef<View>(BOOT_VIEW);
   const listeners = useRef(new Set<Listener>());
   const frame = useRef(0);
   const lastTick = useRef(0);
   const cutTimer = useRef(0);
   const playingRef = useRef(false);
-  const cuesRef = useRef<Cues>(cuesAt(0, BOOT_VIEW));
+  const stillsRef = useRef(false);
+  const cuesRef = useRef<Cues>(cuesAt(0));
 
   const [cues, setCues] = useState<Cues>(cuesRef.current);
   const [playing, setPlaying] = useState(false);
@@ -66,7 +63,7 @@ export function useFilmClock(): FilmClock {
   const publish = useCallback((time: number) => {
     timeRef.current = time;
     for (const listener of listeners.current) listener(time);
-    const next = cuesAt(time, viewRef.current);
+    const next = cuesAt(time);
     if (!sameCues(next, cuesRef.current)) {
       cuesRef.current = next;
       setCues(next);
@@ -140,8 +137,12 @@ export function useFilmClock(): FilmClock {
       signedIn = false;
     }
     const forced = params.get("film");
+    // Save-Data (Chromium): the last frame as a still, no video download
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+    const stills = () => motion.matches || saveData;
+    stillsRef.current = stills();
 
-    setReduced(motion.matches);
+    setReduced(stillsRef.current);
     // ?t=<ms> holds one frame, for checking the film frame by frame; a "film:seek" event moves it
     const onSeek = (event: Event) => {
       const to = Number((event as CustomEvent<number>).detail);
@@ -150,7 +151,7 @@ export function useFilmClock(): FilmClock {
     if (frozen != null && Number.isFinite(Number(frozen))) {
       publish(Math.min(FILM_END, Math.max(0, Number(frozen))));
       window.addEventListener("film:seek", onSeek);
-    } else if (forced === "end" || motion.matches) {
+    } else if (forced === "end" || stillsRef.current) {
       publish(FILM_END);
     } else {
       publish(0);
@@ -159,8 +160,9 @@ export function useFilmClock(): FilmClock {
     setBooted(true);
 
     const onMotion = () => {
-      setReduced(motion.matches);
-      if (motion.matches && playingRef.current) {
+      stillsRef.current = stills();
+      setReduced(stillsRef.current);
+      if (stillsRef.current && playingRef.current) {
         stop();
         publish(FILM_END);
       }
@@ -190,19 +192,11 @@ export function useFilmClock(): FilmClock {
     setLimit: useCallback((limit: number) => {
       limitRef.current = limit;
     }, []),
-    setView: useCallback(
-      (view: View) => {
-        viewRef.current = view;
-        publish(timeRef.current);
-      },
-      [publish],
-    ),
     skip: useCallback(() => cut(FILM_END, false), [cut]),
     replay: useCallback(() => cut(0, true), [cut]),
     goTo: useCallback(
       (chapter: ChapterId) => {
-        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (reduce) cut(CHAPTER_STILL[chapter], false);
+        if (stillsRef.current) cut(CHAPTER_STILL[chapter], false);
         else cut(CHAPTERS.find((row) => row.id === chapter)?.at ?? 0, chapter !== "result");
       },
       [cut],

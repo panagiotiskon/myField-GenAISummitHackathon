@@ -1081,10 +1081,8 @@ dialog.signin-dialog {
 .film-picture { position: absolute; inset: 0; opacity: 0; transition: opacity 320ms var(--ease-out); }
 .film[data-state="ready"] .film-picture, .film[data-state="failed"] .film-picture { opacity: 1; }
 .film[data-cutting="1"] .film-picture { opacity: 0; transition-duration: 160ms; }
-.film-map, .film-map.maplibregl-map { position: absolute; inset: 0; font-family: var(--font); }
-.film-map canvas { outline: 0; }
-.film-poster img, .film-poster svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.film-poster polygon { fill: none; stroke: #ffe14a; stroke-width: 3px; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.film-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #060a08; }
+.film-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 /* scrims: the copy column on the left, the subtitles and rail along the bottom */
 .film-shade {
