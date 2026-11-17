@@ -22,3 +22,4 @@ skills-lock.json
 *.mp4
 *.mov
 *.webm
+!public/film/**/*.mp4

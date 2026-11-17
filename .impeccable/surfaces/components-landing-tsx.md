@@ -2,12 +2,12 @@
 version: 1
 slug: "components-landing-tsx"
 primary_target: "components/Landing.tsx"
-related_targets: ["components/Film.tsx","lib/film.ts"]
+related_targets: ["components/FilmVideo.tsx","lib/film.ts"]
 ---
 
 # Landing (`/`): the film
 
-Scope: `components/Landing.tsx`, `components/Film.tsx`, `lib/film.ts`. Mode: Persuade. Build path: code-led.
+Scope: `components/Landing.tsx`, `components/FilmVideo.tsx`, `lib/film.ts`. Mode: Persuade. Build path: code-led.
 
 Audience and job: a municipal civil-protection officer deciding whether this tool is worth opening, with hackathon judges watching. Action: sign in (a name, no password) and open the dashboard, or open the worked example plot. Proof: the real flight imagery and the real measurements for DEMO-RAF-017. Constraints: Greek first and bilingual; demo banner and "not a compliance finding" always visible; nothing fabricated; WCAG 2.1 AA; app functions untouched.
 

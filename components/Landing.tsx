@@ -1,22 +1,19 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { LangSwitch, Mark, Pin, Wordmark } from "@/components/Chrome";
 import { useFilmClock } from "@/components/FilmClock";
+import { FilmVideo } from "@/components/FilmVideo";
 import { NdviScale } from "@/components/NdviScale";
 import savedAnalyses from "@/data/analysis-cache.json";
 import { imageryFor, rulesOnlyAnalysis, screen, type Analysis } from "@/lib/assess";
-import { CHAPTERS, FILM_END, FILM_PLOT, ORTHO_STILLS, type ChapterId } from "@/lib/film";
+import { CHAPTERS, FILM_DIR, FILM_END, FILM_PLOT, type ChapterId } from "@/lib/film";
 import { copy, fill, t } from "@/lib/i18n";
 import { scenario } from "@/lib/scenario";
 import { useAnalyses, useLang, useOfficer } from "@/lib/store";
 import type { Lang } from "@/lib/types";
-
-// The map engine is only worth loading in a browser that can draw it.
-const FilmStage = dynamic(() => import("@/components/Film").then((mod) => mod.FilmStage), { ssr: false });
 
 const SKIP = { el: "Μετάβαση στο περιεχόμενο", en: "Skip to content" };
 const SAVED = savedAnalyses as unknown as Record<string, Analysis>;
@@ -44,24 +41,13 @@ function number(lang: Lang, value: number, digits = 2) {
   });
 }
 
-/** The plot on its orthophoto, for browsers that cannot draw the film. */
+/** The film's last frame, for browsers that cannot play the video. */
 function Poster() {
-  const still = ORTHO_STILLS[ORTHO_STILLS.length - 1];
-  const [west, south, east, north] = still.bounds;
-  const ring = scenario.parcels.features.find((f) => (f.properties as { id: string }).id === FILM_PLOT)?.geometry;
-  const points =
-    ring?.type === "Polygon"
-      ? ring.coordinates[0]
-          .map((pair) => `${((pair[0] - west) / (east - west)) * 360},${((north - pair[1]) / (north - south)) * 360}`)
-          .join(" ")
-      : "";
   return (
-    <div className="film-poster">
-      <img src={still.src} alt="" />
-      <svg viewBox="0 0 360 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <polygon points={points} />
-      </svg>
-    </div>
+    <picture className="film-poster">
+      <source media="(max-width: 900px)" srcSet={`${FILM_DIR}/earth-mobile-end.webp`} />
+      <img src={`${FILM_DIR}/earth-desktop-end.webp`} alt="" />
+    </picture>
   );
 }
 
@@ -108,7 +94,7 @@ export function Landing() {
     return subscribe(paint);
   }, [clock, subscribe]);
 
-  // No WebGL: there is no film to wait for, so go straight to the last frame.
+  // No picture: there is no film to wait for, so go straight to the last frame.
   const onStage = useCallback(
     (state: "ready" | "failed") => {
       setStage(state);
@@ -154,7 +140,6 @@ export function Landing() {
     if (saved?.ai) return { ...saved, source: "ai_saved" };
     return rulesOnlyAnalysis(example.rule, null, "");
   }, [analyses, example]);
-  const verdict = analysis?.verdict ?? "uncertain";
 
   const daysAfter =
     s2 && declaration
@@ -266,7 +251,11 @@ export function Landing() {
         >
           <div className="film-frame">
             <div className="film-picture" role="img" aria-label={fill(t(lang, copy.film.stageLabel), { code: FILM_PLOT })}>
-              {stage === "failed" ? <Poster /> : <FilmStage clock={clock} verdict={verdict} onState={onStage} />}
+              {stage === "failed" ? (
+                <Poster />
+              ) : !clock.booted ? null : (
+                <FilmVideo clock={clock} onState={onStage} />
+              )}
             </div>
             <div className="film-shade" aria-hidden="true" />
             {/* where the camera may put its subject: clear of the copy, and on the last frame clear of the reading */}
