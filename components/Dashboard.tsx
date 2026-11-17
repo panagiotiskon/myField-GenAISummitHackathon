@@ -46,6 +46,15 @@ export function Dashboard() {
   const uncleanedCount = Object.values(verdicts).filter((v) => v === "potentially_uncleaned").length;
   const priority = useMemo(() => priorityList(rows, 6), [rows]);
 
+  // Uncleaned plots first, then flagged, so the strip reads left to right like the counts.
+  const cells = useMemo(
+    () =>
+      ids
+        .map((id) => ({ id, uncleaned: verdicts[id] === "potentially_uncleaned", flagged: Boolean(flags[id]) }))
+        .sort((a, b) => Number(b.uncleaned) - Number(a.uncleaned) || Number(b.flagged) - Number(a.flagged)),
+    [ids, verdicts, flags],
+  );
+
   function onSearch(event: FormEvent) {
     event.preventDefault();
     const id = resolveParcelCode(query, ids);
@@ -130,27 +139,45 @@ export function Dashboard() {
             {miss ? <p className="search-miss-text">{t(lang, copy.searchMiss)}</p> : null}
           </form>
 
+          {/* The duty is the whole set; uncleaned and flagged are parts of it. One cell per
+              plot, drawn the way the map draws it: fire fill = uncleaned, dashed = flagged. */}
           <dl className="dash-tally">
-            <div>
+            <div className="tally-duty">
               <dt>
                 {t(lang, copy.tally.duty)}
                 <small>{t(lang, copy.tally.dutyHint)}</small>
               </dt>
               <dd>{rows.length}</dd>
+              <ol className="tally-cells" aria-hidden="true">
+                {cells.map((cell) => (
+                  <li
+                    key={cell.id}
+                    className={`${cell.uncleaned ? "is-uncleaned" : ""} ${cell.flagged ? "is-flagged" : ""}`}
+                  />
+                ))}
+              </ol>
             </div>
-            <div className="tally-uncleaned">
+            <div className="tally-part tally-uncleaned">
               <dt>
                 {t(lang, copy.tally.uncleaned)}
                 <small>{t(lang, copy.tally.uncleanedHint)}</small>
               </dt>
-              <dd>{uncleanedCount}</dd>
+              <dd>
+                <i className="tally-mark is-uncleaned" aria-hidden="true" />
+                {uncleanedCount}
+                <span className="tally-of">/{rows.length}</span>
+              </dd>
             </div>
-            <div>
+            <div className="tally-part tally-flagged">
               <dt>
                 {t(lang, copy.tally.flagged)}
                 <small>{t(lang, copy.tally.flaggedHint)}</small>
               </dt>
-              <dd>{flaggedIds.length}</dd>
+              <dd>
+                <i className="tally-mark is-flagged" aria-hidden="true" />
+                {flaggedIds.length}
+                <span className="tally-of">/{rows.length}</span>
+              </dd>
             </div>
           </dl>
 
