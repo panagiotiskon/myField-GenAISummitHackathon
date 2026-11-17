@@ -6,7 +6,6 @@ import {
   CHAPTER_STILL,
   FILM_DIR,
   FILM_END,
-  FILM_PLOT,
   FILM_SHAPES,
   chapterAt,
   cuesAt,

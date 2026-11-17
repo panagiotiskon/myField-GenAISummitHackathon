@@ -3,6 +3,7 @@
 import type { Polygon } from "geojson";
 import { useMemo } from "react";
 import type { Verdict } from "@/lib/assess";
+import { localeOf } from "@/lib/i18n";
 import { plotShape } from "@/lib/shape";
 
 /** The plot's own outline, filled with its verdict colour. Used in lists. */
@@ -60,7 +61,7 @@ export function PlotSurvey({
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            {edge.lengthM.toLocaleString(lang === "el" ? "el-GR" : "en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+            {edge.lengthM.toLocaleString(localeOf(lang), { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
           </text>
         ))}
         <g className="survey-north" transform={`translate(${box - 12} 14)`}>

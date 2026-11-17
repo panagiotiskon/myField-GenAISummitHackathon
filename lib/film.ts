@@ -6,6 +6,8 @@ export const FILM_PLOT = "KAEK-05119-001";
 /** The recorded picture. Versioned by folder: the files are cached as immutable. */
 export const FILM_DIR = "/film/v2";
 export const FILM_SHAPES = ["desktop", "mobile"] as const;
+export type FilmShape = (typeof FILM_SHAPES)[number];
+export const FILM_NARROW = "(max-width: 900px)";
 
 export type ChapterId = "orbit" | "scan" | "descent" | "analysis" | "result";
 export const CHAPTERS: { id: ChapterId; at: number }[] = [

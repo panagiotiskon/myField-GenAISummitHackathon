@@ -7,7 +7,7 @@ import { LayerSwitch, PlotCode, TopBar, VERDICT_COLOR, VerdictDot } from "@/comp
 import { MapView } from "@/components/MapView";
 import { PlotPhoto } from "@/components/PlotPhoto";
 import { priorityList, resolveParcelCode, screen, type Verdict } from "@/lib/assess";
-import { copy, t } from "@/lib/i18n";
+import { copy, localeOf, t } from "@/lib/i18n";
 import { scenario } from "@/lib/scenario";
 import { useAnalyses, useFlags, useLang } from "@/lib/store";
 
@@ -194,7 +194,7 @@ export function Dashboard() {
                       <span className="plot-text">
                         <PlotCode id={id} className="plot-id" />
                         <span className="plot-street">{t(lang, p.street)}</span>
-                        <span className="plot-area">{Math.round(p.areaM2).toLocaleString(lang === "el" ? "el-GR" : "en-GB")} m²</span>
+                        <span className="plot-area">{Math.round(p.areaM2).toLocaleString(localeOf(lang))} m²</span>
                         <span className="plot-verdict">
                           <VerdictDot verdict={verdicts[id]} />
                           {t(lang, copy.verdict[verdicts[id]])}

@@ -7,7 +7,6 @@ import { CHAPTERS, CHAPTER_STILL, FILM_END, cuesAt, type ChapterId, type Cues } 
 // before the video has loaded; the video then holds the clock to the frame on screen.
 
 type Listener = (time: number) => void;
-const SEEN_KEY = "plotcheck.film.seen";
 const CUT_MS = 160;
 
 export type FilmClock = {
@@ -82,19 +81,14 @@ export function useFilmClock(): FilmClock {
     setPlaying(true);
     lastTick.current = performance.now();
     const tick = (now: number) => {
-      // a stalled tab or a long task must not make the camera leap
-      const delta = Math.min(now - lastTick.current, 48);
+      // no cap on the step: the limit already holds the clock to the frame on screen
+      const delta = now - lastTick.current;
       lastTick.current = now;
       const next = Math.min(timeRef.current + delta, limitRef.current, FILM_END);
       if (next !== timeRef.current) publish(next);
       if (next >= FILM_END) {
         playingRef.current = false;
         setPlaying(false);
-        try {
-          window.sessionStorage.setItem(SEEN_KEY, "1");
-        } catch {
-          // private window: it will simply play again next time
-        }
         return;
       }
       frame.current = requestAnimationFrame(tick);
@@ -123,19 +117,6 @@ export function useFilmClock(): FilmClock {
     const params = new URLSearchParams(window.location.search);
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const frozen = params.get("t");
-    let seen = false;
-    try {
-      seen = window.sessionStorage.getItem(SEEN_KEY) === "1";
-    } catch {
-      seen = false;
-    }
-    let signedIn = false;
-    try {
-      const officer = window.localStorage.getItem("plotcheck.officer");
-      signedIn = officer != null && officer !== "null";
-    } catch {
-      signedIn = false;
-    }
     const forced = params.get("film");
     // Save-Data (Chromium): the last frame as a still, no video download
     const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
