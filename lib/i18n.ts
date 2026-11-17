@@ -451,3 +451,7 @@ export function t(lang: Lang, entry: Localized | undefined): string {
 export function fill(text: string, values: Record<string, string | number>): string {
   return text.replace(/\{(\w+)\}/g, (_, key) => String(values[key] ?? ""));
 }
+
+export function localeOf(lang: Lang): string {
+  return lang === "el" ? "el-GR" : "en-GB";
+}

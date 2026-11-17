@@ -7,11 +7,12 @@ import { PlotSurvey } from "@/components/PlotShape";
 import { MapView } from "@/components/MapView";
 import { PlotPhoto } from "@/components/PlotPhoto";
 import {
+  NDVI_GREEN,
   imageryFor,
   ruleAssessment,
   type Analysis,
 } from "@/lib/assess";
-import { copy, t } from "@/lib/i18n";
+import { copy, localeOf, t } from "@/lib/i18n";
 import { getParcel, scenario } from "@/lib/scenario";
 import { useAnalyses, useFlags, useLang } from "@/lib/store";
 
@@ -46,7 +47,8 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
   const flaggedAt = flags[parcelId];
   const s2 = imagery?.sentinel ?? null;
   const ndvi = s2?.ndviChips ?? null;
-  const locale = lang === "el" ? "el-GR" : "en-GB";
+  const greenAt = ndvi ? ((NDVI_GREEN - ndvi.rescale[0]) / (ndvi.rescale[1] - ndvi.rescale[0])) * 100 : 0;
+  const locale = localeOf(lang);
   const longDate = (iso: string) =>
     new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString(locale, {
       day: "numeric",
@@ -148,12 +150,12 @@ export function PropertyView({ parcelId }: { parcelId: string }) {
               {ndvi ? (
                 <figure className="ndvi-key" aria-label={t(lang, copy.ndviKeyLabel)}>
                   <div className="ndvi-key-bar">
-                    <i style={{ left: `${(0.3 / ndvi.rescale[1]) * 100}%` }} />
+                    <i style={{ left: `${greenAt}%` }} />
                   </div>
                   <figcaption>
                     <span>{t(lang, copy.ndviLow)} ({ndvi.rescale[0].toFixed(1)})</span>
-                    <span className="ndvi-key-mark" style={{ left: `${(0.3 / ndvi.rescale[1]) * 100}%` }}>
-                      0.30 {t(lang, copy.ndviThreshold)}
+                    <span className="ndvi-key-mark" style={{ left: `${greenAt}%` }}>
+                      {NDVI_GREEN.toFixed(2)} {t(lang, copy.ndviThreshold)}
                     </span>
                     <span>{t(lang, copy.ndviHigh)} ({ndvi.rescale[1].toFixed(1)})</span>
                   </figcaption>

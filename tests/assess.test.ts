@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import {
   capConfidence,
   clampVerdict,
-  imageryFor,
   priorityList,
   resolveParcelCode,
   ruleAssessment,
@@ -48,7 +47,7 @@ describe("measurement gates", () => {
       ...large,
       properties: { ...large.properties, id: "FOREST-TEST", zone: "forest_excluded" },
     };
-    const rule = ruleAssessment(forest, null, null);
+    const rule = ruleAssessment(forest, undefined, null);
     expect(rule.verdict).toBe("not_applicable");
     expect(rule.allowed).toEqual(["not_applicable"]);
   });

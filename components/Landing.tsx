@@ -2,40 +2,30 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { LangSwitch, Mark, Pin, Wordmark } from "@/components/Chrome";
 import { useFilmClock } from "@/components/FilmClock";
 import { FilmVideo } from "@/components/FilmVideo";
 import { NdviScale } from "@/components/NdviScale";
-import savedAnalyses from "@/data/analysis-cache.json";
-import { imageryFor, rulesOnlyAnalysis, screen, type Analysis } from "@/lib/assess";
-import { CHAPTERS, FILM_DIR, FILM_END, FILM_PLOT, type ChapterId } from "@/lib/film";
-import { copy, fill, t } from "@/lib/i18n";
+import { imageryFor } from "@/lib/assess";
+import { CHAPTERS, FILM_DIR, FILM_END, FILM_NARROW, FILM_PLOT, type ChapterId } from "@/lib/film";
+import { copy, fill, localeOf, t } from "@/lib/i18n";
 import { scenario } from "@/lib/scenario";
-import { useAnalyses, useLang, useOfficer } from "@/lib/store";
+import { useLang, useOfficer } from "@/lib/store";
 import type { Lang } from "@/lib/types";
 
 const SKIP = { el: "Μετάβαση στο περιεχόμενο", en: "Skip to content" };
-const SAVED = savedAnalyses as unknown as Record<string, Analysis>;
 
 function longDate(lang: Lang, iso: string) {
-  return new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString(lang === "el" ? "el-GR" : "en-GB", {
+  return new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString(localeOf(lang), {
     day: "numeric",
     month: "long",
     timeZone: "UTC",
   });
 }
 
-function shortDate(lang: Lang, iso: string) {
-  return new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString(lang === "el" ? "el-GR" : "en-GB", {
-    day: "numeric",
-    month: "short",
-    timeZone: "UTC",
-  });
-}
-
 function number(lang: Lang, value: number, digits = 2) {
-  return value.toLocaleString(lang === "el" ? "el-GR" : "en-GB", {
+  return value.toLocaleString(localeOf(lang), {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
   });
@@ -45,7 +35,7 @@ function number(lang: Lang, value: number, digits = 2) {
 function Poster() {
   return (
     <picture className="film-poster">
-      <source media="(max-width: 900px)" srcSet={`${FILM_DIR}/earth-mobile-end.webp`} />
+      <source media={FILM_NARROW} srcSet={`${FILM_DIR}/earth-mobile-end.webp`} />
       <img src={`${FILM_DIR}/earth-desktop-end.webp`} alt="" />
     </picture>
   );
@@ -55,7 +45,6 @@ export function Landing() {
   const router = useRouter();
   const [lang, setLang] = useLang();
   const { officer, signIn } = useOfficer();
-  const { analyses } = useAnalyses();
   const [name, setName] = useState("");
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [stage, setStage] = useState<"loading" | "ready" | "failed">("loading");
@@ -124,22 +113,9 @@ export function Landing() {
     [router],
   );
 
-  const rows = useMemo(() => screen(scenario), []);
-  const example = rows.find((row) => row.parcel.properties.id === FILM_PLOT);
   const imagery = imageryFor(FILM_PLOT);
   const s2 = imagery?.sentinel ?? null;
   const declaration = scenario.declarations.find((row) => row.parcelId === FILM_PLOT) ?? null;
-  const sentinel = scenario.meta.imagery;
-
-  // What the reading shows: this browser's own analysis, else the saved one, else the measurements.
-  const analysis: Analysis | null = useMemo(() => {
-    if (!example) return null;
-    const own = analyses[FILM_PLOT];
-    if (own) return own;
-    const saved = SAVED[FILM_PLOT];
-    if (saved?.ai) return { ...saved, source: "ai_saved" };
-    return rulesOnlyAnalysis(example.rule, null, "");
-  }, [analyses, example]);
 
   const daysAfter =
     s2 && declaration
